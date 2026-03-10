@@ -25,5 +25,12 @@ import FooterSection from './components/FooterSection.vue'
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .main-wrap {
+    padding: 0 16px;
+  }
 }
 </style>

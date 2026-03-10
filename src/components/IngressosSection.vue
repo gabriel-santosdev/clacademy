@@ -7,12 +7,7 @@
       </p>
 
       <div class="ingressos__grid">
-        <div
-          v-for="item in ingressos"
-          :key="item.titulo"
-          class="ingresso-card"
-          :class="{ destaque: item.destaque }"
-        >
+        <div v-for="item in ingressos" :key="item.titulo" class="ingresso-card" :class="{ destaque: item.destaque }">
           <div v-if="item.destaque" class="ingresso-card__badge">ESPECIAL</div>
 
           <div class="ingresso-card__header">
@@ -206,13 +201,34 @@ const ingressos = [
   color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .ingressos__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ingresso-card.destaque {
+    grid-column: span 2;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .ingressos {
+    padding: 56px 0;
+  }
+
   .ingressos__grid {
     grid-template-columns: 1fr;
   }
 
   .ingresso-card.destaque {
+    grid-column: span 1;
     transform: none;
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.3);
+  }
+
+  .ingresso-card__preco {
+    font-size: 1.5rem;
   }
 }
 </style>

@@ -71,4 +71,30 @@
   font-size: 1rem;
   letter-spacing: 0.5px;
 }
+
+@media (max-width: 600px) {
+  .patrocinadores {
+    padding: 40px 0 32px;
+  }
+
+  .patrocinadores__grid {
+    gap: 24px 32px;
+    justify-content: center;
+  }
+
+  .pat {
+    font-size: 1rem;
+  }
+
+  .pat--light,
+  .pat--thin {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .patrocinadores__grid {
+    gap: 18px 20px;
+  }
+}
 </style>

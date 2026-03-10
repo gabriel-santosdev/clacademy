@@ -2,9 +2,9 @@
   <section id="inicio" class="hero">
     <div class="hero__overlay"></div>
     <div class="hero__content container">
-      <h1 class="hero__title">Transforme sua energia<br />em movimento</h1>
+      <h1 class="hero__title">Transforme sua energia em movimento</h1>
       <p class="hero__subtitle">
-        Experimente aulas de fitness em grupo premium de ginástica<br />
+        Experimente aulas de fitness em grupo premium de ginástica
         localizada, dança e jump. Eleve seu corpo e mente.
       </p>
       <a href="#aulas" class="hero__btn">Ver Aulas</a>
@@ -36,21 +36,25 @@
   z-index: 1;
   text-align: center;
   color: #fff;
-  padding: 80px 24px;
+  padding: 80px 32px;
+  width: 100%;
 }
 
 .hero__title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.75rem, 5vw, 3rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 20px;
 }
 
 .hero__subtitle {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   line-height: 1.7;
   opacity: 0.92;
   margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero__btn {
@@ -66,5 +70,35 @@
 
 .hero__btn:hover {
   background: var(--green-dark);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 380px;
+    margin: 16px 0;
+    border-radius: 12px;
+  }
+
+  .hero__content {
+    padding: 60px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 320px;
+    margin: 12px 0;
+    border-radius: 10px;
+  }
+
+  .hero__content {
+    padding: 48px 16px;
+  }
+
+  .hero__btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
 }
 </style>

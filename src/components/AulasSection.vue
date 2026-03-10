@@ -96,9 +96,25 @@ const aulas = [
   line-height: 1.65;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .aulas__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aulas {
+    padding: 56px 0;
+  }
+
   .aulas__grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .aula-card__img-wrap {
+    aspect-ratio: 16/9;
   }
 }
 </style>

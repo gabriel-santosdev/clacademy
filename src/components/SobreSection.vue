@@ -3,10 +3,7 @@
     <div class="container">
       <div class="sobre__inner">
         <div class="sobre__img-wrap">
-          <img
-            src="https://illustrations.popsy.co/amber/woman-doing-yoga.svg"
-            alt="Instrutora CL Academy"
-          />
+          <img src="https://illustrations.popsy.co/amber/woman-doing-yoga.svg" alt="Instrutora CL Academy" />
         </div>
         <div class="sobre__text">
           <h2>Quem sou eu</h2>
@@ -85,11 +82,32 @@
   color: #fff;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .sobre {
+    padding: 56px 0;
+  }
+
+  .sobre__inner {
+    gap: 32px;
+    padding: 32px 32px;
+  }
+}
+
+@media (max-width: 600px) {
   .sobre__inner {
     flex-direction: column;
-    padding: 32px 24px;
+    align-items: center;
+    padding: 28px 20px;
     text-align: center;
+  }
+
+  .sobre__img-wrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .sobre__text h2 {
+    font-size: 1.3rem;
   }
 }
 </style>

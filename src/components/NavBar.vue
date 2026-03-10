@@ -132,17 +132,51 @@ const menuOpen = ref(false)
   font-weight: 500;
   padding: 8px 0;
   color: var(--text-dark);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__mobile a:last-child {
+  border-bottom: none;
 }
 
 .navbar__mobile .btn-cta {
   text-align: center;
   margin-top: 8px;
+  border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar__nav {
+    gap: 18px;
+  }
 }
 
 @media (max-width: 768px) {
-  .navbar__nav { display: none; }
-  .navbar__hamburger { display: flex; }
-  .navbar__inner .btn-cta { display: none; }
-  .navbar__mobile.open { display: flex; }
+  .navbar__nav {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__inner .btn-cta {
+    display: none;
+  }
+
+  .navbar__mobile.open {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__inner {
+    height: 56px;
+    gap: 16px;
+  }
+
+  .navbar__logo-text {
+    font-size: 1rem;
+  }
 }
 </style>
