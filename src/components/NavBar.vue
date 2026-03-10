@@ -1,0 +1,148 @@
+<template>
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <span class="navbar__logo-icon">✦</span>
+        <span class="navbar__logo-text">CL Academy</span>
+      </a>
+
+      <nav class="navbar__nav">
+        <a href="#inicio">Início</a>
+        <a href="#aulas">Aulas</a>
+        <a href="#ingressos">Ingressos</a>
+        <a href="#sobre">Sobre Mim</a>
+        <a href="#patrocinadores">Patrocinadores</a>
+      </nav>
+
+      <a href="#ingressos" class="btn-cta">Comprar Ingresso</a>
+
+      <button class="navbar__hamburger" @click="menuOpen = !menuOpen" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="navbar__mobile" :class="{ open: menuOpen }">
+      <a href="#inicio" @click="menuOpen = false">Início</a>
+      <a href="#aulas" @click="menuOpen = false">Aulas</a>
+      <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
+      <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
+      <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
+      <a href="#ingressos" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a>
+    </div>
+  </header>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const menuOpen = ref(false)
+</script>
+
+<style scoped>
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 32px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.navbar__logo-icon {
+  color: var(--green);
+  font-size: 1.3rem;
+}
+
+.navbar__nav {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar__nav a {
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.navbar__nav a:hover {
+  color: var(--green-dark);
+}
+
+.btn-cta {
+  background: var(--green);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 10px 20px;
+  border-radius: 50px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.btn-cta:hover {
+  background: var(--green-dark);
+}
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  padding: 4px;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-dark);
+  border-radius: 2px;
+}
+
+.navbar__mobile {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+
+.navbar__mobile a {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 0;
+  color: var(--text-dark);
+}
+
+.navbar__mobile .btn-cta {
+  text-align: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .navbar__nav { display: none; }
+  .navbar__hamburger { display: flex; }
+  .navbar__inner .btn-cta { display: none; }
+  .navbar__mobile.open { display: flex; }
+}
+</style>
