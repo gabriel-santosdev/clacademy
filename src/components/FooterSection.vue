@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
     <div class="container footer__inner">
-      <p class="footer__copy">© 2023 CL Academy. Todos os direitos reservados.</p>
+      <p class="footer__copy">© 2026 CL Academy. Todos os direitos reservados.</p>
       <div class="footer__icons">
-        <a href="#" aria-label="Instagram">
+        <a href="https://www.instagram.com/clacademyyy" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -19,6 +19,13 @@
           </svg>
         </a>
       </div>
+    </div>
+
+    <div class="footer__dev-bar">
+      <a href="https://www.instagram.com/gabrielsantos.tec/" target="_blank" rel="noopener" class="footer__dev">
+        <span>Desenvolvido por</span>
+        <img src="../assets/gabriel.png" alt="Gabriel Santos" class="footer__dev-logo" />
+      </a>
     </div>
   </footer>
 </template>
@@ -61,5 +68,34 @@
     gap: 12px;
     text-align: center;
   }
+}
+
+.footer__dev-bar {
+  border-top: 1px solid var(--border);
+  padding: 14px 0;
+  display: flex;
+  justify-content: center;
+  background: var(--dark);
+}
+
+.footer__dev {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--sand);
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+}
+
+.footer__dev:hover {
+  opacity: 0.7;
+}
+
+.footer__dev-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
 }
 </style>

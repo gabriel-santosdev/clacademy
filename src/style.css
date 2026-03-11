@@ -1,18 +1,46 @@
-﻿*, *::before, *::after {
+﻿/* ── Fontes locais ─────────────────────────────────────── */
+@font-face {
+  font-family: 'BillaMount';
+  src: url('@/assets/fonts/BillaMount-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MangoDream';
+  src: url('@/assets/fonts/Mango Dream.otf') format('opentype'),
+       url('@/assets/fonts/Mango Dream.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --green: #2ecc71;
-  --green-dark: #27ae60;
-  --dark: #111111;
-  --text-dark: #1a1a1a;
-  --text-muted: #555555;
-  --bg-light: #f9f9f9;
-  --white: #ffffff;
-  --border: #e5e5e5;
+  /* Removidos: --green e --green-dark */
+  --accent:       #a0856e;   /* terracota — botões, destaques */
+  --accent-dark:  #7d6455;   /* terracota escuro — hover */
+  --dark:         #2b2b2b;
+  --text-dark:    #2b2b2b;
+  --text-muted:   #7a7570;
+  --bg-light:     #f0ede8;
+  --bg-warm:      #e8e4de;
+  --white:        #faf9f7;
+  --border:       #d9d4ce;
+  --terracota:    #a0856e;
+  --sand:         #c9b8a8;
+
+  /* ── Tipografia ── */
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-heading: 'MangoDream', 'Inter', sans-serif;
+  --font-script:  'BillaMount', cursive;
 }
 
 html {
@@ -20,11 +48,12 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-body);
   color: var(--text-dark);
   background: var(--white);
   line-height: 1.6;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -55,14 +84,17 @@ button {
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   margin-bottom: 12px;
   color: var(--text-dark);
+  letter-spacing: 0.02em;
 }
 
 .section-subtitle {
+  font-family: var(--font-body);
   font-size: clamp(0.88rem, 2vw, 1rem);
   color: var(--text-muted);
   text-align: center;

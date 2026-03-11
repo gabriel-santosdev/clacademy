@@ -2,16 +2,46 @@
   <section id="patrocinadores" class="patrocinadores">
     <div class="container">
       <p class="patrocinadores__label">NOSSOS PATROCINADORES</p>
-      <div class="patrocinadores__grid">
-        <span class="pat pat--bold">FITGEAR</span>
-        <span class="pat pat--light">Aura</span>
-        <span class="pat pat--box">NEXUS</span>
-        <span class="pat pat--thin">velo</span>
-        <span class="pat pat--icon">⚡ HYDRATE</span>
-      </div>
+      <p class="patrocinadores__em-breve">
+        Em breve divulgaremos nossos patrocinadores.
+      </p>
     </div>
   </section>
 </template>
+
+<style scoped>
+.patrocinadores {
+  padding: 60px 0 48px;
+  border-top: 1px solid var(--border);
+}
+
+.patrocinadores__label {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.patrocinadores__em-breve {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+  color: var(--sand);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 480px) {
+  .patrocinadores {
+    padding: 40px 0 32px;
+  }
+
+  .patrocinadores__em-breve {
+    font-size: 1.2rem;
+  }
+}
+</style>
 
 <style scoped>
 .patrocinadores {

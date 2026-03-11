@@ -2,8 +2,7 @@
   <header class="navbar">
     <div class="container navbar__inner">
       <a href="#" class="navbar__logo">
-        <span class="navbar__logo-icon">✦</span>
-        <span class="navbar__logo-text">CL Academy</span>
+        <img src="../assets/cl_academy_logo.png" alt="CL Academy" class="navbar__logo-img" />
       </a>
 
       <nav class="navbar__nav">
@@ -14,7 +13,8 @@
         <a href="#patrocinadores">Patrocinadores</a>
       </nav>
 
-      <a href="#ingressos" class="btn-cta">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener"
+        class="btn-cta">Comprar Ingresso</a>
 
       <button class="navbar__hamburger" @click="menuOpen = !menuOpen" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -27,7 +27,8 @@
       <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
       <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
       <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
-      <a href="#ingressos" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener" class="btn-cta"
+        @click="menuOpen = false">Comprar Ingresso</a>
     </div>
   </header>
 </template>
@@ -42,7 +43,7 @@ const menuOpen = ref(false)
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
+  background: var(--white);
   border-bottom: 1px solid var(--border);
 }
 
@@ -57,15 +58,18 @@ const menuOpen = ref(false)
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-dark);
-  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.navbar__logo-img {
+  height: 140px;
+  width: 200px;
+  object-fit: contain;
+  display: block;
 }
 
 .navbar__logo-icon {
-  color: var(--green);
+  color: var(--accent);
   font-size: 1.3rem;
 }
 
@@ -77,21 +81,27 @@ const menuOpen = ref(false)
 }
 
 .navbar__nav a {
-  font-size: 0.92rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--text-dark);
   transition: color 0.2s;
   font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .navbar__nav a:hover {
-  color: var(--green-dark);
+  color: var(--accent-dark);
 }
 
 .btn-cta {
-  background: var(--green);
+  background: var(--accent);
   color: #fff;
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 50px;
   white-space: nowrap;
@@ -99,7 +109,7 @@ const menuOpen = ref(false)
 }
 
 .btn-cta:hover {
-  background: var(--green-dark);
+  background: var(--accent-dark);
 }
 
 .navbar__hamburger {

@@ -2,23 +2,151 @@
   <section id="sobre" class="sobre">
     <div class="container">
       <div class="sobre__inner">
+
         <div class="sobre__img-wrap">
-          <img src="https://illustrations.popsy.co/amber/woman-doing-yoga.svg" alt="Instrutora CL Academy" />
+          <img src="../assets/carla_perfil.jpg" alt="Carla Lívian – Fundadora CL Academy" />
         </div>
+
         <div class="sobre__text">
-          <h2>Quem sou eu</h2>
+          <span class="sobre__label">Fundadora</span>
+          <h2>Carla Lívian</h2>
           <p>
-            Uma instrutora de fitness apaixonada dedicada a transformar sua energia em
-            movimento. Com mais de uma década de experiência em ginástica e dança, criei a
-            CL Academy para ajudar você a descobrir seu verdadeiro potencial em um ambiente
-            de apoio e energia.
+            Formada em Educação Física, atua na área do fitness com aulas coletivas,
+            individuais e virtual, especializada em treinamento físico e dança,
+            atuando também como dançarina na área comercial.
           </p>
-          <a href="#" class="sobre__btn">Leia Mais</a>
+          <a href="https://instagram.com/clacademyyy" target="_blank" class="sobre__btn">
+            @clacademyyy
+          </a>
         </div>
+
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.sobre {
+  padding: 80px 0;
+  background: var(--bg-light);
+}
+
+.sobre__inner {
+  display: flex;
+  align-items: center;
+  gap: 52px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 48px 52px;
+  border: 1px solid var(--border);
+}
+
+/* ── Foto ───────────────────────────────────────── */
+.sobre__img-wrap {
+  flex-shrink: 0;
+  width: 180px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-warm);
+}
+
+.sobre__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  transform: scale(1.1);
+  transform-origin: center 100%;
+}
+
+/* ── Texto ──────────────────────────────────────── */
+.sobre__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 10px;
+}
+
+.sobre__text h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 400;
+  margin-bottom: 16px;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+}
+
+.sobre__text p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.sobre__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border: 1.5px solid var(--sand);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--terracota);
+  letter-spacing: 0.03em;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.sobre__btn:hover {
+  background: var(--terracota);
+  border-color: var(--terracota);
+  color: #fff;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .sobre {
+    padding: 56px 0;
+  }
+
+  .sobre__inner {
+    gap: 36px;
+    padding: 36px 32px;
+  }
+
+  .sobre__img-wrap {
+    width: 160px;
+    height: 192px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sobre__inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .sobre__img-wrap {
+    width: 140px;
+    height: 168px;
+  }
+
+  .sobre__text p {
+    max-width: 100%;
+  }
+}
+</style>
+
 
 <style scoped>
 .sobre {
@@ -53,13 +181,16 @@
 }
 
 .sobre__text h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 400;
   margin-bottom: 14px;
   color: var(--text-dark);
+  letter-spacing: 0.02em;
 }
 
 .sobre__text p {
+  font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--text-muted);
   line-height: 1.8;

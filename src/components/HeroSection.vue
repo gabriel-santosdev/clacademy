@@ -41,10 +41,12 @@
 }
 
 .hero__title {
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
   margin-bottom: 20px;
+  letter-spacing: 0.01em;
 }
 
 .hero__subtitle {
@@ -59,7 +61,7 @@
 
 .hero__btn {
   display: inline-block;
-  background: var(--green);
+  background: var(--accent);
   color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
@@ -69,7 +71,7 @@
 }
 
 .hero__btn:hover {
-  background: var(--green-dark);
+  background: var(--accent-dark);
 }
 
 @media (max-width: 768px) {
