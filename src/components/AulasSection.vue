@@ -37,7 +37,7 @@
       <div class="aulas__grid">
         <div v-for="aula in aulas" :key="aula.nome" class="aula-card">
           <div class="aula-card__img-wrap">
-            <img :src="aula.img" :alt="aula.nome" />
+            <img :src="aula.img" :alt="aula.nome" :class="aula.imgPosition" />
           </div>
           <div class="aula-card__body">
             <h3>{{ aula.nome }}</h3>
@@ -54,20 +54,16 @@ const aulas = [
   {
     nome: 'Fitness Coletiva',
     descricao:
-      'Melhore a flexibilidade, força e equilíbrio com nossas aulas coletivas ministradas por especialistas, adaptadas para todos os níveis.',
-    img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&auto=format&fit=crop',
+      'Aulas de funcional, HIT, Gap, Alongamento e Jump para melhorar seu condicionamento, flexibilidade, força, equilíbrio e saúde vascular.',
+    img: new URL('../assets/aulas_coletivas.png', import.meta.url).href,
+    imgPosition: 'img-pos-top',
   },
   {
     nome: 'Dança',
     descricao:
-      'Expresse-se e queime calorias com nossas rotinas dinâmicas e de alta energia de dança que parecem mais uma festa.',
-    img: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80&auto=format&fit=crop',
-  },
-  {
-    nome: 'Jump',
-    descricao:
-      'Aumente sua saúde cardiovascular e divirta-se com nossas intensas sessões de jump baseadas em ritmo.',
-    img: 'https://images.pexels.com/photos/3775566/pexels-photo-3775566.jpeg?auto=compress&cs=tinysrgb&w=600&fit=crop',
+      'Expresse-se, vivencie e experimente diferentes modalidades de dança!',
+    img: new URL('../assets/danca.png', import.meta.url).href,
+    imgPosition: 'img-pos-center',
   },
 ]
 </script>
@@ -165,20 +161,22 @@ const aulas = [
 /* ── Grid ────────────────────────────────────────── */
 .aulas__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .aula-card {
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--white);
 }
 
 .aula-card__img-wrap {
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .aula-card__img-wrap img {
@@ -188,35 +186,36 @@ const aulas = [
   transition: transform 0.4s ease;
 }
 
+.img-pos-top {
+  object-position: top;
+}
+
+.img-pos-center {
+  object-position: center;
+}
+
 .aula-card:hover .aula-card__img-wrap img {
   transform: scale(1.04);
 }
 
 .aula-card__body {
-  padding: 16px 4px 0;
+  padding: 20px 6px 0;
 }
 
 .aula-card__body h3 {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--text-dark);
   letter-spacing: 0.02em;
 }
 
 .aula-card__body p {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
-  line-height: 1.65;
-}
-
-@media (max-width: 900px) {
-  .aulas__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
+  line-height: 1.7;
 }
 
 @media (max-width: 600px) {

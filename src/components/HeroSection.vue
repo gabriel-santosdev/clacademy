@@ -1,11 +1,11 @@
 <template>
   <section id="inicio" class="hero">
+    <img src="../assets/hero.jpeg" class="hero__bg" alt="" aria-hidden="true" />
     <div class="hero__overlay"></div>
     <div class="hero__content container">
-      <h1 class="hero__title">Transforme sua energia em movimento</h1>
+      <h1 class="hero__title">Onde o movimento vira experiência</h1>
       <p class="hero__subtitle">
-        Experimente aulas de fitness em grupo premium de ginástica
-        localizada, dança e jump. Eleve seu corpo e mente.
+        Experimente aulas fitness coletivas & dança de uma forma diferente!
       </p>
       <a href="#aulas" class="hero__btn">Ver Aulas</a>
     </div>
@@ -19,10 +19,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=80&auto=format&fit=crop') center/cover no-repeat;
   margin: 24px 0;
   border-radius: 16px;
   overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top top;
+  display: block;
 }
 
 .hero__overlay {
@@ -76,7 +85,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 380px;
+    min-height: 460px;
     margin: 16px 0;
     border-radius: 12px;
   }
@@ -88,7 +97,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 320px;
+    min-height: 380px;
     margin: 12px 0;
     border-radius: 10px;
   }
