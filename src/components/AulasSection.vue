@@ -57,7 +57,7 @@ const aulas = [
   {
     nome: 'Fitness Coletiva',
     descricao:
-      'Aulas de funcional, HIT, Gap, Alongamento e Jump para melhorar seu condicionamento, flexibilidade, força, equilíbrio e saúde vascular.',
+      'Aulas de funcional, HIT, GAP, Alongamento e Jump para melhorar seu condicionamento, flexibilidade, força, equilíbrio e saúde vascular.',
     img: imgColetiva,
     imgPosition: 'img-pos-top',
   },
