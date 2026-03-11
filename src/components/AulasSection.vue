@@ -50,19 +50,22 @@
 </template>
 
 <script setup lang="ts">
+import imgColetiva from '../assets/aulas_coletivas.png'
+import imgDanca from '../assets/danca.png'
+
 const aulas = [
   {
     nome: 'Fitness Coletiva',
     descricao:
       'Aulas de funcional, HIT, Gap, Alongamento e Jump para melhorar seu condicionamento, flexibilidade, força, equilíbrio e saúde vascular.',
-    img: new URL('../assets/aulas_coletivas.png', import.meta.url).href,
+    img: imgColetiva,
     imgPosition: 'img-pos-top',
   },
   {
     nome: 'Dança',
     descricao:
       'Expresse-se, vivencie e experimente diferentes modalidades de dança!',
-    img: new URL('../assets/danca.png', import.meta.url).href,
+    img: imgDanca,
     imgPosition: 'img-pos-center',
   },
 ]
