@@ -27,47 +27,49 @@ onUnmounted(() => clearInterval(interval))
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: #0D0010;
+    background: #7E0F0D;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 20 px 24px;
+    padding: 40px 24px;
     text-align: center;
 }
 
 .logo {
     width: clamp(200px, 30vw, 380px);
-    opacity: 0.95;
+    opacity: 1;
+    filter: brightness(0) invert(1);
 }
 
 .title {
     font-family: 'MangoDream', sans-serif;
     font-size: clamp(72px, 16vw, 200px);
-    color: #F19DAC;
+    color: #FCCD5D;
     line-height: 1;
     margin: 0;
     letter-spacing: 0.02em;
 }
 
 .dot {
-    color: #CC152B;
+    color: #FCCD5D;
 }
 
 .dots {
     display: inline-block;
     width: 0.55em;
-    color: #CC152B;
+    color: #FCCD5D;
     text-align: left;
 }
 
 .sub {
     font-family: 'BillaMount', cursive;
     font-size: clamp(14px, 2vw, 22px);
-    color: rgba(255, 255, 255, 0.40);
+    color: #F19DAC;
     letter-spacing: 0.12em;
     margin: 0;
+    opacity: 0.90;
 }
 
 /* ── Tablet ── */
