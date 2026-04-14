@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import ComingSoonScreen from './components/ComingSoonScreen.vue'
+
+// ── Tela de marketing ativa ──
+// Para desativar e voltar ao site completo, mude para: const showComingSoon = false
+const showComingSoon = true
+
+// ── Imports do site completo (mantidos para quando voltar) ──
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AulasSection from './components/AulasSection.vue'
@@ -9,15 +16,21 @@ import FooterSection from './components/FooterSection.vue'
 </script>
 
 <template>
-  <NavBar />
-  <main class="main-wrap">
-    <HeroSection />
-    <AulasSection />
-    <IngressosSection />
-    <SobreSection />
-    <PatrocinadoresSection />
-  </main>
-  <FooterSection />
+  <!-- Tela de marketing "VEM AÍ" -->
+  <ComingSoonScreen v-if="showComingSoon" />
+
+  <!-- Site completo (exibido quando showComingSoon = false) -->
+  <template v-else>
+    <NavBar />
+    <main class="main-wrap">
+      <HeroSection />
+      <AulasSection />
+      <IngressosSection />
+      <SobreSection />
+      <PatrocinadoresSection />
+    </main>
+    <FooterSection />
+  </template>
 </template>
 
 <style>
