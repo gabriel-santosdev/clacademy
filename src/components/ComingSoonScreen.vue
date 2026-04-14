@@ -46,20 +46,20 @@ onUnmounted(() => clearInterval(interval))
 .title {
     font-family: 'MangoDream', sans-serif;
     font-size: clamp(72px, 16vw, 200px);
-    color: #FCCD5D;
+    color: #FFBEC5;
     line-height: 1;
     margin: 0;
     letter-spacing: 0.02em;
 }
 
 .dot {
-    color: #FCCD5D;
+    color: #FFBEC5;
 }
 
 .dots {
     display: inline-block;
     width: 0.55em;
-    color: #FCCD5D;
+    color: #FFBEC5;
     text-align: left;
 }
 
