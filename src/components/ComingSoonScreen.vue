@@ -18,7 +18,7 @@ onUnmounted(() => clearInterval(interval))
     <div class="cs">
         <img src="../assets/cl_academy_logo.png" alt="CL Academy" class="logo" />
         <h1 class="title">vem aí<span class="dots">{{ dots }}</span></h1>
-        <p class="sub">onde o movimento, vira experiência.</p>
+        <p class="sub">onde o movimento vira experiência.</p>
     </div>
 </template>
 
