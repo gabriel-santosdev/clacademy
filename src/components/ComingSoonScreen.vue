@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 0;
     flex: 1;
     max-width: 520px;
 }
@@ -40,6 +40,9 @@
     width: clamp(180px, 22vw, 340px);
     opacity: 1;
     filter: brightness(0) invert(1);
+    display: block;
+    margin: 0;
+    margin-bottom: -12px;
 }
 
 .sub {
@@ -48,7 +51,9 @@
     color: #F19DAC;
     letter-spacing: 0.12em;
     margin: 0;
+    padding: 0;
     opacity: 0.90;
+    line-height: 1;
 }
 
 .promo-video {
@@ -73,6 +78,7 @@
     .left {
         align-items: center;
         max-width: 100%;
+        gap: 0;
     }
 
     .logo {
