@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const dots = ref('')
-
-let interval: ReturnType<typeof setInterval>
-
-onMounted(() => {
-    interval = setInterval(() => {
-        dots.value = dots.value.length >= 3 ? '' : dots.value + '.'
-    }, 420)
-})
-
-onUnmounted(() => clearInterval(interval))
 </script>
 
 <template>
     <div class="cs">
-        <img src="../assets/cl_academy_logo.png" alt="CL Academy" class="logo" />
-        <h1 class="title">vem aí<span class="dots">{{ dots }}</span></h1>
-        <p class="sub">onde o movimento vira experiência.</p>
+        <div class="left">
+            <img src="../assets/cl_academy_logo.png" alt="CL Academy" class="logo" />
+            <p class="sub">onde o movimento vira experiência.</p>
+        </div>
+        <video class="promo-video" src="../assets/WhatsApp Video 2026-04-16 at 4.47.03 PM.mp4" autoplay loop muted
+            playsinline></video>
     </div>
 </template>
 
@@ -29,62 +19,69 @@ onUnmounted(() => clearInterval(interval))
     z-index: 9999;
     background: #7E0F0D;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 40px 24px;
-    text-align: center;
+    gap: 60px;
+    padding: 40px 80px;
+    text-align: left;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+    max-width: 520px;
 }
 
 .logo {
-    width: clamp(200px, 30vw, 380px);
+    width: clamp(180px, 22vw, 340px);
     opacity: 1;
     filter: brightness(0) invert(1);
 }
 
-.title {
-    font-family: 'MangoDream', sans-serif;
-    font-size: clamp(72px, 16vw, 200px);
-    color: #FFBEC5;
-    line-height: 1;
-    margin: 0;
-    letter-spacing: 0.02em;
-}
-
-.dot {
-    color: #FFBEC5;
-}
-
-.dots {
-    display: inline-block;
-    width: 0.55em;
-    color: #FFBEC5;
-    text-align: left;
-}
-
 .sub {
     font-family: 'BillaMount', cursive;
-    font-size: clamp(14px, 2vw, 22px);
+    font-size: clamp(14px, 1.4vw, 22px);
     color: #F19DAC;
     letter-spacing: 0.12em;
     margin: 0;
     opacity: 0.90;
 }
 
+.promo-video {
+    height: clamp(320px, 65vh, 700px);
+    width: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
 /* ── Tablet ── */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .cs {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         gap: 24px;
         padding: 32px 20px;
+    }
+
+    .left {
+        align-items: center;
+        max-width: 100%;
     }
 
     .logo {
         width: clamp(160px, 55vw, 300px);
     }
 
-    .title {
-        font-size: clamp(64px, 18vw, 140px);
+    .promo-video {
+        height: auto;
+        width: clamp(240px, 75vw, 420px);
     }
 
     .sub {
@@ -104,8 +101,8 @@ onUnmounted(() => clearInterval(interval))
         width: clamp(140px, 65vw, 240px);
     }
 
-    .title {
-        font-size: clamp(56px, 20vw, 100px);
+    .promo-video {
+        width: 88vw;
     }
 
     .sub {
@@ -120,8 +117,8 @@ onUnmounted(() => clearInterval(interval))
         width: 75vw;
     }
 
-    .title {
-        font-size: 18vw;
+    .promo-video {
+        width: 95vw;
     }
 }
 </style>
