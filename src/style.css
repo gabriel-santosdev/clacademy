@@ -24,18 +24,17 @@
 }
 
 :root {
-  /* Removidos: --green e --green-dark */
-  --accent:       #a0856e;   /* terracota — botões, destaques */
-  --accent-dark:  #7d6455;   /* terracota escuro — hover */
-  --dark:         #2b2b2b;
+  --accent:       #E0A4B0;   /* rosa — botões, destaques */
+  --accent-dark:  #7C0116;   /* vinho escuro — hover */
+  --dark:         #7C0116;
   --text-dark:    #2b2b2b;
-  --text-muted:   #7a7570;
-  --bg-light:     #f0ede8;
-  --bg-warm:      #e8e4de;
-  --white:        #faf9f7;
-  --border:       #d9d4ce;
-  --terracota:    #a0856e;
-  --sand:         #c9b8a8;
+  --text-muted:   #9a6070;
+  --bg-light:     #fdf0f3;
+  --bg-warm:      #f7e4e8;
+  --white:        #fff8f9;
+  --border:       #f0c8d0;
+  --terracota:    #E0A4B0;
+  --sand:         #f0c8d0;
 
   /* ── Tipografia ── */
   --font-body:    'Inter', system-ui, sans-serif;
