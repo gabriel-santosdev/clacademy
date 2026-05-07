@@ -7,7 +7,8 @@
         <a v-for="sponsor in sponsors" :key="sponsor.handle" :href="`https://instagram.com/${sponsor.handle}`"
           target="_blank" rel="noopener noreferrer" class="pat-card">
           <div class="pat-card__img-wrap">
-            <img :src="sponsor.img" :alt="sponsor.name" class="pat-card__img" />
+            <img :src="sponsor.img" :alt="sponsor.name" class="pat-card__img"
+              :class="{ 'pat-card__img--contain': sponsor.contain }" />
           </div>
           <span class="pat-card__handle">@{{ sponsor.handle }}</span>
         </a>
@@ -24,7 +25,8 @@ import csPratas from '../assets/cs_pratas.jpeg'
 import gabriel from '../assets/LOGO GABRIEL.jpg'
 import kayanne from '../assets/kayanne.jpeg'
 import yasmin from '../assets/yasmin_lash.jpeg'
-
+import digao from '../assets/digao_coco.jpeg'
+import isadora from '../assets/dra_isadora.jpeg'
 const sponsors = [
   { handle: 'alohaacai.oficial', name: 'Aloha Açaí', img: aloha },
   { handle: 'aasmodas.store', name: 'A&S Boutique', img: boutique },
@@ -33,6 +35,8 @@ const sponsors = [
   { handle: 'gabrielsantos.tec', name: 'Gabriel Santos', img: gabriel },
   { handle: 'nutri.kayannemorais', name: 'Nutri Kayanne', img: kayanne },
   { handle: 'yassminsantoslash', name: 'Yassmin Lash', img: yasmin },
+  { handle: 'cocosaudaveis', name: 'Digão Coco', img: digao, contain: true },
+  { handle: 'dra.isadoramsa', name: 'Dra. Isadora', img: isadora, contain: true },
 ]
 </script>
 
@@ -91,6 +95,12 @@ const sponsors = [
   display: block;
   transition: transform 0.35s;
   filter: grayscale(20%);
+}
+
+.pat-card__img--contain {
+  object-fit: contain;
+  padding: 20px;
+  background: #fff;
 }
 
 .pat-card:hover .pat-card__img {
