@@ -10,12 +10,15 @@
         <div class="ingresso-card destaque">
           <!-- Imagem da edição -->
           <div class="card__image">
-            <img src="../assets/edicao_maio.jpeg" alt="Edição Maio CL Academy" />
+            <img src="../assets/sessao_ingressos.jpeg" alt="Edição Maio CL Academy" />
           </div>
 
           <!-- Próxima edição -->
           <div class="card__proxima">
-            <div class="proxima__badge">EM BREVE</div>
+            <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
+              rel="noopener noreferrer" class="proxima__btn">
+              Garantir minha vaga
+            </a>
           </div>
         </div>
       </div>
@@ -44,7 +47,7 @@
 /* ── Card ────────────────────────────────────────── */
 .ingresso-card.destaque {
   width: 100%;
-  max-width: 480px;
+  max-width: 360px;
   background: var(--accent);
   border-radius: 20px;
   overflow: hidden;
@@ -75,7 +78,9 @@
   width: 100%;
   padding: 18px 24px 22px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
 .proxima__badge {
@@ -87,6 +92,25 @@
   letter-spacing: 2px;
   padding: 6px 20px;
   border-radius: 50px;
+}
+
+.proxima__btn {
+  display: inline-block;
+  background: var(--dark);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 10px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.proxima__btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* ── Responsivo ──────────────────────────────────── */

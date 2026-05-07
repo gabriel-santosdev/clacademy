@@ -9,12 +9,13 @@
         <a href="#inicio">Início</a>
         <a href="#aulas">Aulas</a>
         <a href="#ingressos">Ingressos</a>
+        <a href="#desafio">Desafio</a>
         <a href="#sobre">Sobre Mim</a>
         <a href="#patrocinadores">Patrocinadores</a>
       </nav>
 
-      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener"
-        class="btn-cta">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta">Comprar Ingresso</a>
 
       <button class="navbar__hamburger" @click="menuOpen = !menuOpen" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -25,10 +26,11 @@
       <a href="#inicio" @click="menuOpen = false">Início</a>
       <a href="#aulas" @click="menuOpen = false">Aulas</a>
       <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
+      <a href="#desafio" @click="menuOpen = false">Desafio</a>
       <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
       <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
-      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener" class="btn-cta"
-        @click="menuOpen = false">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a>
     </div>
   </header>
 </template>
@@ -75,19 +77,20 @@ const menuOpen = ref(false)
 
 .navbar__nav {
   display: flex;
-  gap: 28px;
+  gap: 20px;
   flex: 1;
   justify-content: center;
 }
 
 .navbar__nav a {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   color: var(--text-dark);
   transition: color 0.2s;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .navbar__nav a:hover {
