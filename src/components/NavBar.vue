@@ -13,8 +13,8 @@
         <a href="#patrocinadores">Patrocinadores</a>
       </nav>
 
-      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener"
-        class="btn-cta">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta">Comprar Ingresso</a>
 
       <button class="navbar__hamburger" @click="menuOpen = !menuOpen" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -27,8 +27,8 @@
       <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
       <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
       <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
-      <a href="https://www.sympla.com.br/evento/cl-academy-1/3340142" target="_blank" rel="noopener" class="btn-cta"
-        @click="menuOpen = false">Comprar Ingresso</a>
+      <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a>
     </div>
   </header>
 </template>
