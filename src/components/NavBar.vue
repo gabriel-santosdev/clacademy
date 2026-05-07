@@ -9,6 +9,7 @@
         <a href="#inicio">Início</a>
         <a href="#aulas">Aulas</a>
         <a href="#ingressos">Ingressos</a>
+        <a href="#desafio">Desafio</a>
         <a href="#sobre">Sobre Mim</a>
         <a href="#patrocinadores">Patrocinadores</a>
       </nav>
@@ -25,6 +26,7 @@
       <a href="#inicio" @click="menuOpen = false">Início</a>
       <a href="#aulas" @click="menuOpen = false">Aulas</a>
       <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
+      <a href="#desafio" @click="menuOpen = false">Desafio</a>
       <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
       <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
       <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"

@@ -10,6 +10,7 @@ import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AulasSection from './components/AulasSection.vue'
 import IngressosSection from './components/IngressosSection.vue'
+import DesafioSection from './components/DesafioSection.vue'
 import SobreSection from './components/SobreSection.vue'
 import PatrocinadoresSection from './components/PatrocinadoresSection.vue'
 import FooterSection from './components/FooterSection.vue'
@@ -26,6 +27,7 @@ import FooterSection from './components/FooterSection.vue'
       <HeroSection />
       <AulasSection />
       <IngressosSection />
+      <DesafioSection />
       <SobreSection />
       <PatrocinadoresSection />
     </main>
