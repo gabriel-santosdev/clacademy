@@ -48,7 +48,7 @@ let observer: IntersectionObserver | null = null
 
 onMounted(() => {
   observer = new IntersectionObserver(
-    ([entry]) => { if (entry.isIntersecting) { inView.value = true; observer?.disconnect() } },
+    (entries) => { if (entries[0]?.isIntersecting) { inView.value = true; observer?.disconnect() } },
     { threshold: 0.15 }
   )
   if (sectionRef.value) observer.observe(sectionRef.value)
