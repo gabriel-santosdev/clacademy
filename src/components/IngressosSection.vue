@@ -7,19 +7,11 @@
       </p>
 
       <div class="ingressos__center">
-        <div class="ingresso-card destaque">
-          <!-- Imagem da edição -->
-          <div class="card__image">
-            <img src="../assets/sessao_ingressos.jpeg" alt="Edição Maio CL Academy" />
-          </div>
-
-          <!-- Próxima edição -->
-          <div class="card__proxima">
-            <a href="https://www.sympla.com.br/evento/cl-academy-2-0/3393733?share_id=copiarlink" target="_blank"
-              rel="noopener noreferrer" class="proxima__btn">
-              Garantir minha vaga
-            </a>
-          </div>
+        <div class="em-breve-card">
+          <span class="em-breve__eyebrow">em breve</span>
+          <p class="em-breve__title">Nosso próximo evento está a caminho</p>
+          <p class="em-breve__text">Estamos preparando algo incrível para você. Fique de olho nas nossas redes sociais e aguarde o anúncio em breve!</p>
+          <span class="em-breve__badge">Aguarde ✨</span>
         </div>
       </div>
     </div>
@@ -36,7 +28,7 @@
   background: var(--bg-light);
 }
 
-/* ── Centralização do card único ─────────────────── */
+/* ── Centralização ───────────────────────────────── */
 .ingressos__center {
   display: flex;
   justify-content: center;
@@ -44,73 +36,55 @@
   padding: 0 16px;
 }
 
-/* ── Card ────────────────────────────────────────── */
-.ingresso-card.destaque {
+/* ── Card em breve ───────────────────────────────── */
+.em-breve-card {
   width: 100%;
-  max-width: 360px;
-  background: var(--accent);
+  max-width: 480px;
+  background: var(--white);
+  border: 2px dashed var(--border);
   border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(124, 1, 22, 0.2);
+  padding: 52px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: #fff;
-}
-
-/* ── Imagem ──────────────────────────────────────── */
-.card__image {
-  width: 100%;
-  line-height: 0;
-}
-
-.card__image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px 20px 0 0;
-  object-fit: cover;
-}
-
-/* ── Bloco badge ─────────────────────────────────── */
-.card__proxima {
-  width: 100%;
-  padding: 18px 24px 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 14px;
 }
 
-.proxima__badge {
-  display: inline-block;
-  background: var(--dark);
-  color: #fff;
+.em-breve__eyebrow {
   font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 2px;
-  padding: 6px 20px;
-  border-radius: 50px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.proxima__btn {
+.em-breve__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.em-breve__text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 340px;
+  margin: 0;
+}
+
+.em-breve__badge {
   display: inline-block;
-  background: var(--dark);
-  color: #fff;
-  font-size: 0.85rem;
+  background: var(--bg-warm);
+  color: var(--dark);
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  padding: 10px 28px;
+  letter-spacing: 1px;
+  padding: 8px 24px;
   border-radius: 50px;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-
-.proxima__btn:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
+  margin-top: 4px;
 }
 
 /* ── Responsivo ──────────────────────────────────── */
@@ -124,13 +98,8 @@
     padding: 0 12px;
   }
 
-  .ingresso-card.destaque {
+  .em-breve-card {
     max-width: 100%;
-    border-radius: 16px;
-  }
-
-  .card__image img {
-    border-radius: 16px 16px 0 0;
   }
 }
 
@@ -144,22 +113,9 @@
     padding: 0;
   }
 
-  .ingresso-card.destaque {
+  .em-breve-card {
     border-radius: 12px;
-    box-shadow: 0 10px 32px rgba(124, 1, 22, 0.18);
-  }
-
-  .card__image img {
-    border-radius: 12px 12px 0 0;
-  }
-
-  .card__proxima {
-    padding: 14px 16px 18px;
-  }
-
-  .proxima__badge {
-    font-size: 0.6rem;
-    padding: 5px 16px;
+    padding: 36px 20px;
   }
 }
 </style>
