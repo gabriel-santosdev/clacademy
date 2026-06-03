@@ -111,3 +111,517 @@ button {
     margin-bottom: 32px;
   }
 }
+
+/* ── Animações & Scroll-Reveal ─────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Elementos revelados pelo scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respeita preferência por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   TEMA COPA DO BRASIL — Jornal Edição Especial
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Variáveis ───────────────────────────────────────── */
+[data-theme="brasil"] {
+  --accent:       #009C3B;   /* verde Brasil */
+  --accent-dark:  #006B22;   /* verde escuro */
+  --dark:         #002776;   /* azul Brasil */
+  --text-dark:    #111111;
+  --text-muted:   #3a3a3a;
+  --bg-light:     #f4f9f5;
+  --bg-warm:      #fffce0;
+  --white:        #FDFDF5;
+  --border:       #009C3B;
+  --terracota:    #FFDF00;   /* amarelo Copa */
+  --sand:         #FFDF00;
+
+  /* ── Álbum Copa: tipografia esportiva ── */
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Masthead do jornal (banner do topo) ─────────────── */
+[data-theme="brasil"] .brasil-masthead {
+  display: block !important;
+}
+
+/* ── Body geral ──────────────────────────────────────── */
+[data-theme="brasil"] body {
+  background: #ffffff;
+}
+
+/* ── Navbar — branca para integrar com o conteúdo ────── */
+[data-theme="brasil"] .navbar {
+  background: #ffffff;
+  border-bottom: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+}
+
+[data-theme="brasil"] .navbar__nav a {
+  color: #002776;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="brasil"] .navbar__nav a:hover {
+  color: #009C3B;
+}
+
+[data-theme="brasil"] .navbar__hamburger span {
+  background: #002776;
+}
+
+[data-theme="brasil"] .btn-cta {
+  background: #002776;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+[data-theme="brasil"] .btn-cta:hover {
+  background: #001a55;
+}
+
+[data-theme="brasil"] .navbar__mobile {
+  background: #ffffff;
+  border-top-color: rgba(0,39,118,0.1);
+}
+
+[data-theme="brasil"] .navbar__mobile a {
+  color: #002776;
+  border-bottom-color: rgba(0,39,118,0.08);
+}
+
+/* ── Títulos de seção — underline dourado elegante ───── */
+[data-theme="brasil"] .section-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #002776;
+  background: none;
+  clip-path: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0 0 14px;
+  margin-bottom: 12px;
+  border: none;
+  border-bottom: 2px solid #FFDF00;
+}
+
+[data-theme="brasil"] .section-subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #666;
+  font-style: normal;
+  font-size: 0.9rem;
+}
+
+/* ── Hero ───────────────────────────────────────── */
+[data-theme="brasil"] .hero {
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin: 24px 0;
+}
+
+[data-theme="brasil"] .hero__overlay {
+  background: linear-gradient(170deg, rgba(0,39,118,0.78) 0%, rgba(0,107,34,0.7) 100%);
+}
+
+[data-theme="brasil"] .hero__title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+[data-theme="brasil"] .hero__subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  opacity: 0.88;
+}
+
+[data-theme="brasil"] .hero__btn {
+  background: #FFDF00;
+  color: #002776;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 50px;
+  border: none;
+}
+
+[data-theme="brasil"] .hero__btn:hover {
+  background: #fff;
+  color: #002776;
+}
+
+/* ── Aulas section ───────────────────────────────────── */
+[data-theme="brasil"] .aulas {
+  background: #ffffff;
+  border-top: none;
+  padding-top: 80px;
+}
+
+[data-theme="brasil"] .aulas__intro {
+  background: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+[data-theme="brasil"] .aulas__intro::before {
+  display: none;
+}
+
+[data-theme="brasil"] .aulas__intro-logo {
+  filter: none;
+}
+
+[data-theme="brasil"] .aulas__intro-tagline {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #009C3B;
+  font-style: normal;
+  font-weight: 500;
+}
+
+[data-theme="brasil"] .aulas__intro-lista li {
+  color: var(--text-muted);
+}
+
+[data-theme="brasil"] .tagline-line {
+  background: linear-gradient(to right, transparent, rgba(0,156,59,0.3)) !important;
+}
+
+[data-theme="brasil"] .tagline-line:last-child {
+  background: linear-gradient(to left, transparent, rgba(0,156,59,0.3)) !important;
+}
+
+[data-theme="brasil"] .aulas__divider {
+  background: #FFDF00;
+  height: 2px;
+}
+
+/* Cards de aula — figurinha clean */
+[data-theme="brasil"] .aula-card {
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 16px rgba(0,39,118,0.1);
+  overflow: hidden;
+  background: #fff;
+}
+
+[data-theme="brasil"] .aula-card__img-wrap {
+  border-radius: 0;
+  position: relative;
+}
+
+[data-theme="brasil"] .aula-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #009C3B 33%, #FFDF00 33% 66%, #002776 66%);
+}
+
+[data-theme="brasil"] .aula-card__body {
+  padding: 16px 18px 20px;
+  background: #fff;
+}
+
+[data-theme="brasil"] .aula-card__body h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #002776;
+  font-size: 0.82rem;
+  border-bottom: none;
+  margin-bottom: 6px;
+}
+
+[data-theme="brasil"] .aula-card__body p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* ── Ingressos / Em Breve ────────────────────────────── */
+[data-theme="brasil"] .ingressos {
+  background: #f6f8ff;
+  border-top: none;
+  border-bottom: none;
+}
+
+[data-theme="brasil"] .ingressos .section-title {
+  color: #002776;
+  background: none;
+}
+
+[data-theme="brasil"] .ingressos .section-subtitle {
+  color: #666;
+}
+
+/* Slot de figurinha vazio */
+[data-theme="brasil"] .em-breve-card {
+  border-radius: 12px;
+  border: 2px solid rgba(0,39,118,0.12);
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,39,118,0.08);
+}
+
+[data-theme="brasil"] .em-breve__eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #009C3B;
+  letter-spacing: 4px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+[data-theme="brasil"] .em-breve__title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #002776;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="brasil"] .em-breve__text {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  color: #666;
+}
+
+[data-theme="brasil"] .em-breve__badge {
+  background: #FFDF00;
+  color: #002776;
+  border-radius: 50px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ── Sobre section ───────────────────────────────────── */
+[data-theme="brasil"] .sobre {
+  background: #ffffff;
+  border-top: none;
+}
+
+/* Card de perfil — figurinha clean */
+[data-theme="brasil"] .sobre__inner {
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 20px rgba(0,39,118,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="brasil"] .sobre__inner::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #009C3B 33%, #FFDF00 33% 66%, #002776 66%);
+}
+
+[data-theme="brasil"] .sobre__label {
+  color: #009C3B;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+[data-theme="brasil"] .sobre__text h2 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #002776;
+  letter-spacing: 0.06em;
+}
+
+[data-theme="brasil"] .sobre__text p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  color: #444;
+}
+
+[data-theme="brasil"] .sobre__btn {
+  border-color: #009C3B;
+  color: #009C3B;
+  border-radius: 50px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+[data-theme="brasil"] .sobre__btn:hover {
+  background: #009C3B;
+  color: #fff;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+[data-theme="brasil"] .footer {
+  --text-muted: rgba(255,255,255,0.6);
+  --text-dark:  #FFDF00;
+  border-top: none;
+  background: #002776;
+}
+
+[data-theme="brasil"] .footer__copy {
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="brasil"] .footer__icons a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="brasil"] .footer__icons a:hover {
+  color: #FFDF00;
+}
+
+[data-theme="brasil"] .footer__dev-bar {
+  border-top: 2px solid #FFDF00;
+  background: #001850;
+}
+
+[data-theme="brasil"] .footer__dev {
+  color: rgba(255, 255, 255, 0.65);
+  font-family: Georgia, serif;
+}
+
+[data-theme="brasil"] .footer__dev:hover {
+  color: #FFDF00;
+  opacity: 1;
+}
+
+/* ── Animações Copa Brasil ───────────────────────────── */
+
+/* Masthead: desliza do topo com fade */
+[data-theme="brasil"] .brasil-masthead {
+  animation: slideDown 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-theme="brasil"] .brasil-masthead__title {
+  animation: scaleIn 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-theme="brasil"] .brasil-masthead__stars {
+  animation: fadeIn 0.5s 0.35s ease both;
+}
+
+[data-theme="brasil"] .brasil-masthead__copa,
+[data-theme="brasil"] .brasil-masthead__club {
+  animation: fadeIn 0.5s 0.5s ease both;
+}
+
+/* Navbar: slide suave */
+[data-theme="brasil"] .navbar {
+  animation: slideDown 0.5s 0.1s ease both;
+}
+
+/* Hero content: cascata de fade-up */
+[data-theme="brasil"] .hero__title {
+  animation: fadeUp 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-theme="brasil"] .hero__subtitle {
+  animation: fadeUp 0.7s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-theme="brasil"] .hero__btn {
+  animation: fadeUp 0.6s 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Cards: hover lift elegante */
+[data-theme="brasil"] .aula-card,
+[data-theme="brasil"] .em-breve-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="brasil"] .aula-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 39, 118, 0.18);
+}
+
+[data-theme="brasil"] .em-breve-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 39, 118, 0.14);
+}
+
+/* Botões: scale micro ao hover */
+[data-theme="brasil"] .hero__btn,
+[data-theme="brasil"] .btn-cta,
+[data-theme="brasil"] .sobre__btn {
+  transition: transform 0.18s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.18s ease;
+}
+
+[data-theme="brasil"] .hero__btn:hover,
+[data-theme="brasil"] .btn-cta:hover {
+  transform: scale(1.05);
+}
+
+/* Sobre card: hover lift */
+[data-theme="brasil"] .sobre__inner {
+  transition: box-shadow 0.25s ease;
+}
+
+[data-theme="brasil"] .sobre__inner:hover {
+  box-shadow: 0 8px 32px rgba(0, 39, 118, 0.16);
+}
+
+/* ── Masthead default (oculto fora do tema) ──────────── */
+.brasil-masthead {
+  display: none;
+}
