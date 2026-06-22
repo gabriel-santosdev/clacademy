@@ -7,18 +7,22 @@
       </p>
 
       <div class="ingressos__center">
-        <div class="em-breve-card">
-          <span class="em-breve__eyebrow">em breve</span>
-          <p class="em-breve__title">Nosso próximo evento está a caminho</p>
-          <p class="em-breve__text">Estamos preparando algo incrível para você. Fique de olho nas nossas redes sociais e aguarde o anúncio em breve!</p>
-          <span class="em-breve__badge">Aguarde ✨</span>
-        </div>
+        <a
+          href="https://www.sympla.com.br/evento/cl-run-3-edicao/3454831?share_id=copiarlink"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="clrun-card"
+        >
+          <img :src="clrunLogo" alt="CL Run 3ª Edição" class="clrun-card__logo" />
+          <span class="clrun-card__cta">Comprar Ingresso →</span>
+        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import clrunLogo from '../assets/clrun_logo.png'
 </script>
 
 <style scoped>
@@ -36,55 +40,49 @@
   padding: 0 16px;
 }
 
-/* ── Card em breve ───────────────────────────────── */
-.em-breve-card {
-  width: 100%;
-  max-width: 480px;
-  background: var(--white);
-  border: 2px dashed var(--border);
-  border-radius: 20px;
-  padding: 52px 40px;
+/* ── Card CL Run ─────────────────────────────────── */
+.clrun-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 14px;
+  gap: 20px;
+  text-decoration: none;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 48px;
+  max-width: 480px;
+  width: 100%;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
 
-.em-breve__eyebrow {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-muted);
+.clrun-card:hover {
+  border-color: var(--dark);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  transform: translateY(-4px);
 }
 
-.em-breve__title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
-  color: var(--text-dark);
-  line-height: 1.25;
-  margin: 0;
+.clrun-card__logo {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
 }
 
-.em-breve__text {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  max-width: 340px;
-  margin: 0;
-}
-
-.em-breve__badge {
+.clrun-card__cta {
   display: inline-block;
-  background: var(--bg-warm);
-  color: var(--dark);
-  font-size: 0.78rem;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 1px;
-  padding: 8px 24px;
+  padding: 12px 32px;
   border-radius: 50px;
-  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+
+.clrun-card:hover .clrun-card__cta {
+  opacity: 0.85;
 }
 
 /* ── Responsivo ──────────────────────────────────── */
@@ -98,7 +96,7 @@
     padding: 0 12px;
   }
 
-  .em-breve-card {
+  .clrun-card {
     max-width: 100%;
   }
 }
@@ -113,9 +111,9 @@
     padding: 0;
   }
 
-  .em-breve-card {
+  .clrun-card {
     border-radius: 12px;
-    padding: 36px 20px;
+    padding: 28px 20px;
   }
 }
 </style>
