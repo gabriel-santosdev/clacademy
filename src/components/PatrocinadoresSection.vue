@@ -4,20 +4,34 @@
       <p class="patrocinadores__label" :class="{ visible: inView }">NOSSOS PATROCINADORES</p>
 
       <div class="patrocinadores__logo-wrap" :class="{ visible: inView }">
-        <img :src="logoPatrocinadores" alt="Patrocinadores" class="patrocinadores__logo" />
+        <img :src="logoPatrocinadores" alt="Patrocinadores CL Run" class="patrocinadores__logo" />
       </div>
 
-      <div class="patrocinadores__handles">
-        <a
-          v-for="(sponsor, i) in sponsors"
-          :key="sponsor.handle"
-          :href="`https://instagram.com/${sponsor.handle}`"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="pat-handle"
+      <div class="patrocinadores__groups">
+        <div
+          v-for="(group, gi) in groups"
+          :key="group.title"
+          class="pat-group"
           :class="{ visible: inView }"
-          :style="{ transitionDelay: inView ? `${0.4 + i * 0.07}s` : '0s' }"
-        >@{{ sponsor.handle }}</a>
+          :style="{ transitionDelay: inView ? `${0.3 + gi * 0.1}s` : '0s' }"
+        >
+          <p class="pat-group__title">{{ group.title }}</p>
+          <div class="pat-group__items">
+            <a
+              v-for="(sponsor, i) in group.items"
+              :key="sponsor.handle"
+              :href="`https://instagram.com/${sponsor.handle}`"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pat-handle"
+              :class="{ visible: inView }"
+              :style="{ transitionDelay: inView ? `${0.4 + gi * 0.1 + i * 0.05}s` : '0s' }"
+            >
+              <span class="pat-handle__name">{{ sponsor.name }}</span>
+              <span class="pat-handle__ig">@{{ sponsor.handle }}</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -25,21 +39,54 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import logoPatrocinadores from '../assets/logo_patrocinadores.png'
+import logoPatrocinadores from '../assets/patrocinadores_cl_run.png'
 
-const sponsors = [
-  { handle: 'alohaacai.oficial',    name: 'Aloha Açaí'      },
-  { handle: 'aasmodas.store',       name: 'A&S Boutique'    },
-  { handle: 'bela_bronzee',         name: 'Bela Bronze'     },
-  { handle: 'cspratass_',           name: 'CS Pratas'       },
-  { handle: 'gabrielsantos.tec',    name: 'Gabriel Santos'  },
-  { handle: 'nutri.kayannemorais',  name: 'Nutri Kayanne'   },
-  { handle: 'yassminsantoslash',    name: 'Yassmin Lash'    },
-  { handle: 'cocosaudaveis',        name: 'Digão Coco'      },
-  { handle: 'dra.isadoramsa',       name: 'Dra. Isadora'    },
-  { handle: 'adegadogustaa',        name: 'Adega do Gusta'  },
-  { handle: 'emme.sgrafica',        name: 'Emme.s Gráfica'  },
-  { handle: 'karmin_oculoskarmin',  name: 'Karmin Óculos'   },
+const groups = [
+  {
+    title: 'Patrocinadores',
+    items: [
+      { name: 'Gabriel Tecnologia',  handle: 'gabrielsantos.tec'    },
+      { name: 'EMMES Gráfica',       handle: 'emme.sgrafica'        },
+      { name: 'Guarino Grill',       handle: 'guarino.grill'        },
+      { name: 'IS Clínica',          handle: 'is.cliniic'           },
+      { name: 'IS Clínica',          handle: 'dra.isadoramsa'       },
+      { name: 'Queiroz Lash',        handle: 'queirozlash'          },
+      { name: 'Emagrecentro',        handle: 'emagrecentro_cajamar' },
+      { name: 'Maria Flor Fitness',  handle: 'mariafl.r'            },
+      { name: 'As Modas',            handle: 'aasmodas.store'       },
+      { name: 'Casa da Ka',          handle: 'casadakaaa'           },
+      { name: 'Bigode Suspensão',    handle: 'bigode.suspensao'     },
+      { name: 'Villa Portal',        handle: 'villa_portal_bar'     },
+    ],
+  },
+  {
+    title: 'Apoiadores',
+    items: [
+      { name: 'Vila Criativa',  handle: 'vila_criativasp'       },
+      { name: 'Emily Nails',    handle: 'emilyfreitasnailss'    },
+      { name: 'Eldrim',         handle: 'eldrim.br'             },
+    ],
+  },
+  {
+    title: 'Expositores Coffee Break',
+    items: [
+      { name: 'Coco Saudáveis',       handle: 'cocosaudaveis'      },
+      { name: 'Canibal Suplementos',  handle: 'canibal.inc'        },
+      { name: 'Aloha Açaí',           handle: 'alohaacai.oficial'  },
+    ],
+  },
+  {
+    title: 'Convidado Aulão',
+    items: [
+      { name: 'Emerson', handle: 'emr_soares' },
+    ],
+  },
+  {
+    title: 'Espaço',
+    items: [
+      { name: 'Free Ball Soccer', handle: 'freeballsoccercajamar' },
+    ],
+  },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -107,20 +154,46 @@ onUnmounted(() => observer?.disconnect())
 }
 
 /* ── Handles ─────────────────────────────────────── */
-.patrocinadores__handles {
+.patrocinadores__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.pat-group {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.pat-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pat-group__title {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.pat-group__items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px 20px;
+  gap: 8px 20px;
 }
 
 .pat-handle {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  padding: 5px 2px;
+  padding: 4px 6px;
   border-bottom: 1px solid transparent;
   opacity: 0;
   transform: translateY(8px);
@@ -137,8 +210,26 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .pat-handle:hover {
-  color: var(--dark);
   border-color: var(--dark);
+}
+
+.pat-handle:hover .pat-handle__name,
+.pat-handle:hover .pat-handle__ig {
+  color: var(--dark);
+}
+
+.pat-handle__name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: color 0.25s;
+}
+
+.pat-handle__ig {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.25s;
 }
 
 /* ── Responsivo ──────────────────────────────────── */
@@ -169,8 +260,8 @@ onUnmounted(() => observer?.disconnect())
     max-width: 100%;
   }
 
-  .patrocinadores__handles {
-    gap: 9px 18px;
+  .pat-group__items {
+    gap: 8px 16px;
   }
 }
 
@@ -189,23 +280,14 @@ onUnmounted(() => observer?.disconnect())
     margin-bottom: 32px;
   }
 
-  .patrocinadores__handles {
-    gap: 8px 14px;
-  }
-
-  .pat-handle {
-    font-size: 0.65rem;
+  .pat-group__items {
+    gap: 6px 12px;
   }
 }
 
 @media (max-width: 360px) {
-  .patrocinadores__handles {
+  .pat-group__items {
     gap: 6px 10px;
-  }
-
-  .pat-handle {
-    font-size: 0.6rem;
-    letter-spacing: 0;
   }
 }
 </style>

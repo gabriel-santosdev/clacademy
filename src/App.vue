@@ -16,6 +16,7 @@ import HeroSection from './components/HeroSection.vue'
 import AulasSection from './components/AulasSection.vue'
 import IngressosSection from './components/IngressosSection.vue'
 import SobreSection from './components/SobreSection.vue'
+import PatrocinadoresSection from './components/PatrocinadoresSection.vue'
 import FooterSection from './components/FooterSection.vue'
 import { useTheme } from './composables/useTheme'
 import { onMounted } from 'vue'
@@ -81,6 +82,7 @@ onMounted(() => {
       <AulasSection />
       <IngressosSection />
       <SobreSection />
+      <PatrocinadoresSection />
     </main>
     <FooterSection />
   </template>
