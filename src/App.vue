@@ -12,6 +12,7 @@ const activeTheme: 'default' | 'brasil' = 'brasil'
 
 // ── Imports do site completo (mantidos para quando voltar) ──
 import NavBar from './components/NavBar.vue'
+import CLAcademiaIA from './components/CLAcademiaIA.vue'
 import HeroSection from './components/HeroSection.vue'
 import AulasSection from './components/AulasSection.vue'
 import IngressosSection from './components/IngressosSection.vue'
@@ -83,6 +84,7 @@ onMounted(() => {
       <SobreSection />
     </main>
     <FooterSection />
+    <CLAcademiaIA />
   </template>
 </template>
 
