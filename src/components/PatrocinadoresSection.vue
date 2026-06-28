@@ -57,6 +57,7 @@ const groups = [
       { name: 'Casa da Ka',          handle: 'casadakaaa'           },
       { name: 'Bigode Suspensão',    handle: 'bigode.suspensao'     },
       { name: 'Villa Portal',        handle: 'villa_portal_bar'     },
+      { name: 'Patrício Luxe Store', handle: 'patricioluxestore'     },
     ],
   },
   {
