@@ -3,7 +3,7 @@ import ComingSoonScreen from './components/ComingSoonScreen.vue'
 
 // ── Tela de marketing ativa ──
 // Para desativar e voltar ao site completo, mude para: const showComingSoon = false
-const showComingSoon = true
+const showComingSoon = false
 
 // ── Imports do site completo (mantidos para quando voltar) ──
 import NavBar from './components/NavBar.vue'
