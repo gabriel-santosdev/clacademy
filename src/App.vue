@@ -8,7 +8,7 @@ const showComingSoon = false
 // ── Tema ativo ──
 // 'default' = tema padrão | 'brasil' = tema Jornal + Copa do Brasil
 // Para ativar o tema Brasil, mude para: const activeTheme = 'brasil'
-const activeTheme: 'default' | 'brasil' = 'brasil'
+const activeTheme: 'default' | 'brasil' = 'default'
 
 // ── Imports do site completo (mantidos para quando voltar) ──
 import NavBar from './components/NavBar.vue'
