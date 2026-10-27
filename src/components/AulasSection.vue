@@ -50,8 +50,8 @@
 </template>
 
 <script setup lang="ts">
-import imgColetiva from '../assets/aulas_coletivas.png'
-import imgDanca from '../assets/danca.png'
+import imgColetiva from '../assets/fitness_aula.jpeg'
+import imgDanca from '../assets/danca.jpeg'
 
 const aulas = [
   {
@@ -59,14 +59,14 @@ const aulas = [
     descricao:
       'Aulas de funcional, HIT, GAP, Alongamento e Jump para melhorar seu condicionamento, flexibilidade, força, equilíbrio e saúde vascular.',
     img: imgColetiva,
-    imgPosition: 'img-pos-top',
+    imgPosition: 'img-pos-bottom',
   },
   {
     nome: 'Dança',
     descricao:
       'Expresse-se, vivencie e experimente diferentes modalidades de dança!',
     img: imgDanca,
-    imgPosition: 'img-pos-center',
+    imgPosition: 'img-pos-top',
   },
 ]
 </script>
@@ -177,7 +177,7 @@ const aulas = [
 }
 
 .aula-card__img-wrap {
-  aspect-ratio: 3/2;
+  aspect-ratio: 4/3;
   overflow: hidden;
   border-radius: 14px;
 }
@@ -189,12 +189,12 @@ const aulas = [
   transition: transform 0.4s ease;
 }
 
-.img-pos-top {
-  object-position: top;
+.img-pos-bottom {
+  object-position: center 75%;
 }
 
-.img-pos-center {
-  object-position: center;
+.img-pos-top {
+  object-position: center 30%;
 }
 
 .aula-card:hover .aula-card__img-wrap img {

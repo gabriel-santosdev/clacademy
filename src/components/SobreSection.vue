@@ -4,7 +4,7 @@
       <div class="sobre__inner">
 
         <div class="sobre__img-wrap">
-          <img src="../assets/carla_perfil.jpg" alt="Carla Lívian – Fundadora CL Academy" />
+          <img src="../assets/foto_perfil_carla.jpeg" alt="Carla Lívian – Fundadora CL Academy" />
         </div>
 
         <div class="sobre__text">
@@ -44,8 +44,8 @@
 /* ── Foto ───────────────────────────────────────── */
 .sobre__img-wrap {
   flex-shrink: 0;
-  width: 180px;
-  height: 220px;
+  width: 200px;
+  height: 240px;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-warm);
@@ -55,8 +55,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
-  transform: scale(1.1);
+  object-position: center 40%;
+  transform: scale(1.9);
   transform-origin: center 100%;
 }
 
