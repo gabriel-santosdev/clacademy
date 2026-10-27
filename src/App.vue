@@ -80,9 +80,9 @@ onMounted(() => {
     <main class="main-wrap">
       <HeroSection />
       <AulasSection />
-      <IngressosSection />
+      <!-- <IngressosSection /> -->
       <SobreSection />
-      <PatrocinadoresSection />
+      <!-- <PatrocinadoresSection /> -->
     </main>
     <FooterSection />
   </template>

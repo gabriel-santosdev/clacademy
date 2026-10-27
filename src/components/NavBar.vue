@@ -8,13 +8,13 @@
       <nav class="navbar__nav">
         <a href="#inicio">Início</a>
         <a href="#aulas">Aulas</a>
-        <a href="#ingressos">Ingressos</a>
+        <!-- <a href="#ingressos">Ingressos</a> -->
         <a href="#sobre">Sobre Mim</a>
-        <a href="#patrocinadores">Patrocinadores</a>
+        <!-- <a href="#patrocinadores">Patrocinadores</a> -->
       </nav>
 
-      <a href="https://www.sympla.com.br/evento/cl-run-3-edicao/3454831?share_id=copiarlink" target="_blank"
-        rel="noopener" class="btn-cta">Comprar Ingresso</a>
+      <!-- <a href="https://www.sympla.com.br/evento/cl-run-3-edicao/3454831?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta">Comprar Ingresso</a> -->
 
       <button class="navbar__hamburger" @click="menuOpen = !menuOpen" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -24,11 +24,11 @@
     <div class="navbar__mobile" :class="{ open: menuOpen }">
       <a href="#inicio" @click="menuOpen = false">Início</a>
       <a href="#aulas" @click="menuOpen = false">Aulas</a>
-      <a href="#ingressos" @click="menuOpen = false">Ingressos</a>
+      <!-- <a href="#ingressos" @click="menuOpen = false">Ingressos</a> -->
       <a href="#sobre" @click="menuOpen = false">Sobre Mim</a>
-      <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a>
-      <a href="https://www.sympla.com.br/evento/cl-run-3-edicao/3454831?share_id=copiarlink" target="_blank"
-        rel="noopener" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a>
+      <!-- <a href="#patrocinadores" @click="menuOpen = false">Patrocinadores</a> -->
+      <!-- <a href="https://www.sympla.com.br/evento/cl-run-3-edicao/3454831?share_id=copiarlink" target="_blank"
+        rel="noopener" class="btn-cta" @click="menuOpen = false">Comprar Ingresso</a> -->
     </div>
   </header>
 </template>
