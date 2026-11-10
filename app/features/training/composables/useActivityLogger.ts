@@ -1,4 +1,5 @@
 import type { LogContext, LogForm } from '../domain/activity'
+import type { StoryData } from '../domain/story'
 
 /** Estado de abertura do diálogo de registro (qual treino/sessão está sendo registrado). */
 export function useActivityLogger() {
@@ -14,7 +15,8 @@ export function useActivityLogger() {
 }
 
 /** Formulário e envio de um registro de atividade. */
-export function useActivityLogForm(context: Ref<LogContext>, onSaved: () => void) {
+export function useActivityLogForm(context: Ref<LogContext>, onSaved: (story: StoryData) => void) {
+  const { user } = useUserSession()
   const form = reactive<LogForm>(emptyLogForm(context.value))
   const reset = () => Object.assign(form, emptyLogForm(context.value))
 
@@ -25,7 +27,8 @@ export function useActivityLogForm(context: Ref<LogContext>, onSaved: () => void
   const save = useAction(async () => {
     await trainingApi.logActivity(logFormToPayload(context.value, form))
     clearWorkoutSession(context.value.sessionKey)
-    onSaved()
+    // dados do card de Stories, para oferecer o compartilhamento logo em seguida
+    onSaved(storyFromForm(context.value, form, firstName(user.value?.name)))
   }, 'Treino registrado! 💪')
 
   return { form, reset, title, free, effort, save }

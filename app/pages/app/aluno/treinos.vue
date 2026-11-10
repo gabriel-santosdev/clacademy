@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import type { StoryData } from '~/features/training/domain/story'
+
 definePageMeta({ layout: 'app' })
 useHead({ title: 'Meus treinos · CL Academy' })
 
 const { data, refresh, workouts, runs, locked, tab, weekView, visibleWeek } = await useMyTraining()
 const { visible: logOpen, context: logContext, open: openLog } = useActivityLogger()
+const { visible: shareOpen, story, open: openShare } = useStoryShare()
+
+function onSaved(s: StoryData) {
+  refresh()
+  openShare(s)
+}
 </script>
 
 <template>
@@ -95,7 +103,8 @@ const { visible: logOpen, context: logContext, open: openLog } = useActivityLogg
       </TabPanels>
     </Tabs>
 
-    <TrainingLogDialog v-model:visible="logOpen" :context="logContext" @saved="refresh" />
+    <TrainingLogDialog v-model:visible="logOpen" :context="logContext" @saved="onSaved" />
+    <TrainingShareDialog v-model:visible="shareOpen" :story="story" />
   </div>
 </template>
 

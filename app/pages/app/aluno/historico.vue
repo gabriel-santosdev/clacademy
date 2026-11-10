@@ -3,6 +3,8 @@ definePageMeta({ layout: 'app' })
 useHead({ title: 'Histórico · CL Academy' })
 
 const { refresh, filter, filtered, totals, weekly } = await useActivityHistory()
+const { visible: shareOpen, story, open: openShare } = useStoryShare()
+const { user } = useUserSession()
 const filters = [
   { label: 'Todos', value: 'all' },
   { label: 'Treinos', value: 'treino' },
@@ -35,9 +37,17 @@ const filters = [
         <SelectButton v-model="filter" :options="filters" option-label="label" option-value="value" :allow-empty="false" />
         <AppEmptyState v-if="!filtered.length" icon="pi-history" title="Sem registros" text="Conclua um treino para começar seu histórico." />
         <div v-else class="divided">
-          <TrainingActivityItem v-for="l in filtered" :key="l.id" :log="l" />
+          <TrainingActivityItem v-for="l in filtered" :key="l.id" :log="l">
+            <Button label="Compartilhar" icon="pi pi-share-alt" size="small" text class="share-btn" @click="openShare(storyFromLog(l, firstName(user?.name)))" />
+          </TrainingActivityItem>
         </div>
       </template>
     </Card>
+
+    <TrainingShareDialog v-model:visible="shareOpen" :story="story" />
   </div>
 </template>
+
+<style scoped>
+.share-btn { margin: 6px 0 0 -10px; }
+</style>

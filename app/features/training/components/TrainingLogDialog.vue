@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { LogContext } from '../domain/activity'
+import type { StoryData } from '../domain/story'
 
 const visible = defineModel<boolean>('visible', { default: false })
 const props = defineProps<{ context: LogContext }>()
-const emit = defineEmits<{ saved: [] }>()
+const emit = defineEmits<{ saved: [story: StoryData] }>()
 
 const context = toRef(props, 'context')
-const { form, reset, title, free, effort, save } = useActivityLogForm(context, () => {
+const { form, reset, title, free, effort, save } = useActivityLogForm(context, (story) => {
   visible.value = false
-  emit('saved')
+  emit('saved', story)
 })
 watch(visible, (v) => v && reset())
 </script>

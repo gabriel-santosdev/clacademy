@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import type { StoryData } from '~/features/training/domain/story'
+
 definePageMeta({ layout: 'app' })
 useHead({ title: 'Hoje · CL Academy' })
 
 const { data, refresh, name, nothingToday, pendingPayment, isWorkoutDone, isRunDone } = await useTodayOverview()
 const { visible: logOpen, context: logContext, open: openLog } = useActivityLogger()
+const { visible: shareOpen, story, open: openShare } = useStoryShare()
+const { user } = useUserSession()
+
+function onSaved(s: StoryData) {
+  refresh()
+  openShare(s)
+}
 const today = longDate()
 
 const todayTotal = computed(() => (data.value ? data.value.today.workouts.length + data.value.today.runs.length : 0))
@@ -108,15 +117,19 @@ const dash = computed(() => `${todayTotal.value ? (todayDone.value / todayTotal.
         <Button as="router-link" to="/app/aluno/historico" label="Ver tudo" icon="pi pi-arrow-right" icon-pos="right" size="small" text />
       </div>
       <div class="divided">
-        <TrainingActivityItem v-for="l in data.recent" :key="l.id" :log="l" />
+        <TrainingActivityItem v-for="l in data.recent" :key="l.id" :log="l">
+          <Button label="Compartilhar" icon="pi pi-share-alt" size="small" text class="share-btn" @click="openShare(storyFromLog(l, firstName(user?.name)))" />
+        </TrainingActivityItem>
       </div>
     </section>
 
-    <TrainingLogDialog v-model:visible="logOpen" :context="logContext" @saved="refresh" />
+    <TrainingLogDialog v-model:visible="logOpen" :context="logContext" @saved="onSaved" />
+    <TrainingShareDialog v-model:visible="shareOpen" :story="story" />
   </div>
 </template>
 
 <style scoped>
+.share-btn { margin: 6px 0 0 -10px; }
 .hero { padding: 24px 22px 20px; }
 .hero__lanes { position: absolute; top: 0; right: 0; z-index: -1; width: 70%; height: 62%; opacity: 0.7; -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent); mask-image: linear-gradient(180deg, #000 40%, transparent); }
 .hero__lanes path { fill: none; stroke: #333; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
