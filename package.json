@@ -1,23 +1,50 @@
 {
   "name": "clacademy",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.22.3"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "vercel-build": "drizzle-kit migrate && nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "@primeuix/themes": "^2.0.3",
+    "@primevue/nuxt-module": "^4.5.5",
     "@vercel/analytics": "^2.0.1",
-    "vue": "^3.5.25"
+    "@vite-pwa/nuxt": "^1.1.1",
+    "chart.js": "^4.6.1",
+    "drizzle-orm": "^0.45.4",
+    "nuxt": "^4.6.4",
+    "nuxt-auth-utils": "^0.6.2",
+    "postgres": "^3.4.9",
+    "primeicons": "^8.0.2",
+    "primevue": "^4.5.5",
+    "vue": "^3.5.45",
+    "vue-router": "^5.4.0",
+    "web-push": "^4.0.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
-    "@vitejs/plugin-vue": "^6.0.2",
-    "@vue/tsconfig": "^0.8.1",
+    "@types/node": "^24.19.2",
+    "@types/web-push": "^3.6.4",
+    "drizzle-kit": "^0.31.11",
     "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vue-tsc": "^3.1.5"
+    "vue-tsc": "^3.3.14"
+  },
+  "overrides": {
+    "@vercel/analytics": {
+      "vue-router": "$vue-router"
+    }
   }
 }

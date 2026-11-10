@@ -1,0 +1,70 @@
+/* ═══════════════════════════════════════════════════════
+   Tokens da marca CL Academy (mesmo sistema da landing)
+   Base: osso #EEEDEB + grafite #5E5E5E. Destaque esportivo: volt.
+   Cores de componentes vêm do tema PrimeVue (--p-*).
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* paleta */
+  --cl-bone: #eeedeb;
+  --cl-bone-2: #e4e2de;
+  --cl-paper: #fbfaf8;
+  --cl-line: #d7d4cf;
+  --cl-graphite: #5e5e5e;
+  --cl-ink: #1f1f1f;
+  --cl-ink-2: #2a2a2a;
+  --cl-ink-line: #3a3a3a;
+  --cl-volt: #d4f53c;
+  --cl-volt-ink: #1f1f1f;
+  --cl-heat: #ff5a1f;
+
+  /* acento legível: em fundo claro vira oliva escuro; no escuro, o próprio volt */
+  --accent: var(--cl-volt);
+  --accent-ink: var(--cl-volt-ink);
+  --accent-text: #5a6b00;
+  --accent-soft: #eef7c8;
+
+  /* aliases antigos (componentes legados) */
+  --brand-ink: var(--cl-ink);
+  --brand-wine: var(--accent-text);
+  --brand-wine-soft: var(--accent-soft);
+  --brand-blush: var(--cl-volt);
+
+  /* superfícies do app (seguem o modo claro/escuro do PrimeVue) */
+  --app-bg: var(--cl-bone);
+  --app-surface: var(--p-content-background);
+  --app-border: var(--p-content-border-color);
+  --app-text: var(--p-text-color);
+  --app-muted: var(--p-text-muted-color);
+  --app-tile: #ffffff;
+
+  /* tipografia */
+  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-script: 'BillaMount', cursive;
+
+  /* layout */
+  --radius: 18px;
+  --radius-lg: 22px;
+  --sidebar-w: 260px;
+  --topbar-h: 64px;
+  --bottombar-h: 68px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.app-dark {
+  --app-bg: #141414;
+  --app-tile: #1c1c1c;
+  --accent-text: var(--cl-volt);
+  --accent-soft: rgba(212, 245, 60, 0.12);
+  color-scheme: dark;
+}
+
+/* Tema "Copa Brasil" (configurável pelo admin): acento canarinho */
+:root[data-theme='brasil'] {
+  --cl-volt: #ffdf00;
+  --accent-text: #00702b;
+  --accent-soft: #e6f5ec;
+}
+:root[data-theme='brasil'].app-dark { --accent-text: #ffdf00; --accent-soft: rgba(255, 223, 0, 0.14); }

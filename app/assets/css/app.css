@@ -1,0 +1,70 @@
+/* ═══════════════════════════════════════════════════════
+   Utilitários de layout (área logada e auth).
+   Componentes visuais vêm do PrimeVue; aqui só composição.
+   ═══════════════════════════════════════════════════════ */
+
+.stack { display: flex; flex-direction: column; gap: var(--gap, 16px); }
+.row { display: flex; align-items: center; gap: var(--gap, 12px); flex-wrap: wrap; }
+.row--between { justify-content: space-between; }
+.row--end { justify-content: flex-end; }
+.row--nowrap { flex-wrap: nowrap; }
+.grow { flex: 1; min-width: 0; }
+.grid-auto { display: grid; gap: var(--gap, 16px); grid-template-columns: repeat(auto-fill, minmax(var(--min, 260px), 1fr)); }
+.grid-2 { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.muted { color: var(--app-muted); }
+.small { font-size: 0.875rem; }
+.tiny { font-size: 0.75rem; }
+.strong { font-weight: 600; }
+.mono { font-variant-numeric: tabular-nums; }
+.nowrap { white-space: nowrap; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.w-full { width: 100%; }
+
+/* tipografia: títulos condensados em caixa alta, como na landing */
+.display { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; line-height: 0.92; letter-spacing: 0; }
+.h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 0.92; letter-spacing: 0; }
+.h2 { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: 0.005em; }
+.h3 { font-size: 0.95rem; font-weight: 700; }
+.eyebrow { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--app-muted); }
+.script { font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; color: var(--app-muted); }
+.num { font-family: var(--font-display); font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+.accent { color: var(--accent-text); }
+
+/* campos de formulário: label + controle + ajuda */
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field > label,
+.field > .field__label { font-size: 0.8rem; font-weight: 700; color: var(--app-muted); }
+.field > small { font-size: 0.75rem; color: var(--app-muted); }
+.check { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9rem; cursor: pointer; }
+
+/* listas com divisória */
+.divided > * + * { border-top: 1px solid var(--app-border); }
+.list-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+
+/* PrimeVue na área logada: cards e tabelas no padrão da marca */
+.app-shell .p-card { border: 1px solid var(--app-border); box-shadow: none; }
+.app-shell .p-card .p-card-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: 0.005em; }
+.app-shell .p-card .p-card-title :is(.p-button, .p-tag, .p-selectbutton, input, small) { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
+.app-shell .p-card .p-card-subtitle { font-size: 0.85rem; }
+.app-shell .p-datatable { border: 1px solid var(--app-border); border-radius: var(--radius); overflow: hidden; }
+.app-shell .p-datatable .p-datatable-thead > tr > th { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--app-muted); }
+.app-shell .p-tablist-tab-list { background: transparent; }
+.app-shell .p-tabpanels { background: transparent; }
+.app-shell .p-tab { font-weight: 700; }
+.app-shell .p-tablist-active-bar { height: 3px; border-radius: 3px; background: var(--app-text); }
+
+/* card escuro em destaque (hero de páginas) */
+.tile-ink {
+  position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius-lg); padding: 22px;
+  background: var(--cl-ink); color: var(--cl-bone);
+}
+.app-dark .tile-ink { background: #202020; border: 1px solid #2e2e2e; }
+
+/* animação de entrada das páginas */
+@keyframes cl-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.rise { animation: cl-rise 0.55s var(--ease-out) both; }
+.rise-1 { animation-delay: 60ms; }
+.rise-2 { animation-delay: 120ms; }
+.rise-3 { animation-delay: 180ms; }
