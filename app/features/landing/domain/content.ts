@@ -41,7 +41,7 @@ const DEMO_TABS: { key: DemoScreen; label: string; title: string; text: string; 
     key: 'progress',
     label: 'Evolução',
     title: 'Dá pra ver que está melhorando.',
-    text: 'Km por semana, pace médio e frequência em gráfico. Conectou o Strava, suas corridas entram sozinhas.',
+    text: 'Km por semana, pace médio e frequência em gráfico. Registrou a corrida, o gráfico já mostra.',
     hint: 'Troque entre km e treinos',
   },
 ]
@@ -69,8 +69,8 @@ const COMPARE = [
   {
     icon: 'pi-sync',
     topic: 'Corrida',
-    before: 'Copiar distância e pace do relógio na mão, toda vez.',
-    after: 'Conectou o Strava, a corrida aparece sozinha no seu histórico.',
+    before: 'Anotar distância e pace no bloco de notas e mandar print pro professor.',
+    after: 'Registra a corrida em poucos toques e o professor vê na hora, com o seu esforço.',
   },
   {
     icon: 'pi-mobile',
@@ -108,7 +108,7 @@ const SERVICES: Service[] = [
     kicker: 'Serviço principal',
     title: 'Assessoria CL Run',
     text: 'Planilha semanal com rodagem, tiro e longão, ajustada ao seu ritmo e à sua prova. Do primeiro 5K à meia maratona.',
-    tags: ['5K a 21K', 'Pace alvo', 'Strava'],
+    tags: ['5K a 21K', 'Pace alvo', 'Retorno do professor'],
   },
   {
     key: 'eventos',
@@ -159,8 +159,8 @@ const FAQ = [
     a: 'Pode. O cancelamento é feito pelo próprio app e o acesso continua até o fim do período já pago.',
   },
   {
-    q: 'Uso relógio com Strava. Dá para integrar?',
-    a: 'Dá. Conecte sua conta Strava no perfil e as corridas são importadas automaticamente para o histórico.',
+    q: 'Uso relógio. Dá para integrar?',
+    a: 'Ainda não. Por enquanto você registra a corrida no app em poucos toques: distância, tempo e esforço. A sincronização automática com relógios está nos nossos planos.',
   },
 ]
 

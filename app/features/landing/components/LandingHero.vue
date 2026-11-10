@@ -23,7 +23,7 @@ function onLeave() {
 const proof = [
   { icon: 'pi-mobile', text: 'Sem loja de app' },
   { icon: 'pi-wifi', text: 'Abre offline' },
-  { icon: 'pi-sync', text: 'Conecta com Strava' },
+  { icon: 'pi-bell', text: 'Avisos no celular' },
 ]
 </script>
 

@@ -57,7 +57,7 @@ watch(
       <div><strong>5:42</strong><span>pace médio</span></div>
       <div><strong>4,3</strong><span>treinos/sem</span></div>
     </div>
-    <div class="prog__strava"><i class="pi pi-sync" /> Corridas sincronizadas com o Strava</div>
+    <div class="prog__strava"><i class="pi pi-check-circle" /> Atualiza a cada corrida registrada</div>
   </div>
 </template>
 
@@ -84,5 +84,5 @@ watch(
 .prog__kpis strong { display: block; font-family: var(--f-display); font-size: 1.7em; font-weight: 800; line-height: 1; }
 .prog__kpis span { font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #8a8a8a; }
 .prog__strava { display: flex; align-items: center; gap: 0.5em; font-size: 0.85em; font-weight: 700; color: #5e5e5e; }
-.prog__strava .pi { color: #fc5200; }
+.prog__strava .pi { color: #1a1a1a; }
 </style>

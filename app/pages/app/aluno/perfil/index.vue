@@ -42,9 +42,10 @@ const { data: profile, form, save } = await useProfile('aluno')
       <span class="link-card__icon"><i class="pi pi-link" /></span>
       <span class="grow">
         <strong>Relógio e apps</strong>
-        <span class="small muted">Apple Watch, Garmin, Coros e outros, via Strava</span>
+        <span class="small muted">Apple Watch, Garmin, Coros e outros</span>
       </span>
-      <i class="pi pi-chevron-right muted" />
+      <Tag v-if="!profile.stravaAvailable" value="Em breve" severity="secondary" />
+      <i v-else class="pi pi-chevron-right muted" />
     </NuxtLink>
 
     <AccountPasswordCard />

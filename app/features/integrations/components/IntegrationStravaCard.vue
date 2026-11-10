@@ -35,9 +35,14 @@ const firstName = computed(() => props.strava.athleteName?.split(' ')[0] ?? null
 <template>
   <section class="tile-ink strava rise">
     <template v-if="!strava.available">
-      <p class="strava__kicker">Integrações</p>
-      <h2 class="strava__title">Em breve</h2>
-      <p class="strava__lead">A academia ainda está ativando a conexão com o Strava. Assim que estiver pronta, aparece aqui.</p>
+      <p class="strava__kicker">Em breve</p>
+      <h2 class="strava__title">Treinou no relógio,<br><em>já vai estar feito aqui.</em></h2>
+      <p class="strava__lead">
+        Estamos preparando a sincronização com relógios. Quando chegar, o treino do seu Apple Watch, Garmin ou outro relógio
+        vai marcar o treino do dia como feito e avisar o seu professor, sem você digitar nada.
+      </p>
+      <IntegrationFlow class="strava__flow" />
+      <p class="strava__soon">Por enquanto, registre seus treinos pela tela <NuxtLink to="/app/aluno">Hoje</NuxtLink>.</p>
     </template>
 
     <template v-else-if="!strava.connected">
@@ -95,6 +100,8 @@ const firstName = computed(() => props.strava.athleteName?.split(' ')[0] ?? null
 .strava__name { font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; text-transform: uppercase; line-height: 1; }
 .strava__lead { font-size: 0.92rem; line-height: 1.55; color: #b8b8b8; max-width: 520px; }
 .strava__flow { margin: 6px 0 4px; max-width: 420px; }
+.strava__soon { font-size: 0.85rem; color: #a6a6a6; }
+.strava__soon a { color: var(--cl-hi); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 
 /* botão no padrão de marca do Strava (laranja oficial) */
 .strava__connect {

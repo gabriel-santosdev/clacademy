@@ -7,7 +7,7 @@ const { data, sync, disconnect, rate, connectUrl } = await useIntegrations()
 
 <template>
   <div v-if="data" class="stack" style="--gap: 24px">
-    <AppPageHeader title="Relógio e apps" subtitle="Treinou no relógio, o check-out acontece sozinho" back="/app/aluno/perfil" />
+    <AppPageHeader title="Relógio e apps" :subtitle="data.strava.available ? 'Treinou no relógio, o check-out acontece sozinho' : 'Sincronização com relógios em breve'" back="/app/aluno/perfil" />
 
     <IntegrationStravaCard
       :strava="data.strava"
@@ -23,13 +23,14 @@ const { data, sync, disconnect, rate, connectUrl } = await useIntegrations()
     <IntegrationRecentList v-if="data.strava.connected" :logs="data.recent" :rating="rate.loading.value" @rate="(id, rpe) => rate(id, rpe)" />
 
     <IntegrationDeviceGrid
+      v-if="data.strava.available"
       :devices="data.devices"
       :strava-connected="data.strava.connected"
       :strava-available="data.strava.available"
       :connect-url="connectUrl"
     />
 
-    <section class="why">
+    <section v-if="data.strava.available" class="why">
       <i class="pi pi-info-circle" />
       <p class="small muted">
         <b>Por que pelo Strava?</b> A Apple não libera os dados do Apple Watch para sites, e Garmin, Coros e Polar só abrem
