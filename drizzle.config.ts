@@ -1,6 +1,12 @@
 import { defineConfig } from 'drizzle-kit'
 
-const url = process.env.NUXT_DATABASE_URL
+// drizzle-kit não lê o .env sozinho
+try {
+  process.loadEnvFile()
+} catch {}
+
+// Migrations usam o "Session pooler" (porta 5432) se definido; o app usa o "Transaction pooler" (6543)
+const url = process.env.NUXT_DATABASE_MIGRATION_URL || process.env.NUXT_DATABASE_URL
 
 export default url
   ? defineConfig({

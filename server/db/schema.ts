@@ -35,9 +35,28 @@ export const users = pgTable('users', {
   active: boolean('active').notNull().default(true),
   /** professor responsável pelo aluno */
   coachId: integer('coach_id'),
+  /** null = cadastro ainda não confirmado pelo link enviado por e-mail */
+  emailVerifiedAt: timestamp('email_verified_at', { withTimezone: true }),
   createdAt: createdAt(),
   updatedAt: updatedAt(),
 })
+
+/** Links enviados por e-mail (confirmação de conta, redefinição de senha). Guarda só o hash do token. */
+export const emailTokens = pgTable(
+  'email_tokens',
+  {
+    id: id(),
+    userId: integer('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    purpose: text('purpose', { enum: ['verify_email', 'reset_password'] }).notNull(),
+    tokenHash: text('token_hash').notNull().unique(),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+    usedAt: timestamp('used_at', { withTimezone: true }),
+    createdAt: createdAt(),
+  },
+  (t) => [index('email_tokens_user_idx').on(t.userId)],
+)
 
 // ── Planos e preços ─────────────────────────────────────────
 export const plans = pgTable('plans', {

@@ -6,8 +6,11 @@ const body = z.object({
   email: z.string().trim().toLowerCase().email(),
   password: z.string().min(8).max(200),
   phone: z.string().trim().max(30).optional(),
+  /** plano escolhido na landing, para o link de confirmação levar direto a ele */
+  planId: z.number().int().positive().optional(),
 })
 
+/** Cria a conta do aluno e envia o link de confirmação. O login só é liberado após confirmar. */
 export default defineEventHandler(async (event) => {
   const data = await readValidatedBody(event, body.parse)
   const db = await useDb()
@@ -26,6 +29,6 @@ export default defineEventHandler(async (event) => {
     })
     .returning()
 
-  await setUserSession(event, { user: { id: user!.id, name: user!.name, email: user!.email, role: user!.role } })
-  return { ok: true }
+  await sendVerificationEmail(user!, data.planId)
+  return { ok: true, email: user!.email }
 })

@@ -46,14 +46,21 @@ Para recomeçar do zero, apague a pasta `.data/`.
 - Planos nascem como **rascunho**; só os **publicados** (com ao menos um preço) aparecem no site e no app.
 - Preços são **versionados**: alterar um valor cria nova versão; assinantes antigos continuam no valor contratado.
 - `NUXT_PAYMENT_PROVIDER=manual` (padrão): aluno vê chave Pix/instruções; admin dá baixa em **Financeiro**, gera a próxima mensalidade e faz matrículas presenciais.
-- `NUXT_PAYMENT_PROVIDER=asaas`: assinatura recorrente (Pix, boleto, cartão) criada no Asaas; status atualizados pelo webhook `POST /api/webhooks/asaas` (configure o mesmo token de `NUXT_PAYMENT_ASAAS_WEBHOOK_TOKEN` no painel do Asaas, eventos de cobrança).
+- `NUXT_PAYMENT_PROVIDER=asaas` (chaves em `NUXT_PAYMENT_ASAAS_API_KEY` = produção e `NUXT_PAYMENT_ASAAS_SANDBOX_API_KEY` = teste; `NUXT_PAYMENT_ASAAS_SANDBOX` escolhe qual usar; webhook na versão **v3**): assinatura recorrente (Pix, boleto, cartão) criada no Asaas; status atualizados pelo webhook `POST /api/webhooks/asaas` (configure o mesmo token de `NUXT_PAYMENT_ASAAS_WEBHOOK_TOKEN` no painel do Asaas, eventos de cobrança).
 - Para outro gateway, implemente a interface `PaymentProvider` em `server/utils/payments.ts`.
 
-## Deploy (Vercel)
+## Deploy (Vercel + Supabase)
 
-1. Crie um Postgres (ex.: Neon) e copie a connection string.
-2. Configure as variáveis do `.env.example` no projeto da Vercel (no mínimo `NUXT_DATABASE_URL`, `NUXT_SESSION_PASSWORD`, `NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD`).
+1. No Supabase, botão **Connect**: use o **Transaction pooler** (porta 6543) em `NUXT_DATABASE_URL` e o **Session pooler** (porta 5432) em `NUXT_DATABASE_MIGRATION_URL`.
+2. Configure as variáveis do `.env.example` no projeto da Vercel (ambiente Production). No mínimo: as duas URLs do banco, `NUXT_SESSION_PASSWORD`, `NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD`, `NUXT_PUBLIC_SITE_URL`.
 3. O build (`vercel-build`) aplica as migrations e o primeiro acesso cria o admin.
+4. Todas as tabelas têm RLS ligado (migration `0002`): a Data API do Supabase não enxerga nada; o app acessa como dono das tabelas. Em tabelas novas, inclua `ENABLE ROW LEVEL SECURITY` na migration.
+
+## E-mails (Resend)
+
+- `NUXT_EMAIL_RESEND_API_KEY` + `NUXT_EMAIL_FROM` com domínio verificado no Resend. Sem a chave, os e-mails só aparecem no terminal (útil em dev).
+- Enviados: confirmação de cadastro (o aluno só entra após clicar no link), redefinição de senha, nova mensalidade (modo manual), pagamento confirmado e mensalidade em atraso.
+- Contas criadas pelo admin já nascem confirmadas.
 
 ## Integrações opcionais
 

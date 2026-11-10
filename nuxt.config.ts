@@ -80,9 +80,15 @@ export default defineNuxtConfig({
     adminPassword: '', // NUXT_ADMIN_PASSWORD
     payment: {
       provider: 'manual', // NUXT_PAYMENT_PROVIDER: 'manual' | 'asaas'
-      asaasApiKey: '', // NUXT_PAYMENT_ASAAS_API_KEY
-      asaasSandbox: true, // NUXT_PAYMENT_ASAAS_SANDBOX
+      asaasApiKey: '', // NUXT_PAYMENT_ASAAS_API_KEY — chave de produção ($aact_prod_…)
+      asaasSandboxApiKey: '', // NUXT_PAYMENT_ASAAS_SANDBOX_API_KEY — chave de teste ($aact_hmlg_…)
+      asaasSandbox: true, // NUXT_PAYMENT_ASAAS_SANDBOX — true usa o sandbox e a chave de teste
       asaasWebhookToken: '', // NUXT_PAYMENT_ASAAS_WEBHOOK_TOKEN
+    },
+    email: {
+      resendApiKey: '', // NUXT_EMAIL_RESEND_API_KEY — vazio = e-mails só aparecem no terminal
+      from: 'CL Academy <nao-responda@clacademy.com.br>', // NUXT_EMAIL_FROM (domínio verificado no Resend)
+      replyTo: '', // NUXT_EMAIL_REPLY_TO — para onde vão as respostas dos alunos
     },
     vapidPrivateKey: '', // NUXT_VAPID_PRIVATE_KEY
     vapidSubject: 'mailto:contato@clacademy.com.br', // NUXT_VAPID_SUBJECT

@@ -20,7 +20,8 @@ export default defineEventHandler(async (event) => {
   }
   const [u] = await db
     .insert(tables.users)
-    .values({ ...data, passwordHash: await hashPassword(password) })
+    // conta criada pelo admin já nasce confirmada
+    .values({ ...data, passwordHash: await hashPassword(password), emailVerifiedAt: new Date() })
     .returning()
   return publicUser(u!)
 })

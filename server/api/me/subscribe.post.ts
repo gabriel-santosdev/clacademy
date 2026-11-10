@@ -89,6 +89,13 @@ export default defineEventHandler(async (event) => {
       .onConflictDoNothing()
       .returning()
   }
+  // no Asaas, quem envia a cobrança por e-mail é o próprio Asaas
+  if (payment && provider.name === 'manual') {
+    await sendEmail({
+      to: user.email,
+      ...emailTemplates.newCharge(user.name, price.plan.name, formatBRL(payment.amountCents), formatDate(payment.dueDate)),
+    })
+  }
 
   const admins = await db.select({ id: tables.users.id }).from(tables.users).where(eq(tables.users.role, 'admin'))
   await notifyUsers(

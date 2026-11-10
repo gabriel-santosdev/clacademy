@@ -123,8 +123,11 @@ function asaasProvider(apiKey: string, sandbox: boolean): PaymentProvider {
 export function usePaymentProvider(): PaymentProvider {
   const { payment } = useRuntimeConfig()
   if (payment.provider === 'asaas') {
-    if (!payment.asaasApiKey) throw createError({ statusCode: 500, message: 'Asaas não configurado' })
-    return asaasProvider(payment.asaasApiKey, String(payment.asaasSandbox) !== 'false')
+    const sandbox = String(payment.asaasSandbox) !== 'false'
+    // compatível com configs antigas, que punham a chave de teste em asaasApiKey
+    const apiKey = sandbox ? payment.asaasSandboxApiKey || payment.asaasApiKey : payment.asaasApiKey
+    if (!apiKey) throw createError({ statusCode: 500, message: 'Asaas não configurado' })
+    return asaasProvider(apiKey, sandbox)
   }
   return manualProvider
 }

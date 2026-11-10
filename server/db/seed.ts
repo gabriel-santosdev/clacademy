@@ -24,6 +24,7 @@ export async function seedDatabase(db: PostgresJsDatabase<typeof t>, opts: SeedO
       email: opts.adminEmail.toLowerCase(),
       passwordHash: await hashPassword(opts.adminPassword),
       role: 'admin',
+      emailVerifiedAt: new Date(),
     })
     console.info(`[seed] Admin criado: ${opts.adminEmail}`)
     return
@@ -34,9 +35,9 @@ export async function seedDatabase(db: PostgresJsDatabase<typeof t>, opts: SeedO
   const [, prof, aluno] = await db
     .insert(t.users)
     .values([
-      { name: 'Carla (Admin)', email: 'admin@clacademy.local', passwordHash: pass, role: 'admin' },
-      { name: 'Professor Demo', email: 'professor@clacademy.local', passwordHash: pass, role: 'professor' },
-      { name: 'Aluno Demo', email: 'aluno@clacademy.local', passwordHash: pass, role: 'aluno' },
+      { name: 'Carla (Admin)', email: 'admin@clacademy.local', passwordHash: pass, role: 'admin', emailVerifiedAt: new Date() },
+      { name: 'Professor Demo', email: 'professor@clacademy.local', passwordHash: pass, role: 'professor', emailVerifiedAt: new Date() },
+      { name: 'Aluno Demo', email: 'aluno@clacademy.local', passwordHash: pass, role: 'aluno', emailVerifiedAt: new Date() },
     ])
     .returning()
   await db.update(t.users).set({ coachId: prof!.id }).where(eq(t.users.id, aluno!.id))

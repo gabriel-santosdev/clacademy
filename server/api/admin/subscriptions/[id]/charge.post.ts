@@ -28,5 +28,8 @@ export default defineEventHandler(async (event) => {
     body: `${sub.plan.name} — ${formatBRL(sub.price.amountCents)} com vencimento em ${formatDate(due)}`,
     url: '/app/aluno/plano',
   })
+  await emailUser(sub.userId, (u) =>
+    emailTemplates.newCharge(u.name, sub.plan.name, formatBRL(sub.price.amountCents), formatDate(due)),
+  )
   return payment
 })

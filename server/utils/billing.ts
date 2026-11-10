@@ -61,9 +61,10 @@ export async function confirmPayment(paymentId: number, opts: { paidAt?: Date; m
   const sub = payment.subscription
   const months = INTERVAL_MONTHS[sub.price.interval as BillingInterval]
   const base = sub.currentPeriodEnd && new Date(sub.currentPeriodEnd) > new Date() ? new Date(sub.currentPeriodEnd) : new Date()
+  const periodEnd = addMonths(base, months)
   await db
     .update(tables.subscriptions)
-    .set({ status: sub.status === 'canceled' ? 'canceled' : 'active', currentPeriodEnd: addMonths(base, months) })
+    .set({ status: sub.status === 'canceled' ? 'canceled' : 'active', currentPeriodEnd: periodEnd })
     .where(eq(tables.subscriptions.id, sub.id))
 
   await notifyUsers([payment.userId], {
@@ -71,14 +72,19 @@ export async function confirmPayment(paymentId: number, opts: { paidAt?: Date; m
     body: `Seu plano ${sub.plan.name} está ativo. Bons treinos!`,
     url: '/app/aluno/plano',
   })
+  await emailUser(payment.userId, (u) =>
+    emailTemplates.paymentConfirmed(u.name, sub.plan.name, formatBRL(payment.amountCents), formatDate(periodEnd)),
+  )
   return payment
 }
 
 export async function markPaymentStatus(paymentId: number, status: 'overdue' | 'refunded' | 'canceled') {
   const db = await useDb()
+  const before = await db.query.payments.findFirst({ where: (x) => eq(x.id, paymentId) })
   const [p] = await db.update(tables.payments).set({ status }).where(eq(tables.payments.id, paymentId)).returning()
   if (!p) return
-  if (status === 'overdue') {
+  // só avisa na primeira vez que fica em atraso (webhooks podem repetir o evento)
+  if (status === 'overdue' && before?.status !== 'overdue') {
     await db
       .update(tables.subscriptions)
       .set({ status: 'past_due' })
@@ -88,5 +94,6 @@ export async function markPaymentStatus(paymentId: number, status: 'overdue' | '
       body: 'Regularize seu pagamento para continuar acessando seus treinos.',
       url: '/app/aluno/plano',
     })
+    await emailUser(p.userId, (u) => emailTemplates.paymentOverdue(u.name))
   }
 }

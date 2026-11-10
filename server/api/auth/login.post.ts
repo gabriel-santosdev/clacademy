@@ -15,6 +15,13 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 401, message: 'E-mail ou senha inválidos' })
   }
   if (!user.active) throw createError({ statusCode: 403, message: 'Conta desativada. Fale com a CL Academy.' })
+  if (!user.emailVerifiedAt) {
+    throw createError({
+      statusCode: 403,
+      message: 'Confirme seu e-mail para entrar. Enviamos um link para a sua caixa de entrada.',
+      data: { code: 'EMAIL_NOT_VERIFIED' },
+    })
+  }
 
   await setUserSession(event, { user: { id: user.id, name: user.name, email: user.email, role: user.role } })
   return { role: user.role }
