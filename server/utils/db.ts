@@ -51,5 +51,7 @@ async function init(): Promise<Db> {
     adminPassword: config.adminPassword,
     demo: !config.databaseUrl,
   })
+  // catálogo de exercícios: uma falha aqui não pode derrubar o app inteiro
+  await ensureExerciseCatalog(db).catch((err) => console.error('[exercícios] falha ao preparar o catálogo:', err))
   return db
 }

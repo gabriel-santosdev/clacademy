@@ -3,7 +3,7 @@ definePageMeta({ layout: 'app' })
 
 const route = useRoute()
 const id = Number(route.params.id)
-const { data, refresh, stats, whatsapp, isMine, coach, feedback, setCoach, takeOver, release, askEndAssignment } = await useCoachStudent(id)
+const { data, refresh, stats, whatsapp, isMine, coach, feedback, setCoach, setProfile, takeOver, release, askEndAssignment } = await useCoachStudent(id)
 const { drafts, send } = feedback
 useHead({ title: () => `${data.value?.aluno.name ?? 'Aluno'} · CL Academy` })
 
@@ -50,6 +50,45 @@ const assignOpen = ref(false)
     </div>
 
     <Card>
+      <template #title>Perfil de treino</template>
+      <template #subtitle>Usado para sugerir as fichas certas na hora de atribuir</template>
+      <template #content>
+        <div class="grid-2">
+          <div class="field">
+            <label for="p-level">Nível</label>
+            <Select
+              :model-value="data.aluno.trainingLevel"
+              input-id="p-level"
+              :options="LEVEL_OPTIONS"
+              option-label="label"
+              option-value="value"
+              placeholder="Não definido"
+              show-clear
+              :loading="setProfile.loading.value"
+              fluid
+              @update:model-value="(v) => setProfile({ trainingLevel: v ?? null })"
+            />
+          </div>
+          <div class="field">
+            <label for="p-goal">Objetivo</label>
+            <Select
+              :model-value="data.aluno.trainingGoal"
+              input-id="p-goal"
+              :options="GOAL_OPTIONS"
+              option-label="label"
+              option-value="value"
+              placeholder="Não definido"
+              show-clear
+              :loading="setProfile.loading.value"
+              fluid
+              @update:model-value="(v) => setProfile({ trainingGoal: v ?? null })"
+            />
+          </div>
+        </div>
+      </template>
+    </Card>
+
+    <Card>
       <template #title>Treinos atribuídos</template>
       <template #content>
         <AppEmptyState v-if="!data.assignments.length" icon="pi-bolt" title="Nada atribuído" text="Envie um treino ou planilha de corrida para este aluno.">
@@ -94,6 +133,11 @@ const assignOpen = ref(false)
       </template>
     </Card>
 
-    <TrainingAssignDialog v-model:visible="assignOpen" :aluno-ids="[id]" @saved="refresh" />
+    <TrainingAssignDialog
+      v-model:visible="assignOpen"
+      :aluno-ids="[id]"
+      :profile="{ level: data.aluno.trainingLevel, goal: data.aluno.trainingGoal }"
+      @saved="refresh"
+    />
   </div>
 </template>

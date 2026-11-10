@@ -42,8 +42,8 @@ const proof = [
           quanto pesou e o seu professor responde.
         </p>
         <div class="hero__cta">
-          <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--volt">Abrir meu treino <i class="pi pi-arrow-right" /></NuxtLink>
-          <NuxtLink v-else to="/cadastro" class="lp-btn lp-btn--volt">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
+          <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--ink">Abrir meu treino <i class="pi pi-arrow-right" /></NuxtLink>
+          <NuxtLink v-else to="/cadastro" class="lp-btn lp-btn--ink">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
           <button v-if="!installed" type="button" class="lp-btn lp-btn--ghost" @click="install"><i class="pi pi-download" /> Instalar o app</button>
         </div>
         <ul class="hero__proof">
@@ -126,8 +126,8 @@ const proof = [
   translate: calc(var(--tx) * 10px) calc(var(--ty) * 10px); transition: translate 0.4s var(--ease-out);
 }
 .tag--rpe { left: -4%; top: 60%; background: var(--ink); color: var(--bone); animation: lp-pop 0.6s var(--ease-out) 1.1s both, bob 6s ease-in-out 2s infinite; }
-.tag--rpe b { font-family: var(--f-display); font-size: 1.3rem; line-height: 1; color: var(--volt); }
-.tag--km { right: 2%; top: 4%; background: var(--volt); color: var(--volt-ink); animation: lp-pop 0.6s var(--ease-out) 1.35s both, bob 7s ease-in-out 2.4s infinite; }
+.tag--rpe b { font-family: var(--f-display); font-size: 1.3rem; line-height: 1; color: var(--hi); }
+.tag--km { right: 2%; top: 4%; background: var(--hi); color: var(--hi-ink); animation: lp-pop 0.6s var(--ease-out) 1.35s both, bob 7s ease-in-out 2.4s infinite; }
 @keyframes bob { 50% { transform: translateY(-8px); } }
 
 @media (max-width: 980px) {

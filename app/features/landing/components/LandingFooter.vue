@@ -36,7 +36,7 @@ const year = new Date().getFullYear()
 </template>
 
 <style scoped>
-.foot { background: #171717; color: #a8a7a4; padding-top: 72px; }
+.foot { background: #171717; color: #a6a6a6; padding-top: 72px; }
 .foot__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
 .foot__logo { font-size: 64px; color: var(--bone); margin: -6px 0 14px -4px; }
 .foot__brand p { max-width: 340px; font-size: 0.92rem; line-height: 1.6; }
@@ -45,11 +45,11 @@ const year = new Date().getFullYear()
   width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
   border: 1px solid var(--ink-line); color: var(--bone); transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-.foot__social a:hover { background: var(--volt); color: var(--volt-ink); border-color: var(--volt); }
+.foot__social a:hover { background: var(--hi); color: var(--hi-ink); border-color: var(--hi); }
 .foot__col { display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; }
 .foot__col strong { color: var(--bone); font-family: var(--f-display); font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
 .foot__col a { width: fit-content; transition: color 0.2s; }
-.foot__col a:hover { color: var(--volt); }
+.foot__col a:hover { color: var(--hi); }
 .foot__bottom {
   display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
   padding-top: 22px; padding-bottom: calc(22px + env(safe-area-inset-bottom)); border-top: 1px solid var(--ink-line); font-size: 0.8rem;

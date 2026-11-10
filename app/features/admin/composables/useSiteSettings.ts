@@ -9,5 +9,11 @@ export function useSiteSettings() {
     await Promise.all([query.refresh(), refreshNuxtData('public-settings')])
   }, 'Configurações salvas')
 
-  return withAsync(query, { form, save })
+  /** Sincronização automática do Strava (webhook): corridas do relógio chegam sem o aluno abrir o app. */
+  const stravaAutoSync = useAction(async (on: boolean) => {
+    await (on ? adminApi.enableStravaAutoSync() : adminApi.disableStravaAutoSync())
+    await query.refresh()
+  }, 'Sincronização do Strava atualizada')
+
+  return withAsync(query, { form, save, stravaAutoSync })
 }

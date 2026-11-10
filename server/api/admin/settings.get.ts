@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
       asaasWebhook: !!config.payment.asaasWebhookToken,
       push: !!(config.vapidPrivateKey && config.public.vapidPublicKey),
       strava: stravaConfigured(),
+      stravaAutoSync: stravaConfigured() ? !!(await getStravaWebhook()).subscriptionId : false,
       database: config.databaseUrl ? 'postgres' : 'pglite (local)',
     },
   }

@@ -73,9 +73,9 @@ onBeforeUnmount(() => (document.documentElement.style.overflow = ''))
           </a>
         </nav>
         <div class="lp-container menu__cta">
-          <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--volt" @click="menuOpen = false">Minha área <i class="pi pi-arrow-right" /></NuxtLink>
+          <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--light" @click="menuOpen = false">Minha área <i class="pi pi-arrow-right" /></NuxtLink>
           <template v-else>
-            <NuxtLink to="/cadastro" class="lp-btn lp-btn--volt" @click="menuOpen = false">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
+            <NuxtLink to="/cadastro" class="lp-btn lp-btn--light" @click="menuOpen = false">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
             <NuxtLink to="/login" class="lp-btn lp-btn--ghost-light" @click="menuOpen = false">Já sou aluno, entrar</NuxtLink>
           </template>
         </div>
@@ -93,7 +93,7 @@ onBeforeUnmount(() => (document.documentElement.style.overflow = ''))
 .nav--solid { background: color-mix(in srgb, var(--bone) 86%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom-color: color-mix(in srgb, var(--ink) 8%, transparent); }
 .nav--hidden { transform: translateY(-100%); }
 .nav__progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--ink); transform-origin: left; }
-.nav__progress::after { content: ''; position: absolute; right: 0; top: -1px; width: 6px; height: 4px; border-radius: 2px; background: var(--volt); }
+.nav__progress::after { content: ''; position: absolute; right: -3px; top: -2px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
 .nav__inner { display: flex; align-items: center; gap: 24px; height: 72px; }
 .nav__logo { display: flex; color: var(--graphite); font-size: 58px; transition: color 0.2s; }
 .nav__logo:hover { color: var(--ink); }
@@ -108,7 +108,7 @@ onBeforeUnmount(() => (document.documentElement.style.overflow = ''))
 .nav__burger span { position: absolute; left: 13px; right: 13px; height: 2px; border-radius: 2px; background: var(--bone); transition: transform 0.35s var(--ease-out), top 0.35s var(--ease-out); }
 .nav__burger span:first-child { top: 17px; }
 .nav__burger span:last-child { top: 25px; right: 18px; }
-.nav__burger.open { background: var(--volt); }
+.nav__burger.open { background: var(--hi); }
 .nav__burger.open span { background: var(--ink); top: 21px; right: 13px; }
 .nav__burger.open span:first-child { transform: rotate(45deg); }
 .nav__burger.open span:last-child { transform: rotate(-45deg); }
@@ -123,8 +123,8 @@ onBeforeUnmount(() => (document.documentElement.style.overflow = ''))
   font-family: var(--f-display); font-size: clamp(2.4rem, 11vw, 3.4rem); font-weight: 800; text-transform: uppercase; line-height: 1;
   animation: lp-rise 0.55s var(--ease-out) both; animation-delay: calc(var(--i) * 55ms + 80ms);
 }
-.menu__links a:active { color: var(--volt); }
-.menu__links small { font-size: 0.9rem; color: var(--volt); font-weight: 700; letter-spacing: 0.1em; }
+.menu__links a:active { color: var(--hi); }
+.menu__links small { font-size: 0.9rem; color: var(--hi); font-weight: 700; letter-spacing: 0.1em; }
 .menu__cta { display: grid; gap: 10px; animation: lp-rise 0.6s var(--ease-out) 0.35s both; }
 .menu-enter-active, .menu-leave-active { transition: clip-path 0.5s var(--ease-out); }
 .menu-enter-from, .menu-leave-to { clip-path: circle(0% at calc(100% - 46px) 36px); }

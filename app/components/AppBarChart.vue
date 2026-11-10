@@ -12,16 +12,17 @@ const props = withDefaults(
 )
 
 const { mode } = useAppColorMode()
-const colors = ref({ bar: '#1f1f1f', last: '#d4f53c', text: '#5e5e5e', grid: '#e4e2de' })
+const colors = ref({ bar: '#d0d0d0', last: '#1a1a1a', text: '#5f5f5f', grid: '#e6e6e6' })
 
 function readColors() {
   const css = getComputedStyle(document.documentElement)
+  const dark = mode.value === 'dark'
   colors.value = {
-    // barras na cor do texto (grafite/osso) e a semana atual em volt, como na landing
-    bar: mode.value === 'dark' ? '#5e5e5e' : '#1f1f1f',
-    last: css.getPropertyValue('--cl-volt').trim() || '#d4f53c',
-    text: css.getPropertyValue('--p-text-muted-color').trim() || '#71717a',
-    grid: css.getPropertyValue('--p-content-border-color').trim() || '#e4e4e7',
+    // barras em cinza e a semana atual em contraste máximo (grafite no claro, branco no escuro)
+    bar: dark ? '#3a3a3a' : '#d0d0d0',
+    last: dark ? '#f5f5f5' : '#1a1a1a',
+    text: css.getPropertyValue('--p-text-muted-color').trim() || '#737373',
+    grid: css.getPropertyValue('--p-content-border-color').trim() || '#e5e5e5',
   }
 }
 onMounted(readColors)

@@ -62,7 +62,7 @@ function set(m: 'before' | 'after') {
 .cmp__logo { font-size: 40px; }
 .cmp__thumb { position: absolute; z-index: 0; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: var(--ink); transition: transform 0.5s var(--ease-spring); }
 .cmp__thumb.after { transform: translateX(100%); }
-.cmp__switch button:last-of-type.on { color: var(--volt); }
+.cmp__switch button:last-of-type.on { color: var(--hi); }
 
 .cmp__grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .cmp__card {
@@ -79,10 +79,10 @@ function set(m: 'before' | 'after') {
 .cmp__after { opacity: 0; transform: translateY(12px); }
 
 .cmp__grid.after .cmp__card { background: var(--ink); border-color: var(--ink); color: var(--bone); }
-.cmp__grid.after .cmp__icon { background: var(--ink-2); color: var(--volt); }
-.cmp__grid.after .cmp__state { background: var(--volt); color: var(--volt-ink); transform: rotate(360deg); }
+.cmp__grid.after .cmp__icon { background: var(--ink-2); color: var(--hi); }
+.cmp__grid.after .cmp__state { background: var(--hi); color: var(--hi-ink); transform: rotate(360deg); }
 .cmp__grid.after .cmp__before { opacity: 0; transform: translateY(-12px); }
-.cmp__grid.after .cmp__after { opacity: 1; transform: none; color: #d6d5d2; }
+.cmp__grid.after .cmp__after { opacity: 1; transform: none; color: #d6d6d6; }
 
 @media (max-width: 960px) { .cmp__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) {

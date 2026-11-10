@@ -38,7 +38,7 @@ withDefaults(defineProps<{ label: string; tab?: 'home' | 'run' | 'chart' | 'user
 .phone__island { position: absolute; z-index: 3; top: 1.75em; left: 50%; width: 7.4em; height: 2.1em; transform: translateX(-50%); border-radius: 2em; background: #000; }
 .phone__screen {
   position: relative; height: 100%; overflow: hidden; border-radius: 3.3em;
-  background: #f4f3f1; color: #1f1f1f; font-family: var(--f-body); line-height: 1.35;
+  background: #f5f5f5; color: #1f1f1f; font-family: var(--f-body); line-height: 1.35;
 }
 .phone__status {
   position: absolute; z-index: 2; top: 1.15em; left: 2.3em; right: 2em;
@@ -51,9 +51,9 @@ withDefaults(defineProps<{ label: string; tab?: 'home' | 'run' | 'chart' | 'user
 .phone__body { position: absolute; inset: 3.8em 0 5em; overflow: hidden; padding: 0 1.25em; }
 .phone__tabbar {
   position: absolute; left: 0; right: 0; bottom: 0; height: 5em; padding: 0 2.2em 0.9em;
-  display: flex; justify-content: space-between; align-items: center; background: #fff; border-top: 1px solid #e6e4e0;
+  display: flex; justify-content: space-between; align-items: center; background: #fff; border-top: 1px solid #e6e6e6;
 }
-.phone__tabbar .pi { font-size: 1.3em; color: #b3b1ac; transition: color 0.3s; }
+.phone__tabbar .pi { font-size: 1.3em; color: #b3b3b3; transition: color 0.3s; }
 .phone__tabbar .pi.on { color: #1f1f1f; position: relative; }
-.phone__tabbar .pi.on::after { content: ''; position: absolute; left: 50%; bottom: -0.55em; width: 0.35em; height: 0.35em; border-radius: 50%; background: var(--volt); transform: translateX(-50%); box-shadow: 0 0 0 0.12em #1f1f1f; }
+.phone__tabbar .pi.on::after { content: ''; position: absolute; left: 50%; bottom: -0.55em; width: 0.35em; height: 0.35em; border-radius: 50%; background: #1a1a1a; transform: translateX(-50%); }
 </style>

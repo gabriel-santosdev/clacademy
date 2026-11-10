@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { NavSection } from '../domain/navigation'
 
-defineProps<{ sections: NavSection[]; path: string }>()
+const props = defineProps<{ sections: NavSection[]; path: string }>()
+const active = computed(() => activeNavTarget(props.sections, props.path))
 </script>
 
 <template>
@@ -13,7 +14,8 @@ defineProps<{ sections: NavSection[]; path: string }>()
         :key="item.to"
         :to="item.to"
         class="nav__link"
-        :class="{ active: isNavActive(item, path) }"
+        :class="{ active: item.to === active }"
+        :aria-current="item.to === active ? 'page' : undefined"
       >
         <i :class="['pi', item.icon]" />
         <span>{{ item.label }}</span>
@@ -29,9 +31,10 @@ defineProps<{ sections: NavSection[]; path: string }>()
 .nav__title { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; padding: 0 14px 6px; }
 .nav__link {
   position: relative; display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 999px;
-  color: inherit; opacity: 0.72; font-weight: 600; font-size: 0.93rem; transition: background 0.2s, opacity 0.2s, color 0.2s;
+  color: inherit; opacity: 0.72; font-weight: 600; font-size: 0.93rem; transition: background 0.25s, opacity 0.2s, color 0.25s, transform 0.15s var(--ease-out); -webkit-tap-highlight-color: transparent;
 }
 .nav__link .pi { font-size: 1rem; width: 18px; text-align: center; }
-.nav__link:hover { opacity: 1; background: color-mix(in srgb, currentColor 8%, transparent); }
-.nav__link.active { opacity: 1; background: var(--cl-volt); color: var(--cl-volt-ink); font-weight: 800; }
+@media (hover: hover) { .nav__link:hover { opacity: 1; background: color-mix(in srgb, currentColor 8%, transparent); } }
+.nav__link:active { transform: scale(0.98); }
+.nav__link.active { opacity: 1; background: var(--nav-active-bg, var(--accent)); color: var(--nav-active-fg, var(--accent-ink)); font-weight: 800; }
 </style>

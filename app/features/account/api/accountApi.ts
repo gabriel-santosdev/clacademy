@@ -15,7 +15,4 @@ export const accountApi = {
   updateProfile: (body: ProfilePatch) => $fetch('/api/me/profile', { method: 'PATCH', body }),
   changePassword: (body: PasswordChange) => $fetch('/api/me/profile', { method: 'PATCH', body }),
   markNotificationsRead: () => $fetch('/api/me/notifications/read', { method: 'POST' }),
-  syncStrava: () => $fetch('/api/me/strava/sync', { method: 'POST' }),
-  disconnectStrava: () => $fetch('/api/me/strava', { method: 'DELETE' }),
-  stravaConnectUrl: '/api/me/strava/connect',
 }

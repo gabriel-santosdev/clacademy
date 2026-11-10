@@ -5,7 +5,7 @@ const { data: settings } = await usePublicSettings()
 const instagram = computed(() => settings.value?.instagram?.replace(/^@/, '') || LANDING.instagram)
 const whatsapp = computed(() => settings.value?.whatsapp || null)
 
-useHead({ meta: [{ name: 'theme-color', content: '#EEEDEB' }] })
+useHead({ meta: [{ name: 'theme-color', content: '#f0f0f0' }] })
 useRevealOnScroll()
 </script>
 

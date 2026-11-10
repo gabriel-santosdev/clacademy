@@ -18,6 +18,12 @@ export interface ActivityLike {
   exercises?: LoggedExercise[] | null
   feedback: string | null
   source: string
+  /** relógio que gravou (via Strava) */
+  device?: string | null
+  avgHr?: number | null
+  elevationM?: number | null
+  workoutId?: number | null
+  runSessionId?: number | null
   workout?: { title: string } | null
   runSession?: { type: RunType } | null
   aluno?: { id: number; name: string } | null

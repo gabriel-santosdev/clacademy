@@ -4,9 +4,12 @@ export const workoutSchema = z.object({
   title: z.string().trim().min(1).max(160),
   description: z.string().trim().max(2000).nullish(),
   tag: z.string().trim().max(40).nullish(),
+  level: z.enum(TRAINING_LEVELS).nullish(),
+  goal: z.enum(TRAINING_GOALS).nullish(),
   items: z
     .array(
       z.object({
+        exerciseId: z.number().int().positive().nullish(),
         name: z.string().trim().min(1).max(160),
         sets: z.number().int().min(0).max(100).nullish(),
         reps: z.string().trim().max(40).nullish(),

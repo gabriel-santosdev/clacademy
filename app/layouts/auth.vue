@@ -41,17 +41,17 @@ const perks = [
 @media (min-width: 960px) { .auth__side { display: block; } }
 .auth__lanes { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
 .auth__lanes path { fill: none; stroke: #2f2f2f; stroke-width: 2; }
-.auth__lanes path:nth-child(4) { stroke: var(--cl-volt); stroke-dasharray: 8 10; animation: lane 3s linear infinite; }
+.auth__lanes path:nth-child(4) { stroke: var(--cl-hi); stroke-dasharray: 8 10; animation: lane 3s linear infinite; }
 @keyframes lane { to { stroke-dashoffset: -36; } }
 .auth__brand { position: absolute; top: 28px; left: 36px; font-size: 64px; color: var(--cl-bone); }
 .auth__quote { position: absolute; left: 40px; right: 40px; bottom: 44px; }
-.auth__kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b9b8b5; }
-.auth__kicker span { width: 10px; height: 10px; border-radius: 50%; background: var(--cl-volt); }
+.auth__kicker { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b8b8b8; }
+.auth__kicker span { width: 10px; height: 10px; border-radius: 50%; background: var(--cl-hi); }
 .auth__title { margin: 12px 0 24px; max-width: 480px; font-family: var(--font-display); font-size: clamp(3rem, 4.6vw, 4.4rem); font-weight: 800; text-transform: uppercase; line-height: 0.88; }
-.auth__title em { font-style: italic; color: var(--cl-volt); }
+.auth__title em { font-style: italic; color: var(--cl-hi); }
 .auth__quote ul { display: flex; flex-direction: column; gap: 10px; }
-.auth__quote li { display: flex; align-items: center; gap: 12px; font-weight: 600; color: #d6d5d2; }
-.auth__quote .pi { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.08); color: var(--cl-volt); font-size: 0.85rem; }
+.auth__quote li { display: flex; align-items: center; gap: 12px; font-weight: 600; color: #d6d6d6; }
+.auth__quote .pi { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.08); color: var(--cl-hi); font-size: 0.85rem; }
 
 .auth__main { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 16px; gap: 14px; }
 .auth__logo { display: flex; font-size: 72px; color: var(--app-text); margin-bottom: 4px; }

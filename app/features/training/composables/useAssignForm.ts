@@ -26,7 +26,17 @@ export function useAssignForm(preset: () => AssignPreset, onSaved: () => void) {
     if (needsAlunos.value) alunos.execute()
   }
 
-  const workoutOptions = computed(() => workouts.data.value.map((w) => ({ value: w.id, label: w.tag ? `[${w.tag}] ${w.title}` : w.title })))
+  const workoutOptions = computed(() =>
+    workouts.data.value
+      .map((w) => ({
+        value: w.id,
+        label: w.tag ? `[${w.tag}] ${w.title}` : w.title,
+        level: w.level,
+        goal: w.goal,
+        match: profileMatch(w, preset().profile),
+      }))
+      .sort((a, b) => b.match - a.match),
+  )
   const runPlanOptions = computed(() => runPlans.data.value.map((p) => ({ value: p.id, label: `${p.title} (${p.weeks} semanas)` })))
   const alunoOptions = computed(() =>
     alunos.data.value.map((a) => ({ value: a.id, label: a.name, inactive: !!a.subscription && !a.subscription.hasAccess })),

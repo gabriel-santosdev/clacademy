@@ -1,3 +1,4 @@
+/** Volta do OAuth do Strava: salva a conexão e faz a primeira importação. */
 export default defineEventHandler(async (event) => {
   const user = await requireRole(event, 'aluno')
   const { code, state, error } = getQuery(event) as Record<string, string | undefined>
@@ -5,27 +6,15 @@ export default defineEventHandler(async (event) => {
   deleteCookie(event, 'strava_state', { path: '/' })
 
   if (error || !code || !state || state !== expected) {
-    return sendRedirect(event, '/app/aluno/perfil?strava=erro')
+    return sendRedirect(event, '/app/aluno/perfil/integracoes?strava=erro')
   }
 
-  const token = await stravaExchangeCode(code)
-  const db = await useDb()
-  const values = {
-    userId: user.id,
-    athleteId: String(token.athlete?.id ?? ''),
-    accessToken: token.access_token,
-    refreshToken: token.refresh_token,
-    expiresAt: token.expires_at,
-  }
-  await db
-    .insert(tables.stravaConnections)
-    .values(values)
-    .onConflictDoUpdate({ target: tables.stravaConnections.userId, set: values })
+  await saveStravaConnection(user.id, await stravaExchangeCode(code))
 
   try {
     await syncStravaActivities(user.id)
   } catch (e) {
     console.error('[strava] primeira sincronização falhou', e)
   }
-  return sendRedirect(event, '/app/aluno/perfil?strava=ok')
+  return sendRedirect(event, '/app/aluno/perfil/integracoes?strava=ok')
 })

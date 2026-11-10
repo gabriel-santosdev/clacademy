@@ -15,7 +15,7 @@ const steps = computed(() => installSteps(tab.value))
 /* o ícone "cai" na tela inicial do mini celular quando a seção aparece */
 const root = ref<HTMLElement | null>(null)
 const seen = useInView(root, { once: true, threshold: 0.4 })
-const apps = ['#c9c6c0', '#9b9893', '#5e5e5e', '#d9d7d2', '#7a7874', '#b4b1ab', '#a8a49e']
+const apps = ['#c8c8c8', '#999999', '#5e5e5e', '#d9d9d9', '#7a7a7a', '#b3b3b3', '#a6a6a6']
 </script>
 
 <template>
@@ -89,7 +89,7 @@ const apps = ['#c9c6c0', '#9b9893', '#5e5e5e', '#d9d7d2', '#7a7874', '#b4b1ab', 
   font-size: 0.97rem; font-weight: 600; animation: lp-rise 0.45s var(--ease-out) both; animation-delay: calc(var(--i) * 60ms);
 }
 .inst__steps li > .pi { color: var(--graphite); }
-.inst__n { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--volt); font-family: var(--f-display); font-weight: 800; font-size: 1rem; }
+.inst__n { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--hi); font-family: var(--f-display); font-weight: 800; font-size: 1rem; }
 .steps-leave-active { transition: opacity 0.15s; }
 .steps-leave-to { opacity: 0; }
 .inst__cta { margin-top: 24px; }
@@ -107,7 +107,7 @@ const apps = ['#c9c6c0', '#9b9893', '#5e5e5e', '#d9d7d2', '#7a7874', '#b4b1ab', 
 .home__app--cl {
   opacity: 1; display: grid; place-items: center; background: var(--bone); color: var(--graphite); font-size: 38px;
   transform: translateY(-260px) scale(0.6); transition: transform 0.9s var(--ease-spring) 0.2s;
-  box-shadow: 0 0 0 3px var(--volt);
+  box-shadow: 0 0 0 3px var(--hi);
 }
 .go .home__app--cl { transform: none; }
 .home__dock { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-around; padding: 12px; border-radius: 28px; background: rgba(255, 255, 255, 0.08); }

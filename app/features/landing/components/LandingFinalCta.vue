@@ -13,7 +13,7 @@ defineProps<{ whatsapp?: string | null }>()
       <h2 class="final__title">Seu próximo treino <em>já está esperando.</em></h2>
       <p class="final__lead">Cria a conta, escolhe o plano e o seu professor manda a primeira ficha direto no app.</p>
       <div class="final__cta">
-        <NuxtLink to="/cadastro" class="lp-btn lp-btn--volt">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
+        <NuxtLink to="/cadastro" class="lp-btn lp-btn--light">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
         <a
           v-if="whatsappUrl(whatsapp)"
           :href="whatsappUrl(whatsapp, 'Oi! Quero saber mais sobre a CL Academy.')!"
@@ -40,8 +40,8 @@ defineProps<{ whatsapp?: string | null }>()
 .final__inner { position: relative; display: flex; flex-direction: column; align-items: center; }
 .final__mark { font-size: 84px; color: var(--bone); margin-bottom: 12px; }
 .final__title { max-width: 820px; font-family: var(--f-display); font-weight: 800; text-transform: uppercase; font-size: clamp(2.8rem, 8vw, 5.6rem); line-height: 0.9; text-wrap: balance; }
-.final__title em { font-style: italic; color: var(--volt); }
-.final__lead { margin-top: 22px; max-width: 480px; color: #b9b8b5; font-size: 1.08rem; line-height: 1.6; }
+.final__title em { font-style: italic; color: var(--hi); }
+.final__lead { margin-top: 22px; max-width: 480px; color: #b8b8b8; font-size: 1.08rem; line-height: 1.6; }
 .final__cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 @media (max-width: 520px) { .final__cta .lp-btn { flex: 1 1 100%; } }
 </style>

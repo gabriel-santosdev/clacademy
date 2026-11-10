@@ -29,6 +29,21 @@ export type PaymentStatus = (typeof PAYMENT_STATUSES)[number]
 export const RUN_TYPES = ['rodagem', 'intervalado', 'longao', 'regenerativo', 'tiro', 'fartlek', 'prova'] as const
 export type RunType = (typeof RUN_TYPES)[number]
 
+// ── Exercícios e perfis de treino ──────────────────────────
+export const MUSCLE_GROUPS = [
+  'peito', 'costas', 'ombros', 'biceps', 'triceps', 'quadriceps', 'posteriores', 'gluteos', 'adutores', 'panturrilha', 'abdomen', 'cardio', 'corpo_inteiro',
+] as const
+export type MuscleGroup = (typeof MUSCLE_GROUPS)[number]
+
+export const EQUIPMENTS = ['barra', 'halteres', 'maquina', 'polia', 'smith', 'peso_corporal', 'kettlebell', 'elastico', 'bola', 'ergometro', 'outros'] as const
+export type Equipment = (typeof EQUIPMENTS)[number]
+
+export const TRAINING_LEVELS = ['iniciante', 'intermediario', 'avancado'] as const
+export type TrainingLevel = (typeof TRAINING_LEVELS)[number]
+
+export const TRAINING_GOALS = ['hipertrofia', 'emagrecimento', 'condicionamento', 'forca', 'saude', 'mobilidade'] as const
+export type TrainingGoal = (typeof TRAINING_GOALS)[number]
+
 export const LABELS = {
   role: { admin: 'Admin', professor: 'Professor', aluno: 'Aluno' } as Record<Role, string>,
   modality: {
@@ -62,6 +77,43 @@ export const LABELS = {
     refunded: 'Estornado',
     canceled: 'Cancelado',
   } as Record<PaymentStatus, string>,
+  muscleGroup: {
+    peito: 'Peito',
+    costas: 'Costas',
+    ombros: 'Ombros',
+    biceps: 'Bíceps',
+    triceps: 'Tríceps',
+    quadriceps: 'Quadríceps',
+    posteriores: 'Posteriores',
+    gluteos: 'Glúteos',
+    adutores: 'Adutores',
+    panturrilha: 'Panturrilha',
+    abdomen: 'Abdômen',
+    cardio: 'Cardio',
+    corpo_inteiro: 'Corpo inteiro',
+  } as Record<MuscleGroup, string>,
+  equipment: {
+    barra: 'Barra',
+    halteres: 'Halteres',
+    maquina: 'Máquina',
+    polia: 'Polia / cabo',
+    smith: 'Smith',
+    peso_corporal: 'Peso corporal',
+    kettlebell: 'Kettlebell',
+    elastico: 'Elástico',
+    bola: 'Bola',
+    ergometro: 'Ergômetro',
+    outros: 'Outros',
+  } as Record<Equipment, string>,
+  trainingLevel: { iniciante: 'Iniciante', intermediario: 'Intermediário', avancado: 'Avançado' } as Record<TrainingLevel, string>,
+  trainingGoal: {
+    hipertrofia: 'Hipertrofia',
+    emagrecimento: 'Emagrecimento',
+    condicionamento: 'Condicionamento',
+    forca: 'Força',
+    saude: 'Saúde e qualidade de vida',
+    mobilidade: 'Mobilidade',
+  } as Record<TrainingGoal, string>,
   runType: {
     rodagem: 'Rodagem',
     intervalado: 'Intervalado',

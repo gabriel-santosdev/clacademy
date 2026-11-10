@@ -102,6 +102,11 @@ const dash = computed(() => `${todayTotal.value ? (todayDone.value / todayTotal.
           class="today-card__cta"
           @click="openLog({ kind: 'corrida', assignmentId: r.assignmentId, runSessionId: r.session.id, title: LABELS.runType[r.session.type], suggestedKm: r.session.distanceKm })"
         />
+        <NuxtLink v-if="!isRunDone(r.session.id) && data.watch.available" to="/app/aluno/perfil/integracoes" class="watch-hint">
+          <i class="pi pi-stopwatch" />
+          <span v-if="data.watch.connected">Correndo com relógio? O check-out é automático pelo Strava.</span>
+          <span v-else>Corre com relógio? <b>Conecte o Strava</b> e o check-out acontece sozinho.</span>
+        </NuxtLink>
       </article>
 
       <div v-if="nothingToday" class="today-card today-card--rest">
@@ -133,25 +138,25 @@ const dash = computed(() => `${todayTotal.value ? (todayDone.value / todayTotal.
 .hero { padding: 24px 22px 20px; }
 .hero__lanes { position: absolute; top: 0; right: 0; z-index: -1; width: 70%; height: 62%; opacity: 0.7; -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent); mask-image: linear-gradient(180deg, #000 40%, transparent); }
 .hero__lanes path { fill: none; stroke: #333; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
-.hero__lanes path:nth-child(3) { stroke: var(--cl-volt); stroke-dasharray: 6 8; opacity: 0.8; }
+.hero__lanes path:nth-child(3) { stroke: var(--cl-hi); stroke-dasharray: 6 8; opacity: 0.8; }
 .hero__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-.hero__hello { font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cl-volt); }
+.hero__hello { font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cl-hi); }
 .hero__name { margin-top: 6px; font-family: var(--font-display); font-size: clamp(3rem, 12vw, 4.6rem); font-weight: 800; text-transform: uppercase; line-height: 0.86; }
-.hero__date { margin-top: 10px; font-size: 0.88rem; color: #a8a7a4; }
+.hero__date { margin-top: 10px; font-size: 0.88rem; color: #a6a6a6; }
 .hero__date::first-letter { text-transform: uppercase; }
 .ring { width: 74px; height: 74px; flex-shrink: 0; transform: rotate(-90deg); }
 .ring circle { fill: none; stroke-width: 3.4; }
 .ring__bg { stroke: #3a3a3a; }
-.ring__fg { stroke: var(--cl-volt); stroke-linecap: round; transition: stroke-dasharray 0.8s var(--ease-out); }
+.ring__fg { stroke: var(--cl-hi); stroke-linecap: round; transition: stroke-dasharray 0.8s var(--ease-out); }
 .ring text { transform: rotate(90deg); transform-origin: 18px 18px; font-family: var(--font-display); font-size: 9px; font-weight: 800; fill: var(--cl-bone); }
 .hero__kpis { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 22px; border-top: 1px solid #3a3a3a; }
 .hero__kpis div { padding: 14px 0 0; }
 .hero__kpis div + div { padding-left: 14px; border-left: 1px solid #3a3a3a; }
-.hero__kpis strong { display: block; font-family: var(--font-display); font-size: clamp(2rem, 7vw, 2.8rem); font-weight: 800; line-height: 0.9; color: var(--cl-volt); font-variant-numeric: tabular-nums; }
-.hero__kpis span { display: block; margin-top: 4px; font-size: 0.75rem; font-weight: 700; color: #a8a7a4; }
+.hero__kpis strong { display: block; font-family: var(--font-display); font-size: clamp(2rem, 7vw, 2.8rem); font-weight: 800; line-height: 0.9; color: var(--cl-hi); font-variant-numeric: tabular-nums; }
+.hero__kpis span { display: block; margin-top: 4px; font-size: 0.75rem; font-weight: 700; color: #a6a6a6; }
 
 .cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 16px 18px; border-radius: var(--radius); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-text) 30%, transparent); }
-.cta__icon { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--cl-ink); color: var(--cl-volt); }
+.cta__icon { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--cl-ink); color: var(--cl-hi); }
 
 .today-card { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: var(--radius-lg); background: var(--app-tile); border: 1px solid var(--app-border); transition: border-color 0.3s; }
 .today-card.done { border-color: color-mix(in srgb, var(--accent-text) 45%, transparent); }
@@ -159,9 +164,12 @@ const dash = computed(() => `${todayTotal.value ? (todayDone.value / todayTotal.
 .today-card__tag { display: inline-flex; align-items: center; gap: 6px; width: fit-content; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--app-muted); }
 .today-card__tag .pi { font-size: 0.75rem; color: var(--accent-text); }
 .today-card__title { margin-top: 4px; font-family: var(--font-display); font-size: 2rem; font-weight: 800; text-transform: uppercase; line-height: 0.95; }
-.today-card__done { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--cl-volt); color: var(--cl-volt-ink); font-size: 0.78rem; font-weight: 800; white-space: nowrap; }
+.today-card__done { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 0.78rem; font-weight: 800; white-space: nowrap; }
 .today-card__done .pi { font-size: 0.7rem; }
 .today-card--rest { padding: 0; }
 
 .recent { padding: 18px 20px 4px; border-radius: var(--radius-lg); background: var(--app-tile); border: 1px solid var(--app-border); }
+.watch-hint { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.8rem; color: var(--app-muted); }
+.watch-hint b { color: var(--app-text); text-decoration: underline; text-underline-offset: 3px; }
+.watch-hint .pi { font-size: 0.85rem; }
 </style>

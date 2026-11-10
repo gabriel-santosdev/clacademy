@@ -1,17 +1,26 @@
 <script setup lang="ts">
 /** Atribuir treino ou planilha. Passe aluno(s) OU treino/planilha já escolhidos. */
 const visible = defineModel<boolean>('visible', { default: false })
-const props = defineProps<{ alunoIds?: number[]; workoutId?: number; runPlanId?: number }>()
+import type { TrainingProfile } from '../domain/assignment'
+
+const props = defineProps<{ alunoIds?: number[]; workoutId?: number; runPlanId?: number; profile?: TrainingProfile }>()
 const emit = defineEmits<{ saved: [] }>()
 
 const { form, needsAlunos, needsContent, workoutOptions, runPlanOptions, alunoOptions, canSubmit, reset, submit } = useAssignForm(
-  () => ({ alunoIds: props.alunoIds, workoutId: props.workoutId, runPlanId: props.runPlanId }),
+  () => ({ alunoIds: props.alunoIds, workoutId: props.workoutId, runPlanId: props.runPlanId, profile: props.profile }),
   () => {
     visible.value = false
     emit('saved')
   },
 )
 watch(visible, (v) => v && reset())
+
+/** Cria uma ficha nova e volta com este(s) aluno(s) já escolhido(s) para atribuir. */
+function createWorkout() {
+  visible.value = false
+  const alunos = props.alunoIds?.length ? `?atribuir=${props.alunoIds.join(',')}` : ''
+  navigateTo(`/app/professor/treinos/novo${alunos}`)
+}
 
 const kindOptions = [
   { label: 'Treino de academia', value: 'workout' },
@@ -27,7 +36,23 @@ const weekdayOptions = WEEKDAYS_SHORT.map((d, i) => ({ label: d.slice(0, 1), tit
         <SelectButton v-model="form.kind" :options="kindOptions" option-label="label" option-value="value" :allow-empty="false" />
         <div v-if="form.kind === 'workout'" class="field">
           <label for="as-workout">Treino</label>
-          <Select v-model="form.workoutId" input-id="as-workout" :options="workoutOptions" option-label="label" option-value="value" placeholder="Selecione…" filter fluid />
+          <Select v-model="form.workoutId" input-id="as-workout" :options="workoutOptions" option-label="label" option-value="value" placeholder="Selecione…" filter fluid>
+            <template #footer>
+              <div class="new-workout">
+                <Button label="Criar novo treino" icon="pi pi-plus" text size="small" fluid @click="createWorkout" />
+              </div>
+            </template>
+            <template #empty>Nenhuma ficha ainda.</template>
+            <template #option="{ option }">
+              <span class="grow">{{ option.label }}</span>
+              <Tag v-if="option.match === 2" value="combina com o perfil" severity="success" />
+              <Tag v-else-if="option.match === 1 && (option.level || option.goal)" value="perfil parecido" severity="info" />
+              <Tag v-else-if="option.match === -1" value="outro perfil" severity="secondary" />
+            </template>
+          </Select>
+          <small v-if="profile?.level || profile?.goal">
+            Perfil do aluno: {{ [profile.level && LABELS.trainingLevel[profile.level], profile.goal && LABELS.trainingGoal[profile.goal]].filter(Boolean).join(' · ') }}
+          </small>
         </div>
         <div v-else class="field">
           <label for="as-plan">Planilha</label>
@@ -90,4 +115,6 @@ const weekdayOptions = WEEKDAYS_SHORT.map((d, i) => ({ label: d.slice(0, 1), tit
 
 <style scoped>
 .weekdays { flex-wrap: wrap; }
+.new-workout { padding: 6px; border-top: 1px solid var(--app-border); }
+.new-workout :deep(.p-button) { justify-content: flex-start; }
 </style>

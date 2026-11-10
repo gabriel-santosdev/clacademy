@@ -92,7 +92,7 @@ watch(active, (i) => {
               <p>{{ current.text }}</p>
             </div>
           </Transition>
-          <NuxtLink to="/cadastro" class="lp-btn lp-btn--volt demo__cta">Quero usar <i class="pi pi-arrow-right" /></NuxtLink>
+          <NuxtLink to="/cadastro" class="lp-btn lp-btn--light demo__cta">Quero usar <i class="pi pi-arrow-right" /></NuxtLink>
         </div>
       </div>
     </div>
@@ -114,15 +114,15 @@ watch(active, (i) => {
 .demo__tabs { grid-area: tabs; display: flex; flex-direction: column; gap: 6px; }
 .demo__tab {
   position: relative; display: flex; align-items: center; gap: 14px; padding: 18px 4px 18px 0; text-align: left;
-  border: 0; border-bottom: 1px solid var(--ink-line); background: none; color: #8f8e8b; font-size: 1rem;
+  border: 0; border-bottom: 1px solid var(--ink-line); background: none; color: #8e8e8e; font-size: 1rem;
   transition: color 0.25s; -webkit-tap-highlight-color: transparent;
 }
 .demo__tab:hover { color: var(--bone); }
 .demo__n { font-family: var(--f-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.08em; }
 .demo__label { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.5rem, 2.6vw, 2.1rem); text-transform: uppercase; line-height: 1; }
 .demo__tab.on { color: var(--bone); }
-.demo__tab.on .demo__n { color: var(--volt); }
-.demo__bar { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--volt); transform: scaleX(0); transform-origin: left; }
+.demo__tab.on .demo__n { color: var(--hi); }
+.demo__bar { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--hi); transform: scaleX(0); transform-origin: left; }
 .demo__tab.on .demo__bar { transform: scaleX(1); }
 .demo__tab.playing .demo__bar { animation: fill linear both; }
 @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -130,13 +130,13 @@ watch(active, (i) => {
 .demo__device { grid-area: device; position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; --phone-w: min(300px, 78vw); }
 .demo__halo { position: absolute; top: 8%; width: 120%; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--ink-line); box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.015), 0 0 0 80px rgba(255, 255, 255, 0.01); }
 .demo__device :deep(.phone) { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) inset, 0 0 0 0.18em #0b0b0b, 0 3em 6em -1.5em rgba(0, 0, 0, 0.7); }
-.demo__hint { position: relative; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: #a8a7a4; }
-.demo__touch { width: 12px; height: 12px; border-radius: 50%; background: var(--volt); animation: tap 1.6s ease-out infinite; }
-@keyframes tap { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--volt) 60%, transparent); } 100% { box-shadow: 0 0 0 12px transparent; } }
+.demo__hint { position: relative; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: #a6a6a6; }
+.demo__touch { width: 12px; height: 12px; border-radius: 50%; background: var(--hi); animation: tap 1.6s ease-out infinite; }
+@keyframes tap { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--hi) 60%, transparent); } 100% { box-shadow: 0 0 0 12px transparent; } }
 
 .demo__copy { grid-area: copy; }
 .demo__copy h3 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2rem, 3.4vw, 2.8rem); text-transform: uppercase; line-height: 0.95; color: var(--bone); text-wrap: balance; }
-.demo__copy p { margin-top: 16px; font-size: 1.05rem; line-height: 1.65; color: #b9b8b5; max-width: 380px; }
+.demo__copy p { margin-top: 16px; font-size: 1.05rem; line-height: 1.65; color: #b8b8b8; max-width: 380px; }
 .demo__cta { margin-top: 28px; }
 
 .screen-enter-active, .screen-leave-active { transition: opacity 0.3s, transform 0.35s var(--ease-out); }

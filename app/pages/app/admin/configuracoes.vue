@@ -2,7 +2,7 @@
 definePageMeta({ layout: 'app' })
 useHead({ title: 'Configurações · CL Academy' })
 
-const { data, form, save } = await useSiteSettings()
+const { data, form, save, stravaAutoSync } = await useSiteSettings()
 
 const integrations = computed(() => {
   const i = data.value?.integrations
@@ -15,6 +15,9 @@ const integrations = computed(() => {
       : []),
     { label: 'Notificações push (VAPID)', value: i.push ? 'ativo' : 'desligado', ok: i.push, neutral: !i.push },
     { label: 'Strava', value: i.strava ? 'ativo' : 'desligado', ok: i.strava, neutral: !i.strava },
+    ...(i.strava
+      ? [{ label: 'Strava · sincronização automática (/api/strava/webhook)', value: i.stravaAutoSync ? 'ligada' : 'desligada', ok: i.stravaAutoSync, neutral: !i.stravaAutoSync }]
+      : []),
   ]
 })
 </script>
@@ -86,6 +89,22 @@ const integrations = computed(() => {
             <Tag :value="i.value" :severity="i.ok ? 'success' : i.neutral ? 'secondary' : 'danger'" />
           </div>
         </div>
+        <div v-if="data.integrations.strava" class="strava-auto">
+          <p class="small muted grow">
+            Com a sincronização automática, a corrida feita no Apple Watch, Garmin ou outro relógio chega no app
+            sozinha, segundos depois de ir para o Strava. Ative pelo site publicado (o Strava não chama localhost).
+          </p>
+          <Button
+            v-if="data.integrations.stravaAutoSync"
+            label="Desligar"
+            size="small"
+            severity="secondary"
+            text
+            :loading="stravaAutoSync.loading.value"
+            @click="stravaAutoSync(false)"
+          />
+          <Button v-else label="Ativar sincronização" icon="pi pi-bolt" size="small" :loading="stravaAutoSync.loading.value" @click="stravaAutoSync(true)" />
+        </div>
       </template>
     </Card>
   </div>
@@ -100,5 +119,6 @@ const integrations = computed(() => {
 .theme.active { border-color: var(--p-primary-color); box-shadow: 0 0 0 1px var(--p-primary-color); }
 .swatches { display: flex; gap: 4px; }
 .swatches i { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--app-border); }
+.strava-auto { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--app-border); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>

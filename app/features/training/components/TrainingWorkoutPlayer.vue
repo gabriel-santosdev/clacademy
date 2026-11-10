@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useConfirm } from 'primevue/useconfirm'
 import type { LoggedExercise } from '../domain/activity'
+import type { ExerciseDetail, ExerciseLike } from '~/features/exercises/domain/exercise'
 
 /**
  * Ficha de treino com execução: iniciar, pausar/retomar, marcar séries e
@@ -15,6 +16,8 @@ interface Item {
   restSeconds: number | null
   notes: string | null
   videoUrl: string | null
+  exercise?: Pick<ExerciseLike, 'images' | 'instructions' | 'videoUrl' | 'muscleGroup' | 'equipment' | 'level'> &
+    Partial<Pick<ExerciseLike, 'id' | 'externalId'>> | null
 }
 
 const props = defineProps<{ assignmentId: number; workoutId: number; items: Item[]; done?: boolean }>()
@@ -49,12 +52,10 @@ function askDiscard() {
   })
 }
 
-const demo = ref<Item | null>(null)
-const demoOpen = ref(false)
-function openDemo(it: Item) {
-  demo.value = it
-  demoOpen.value = true
-}
+const detail = ref<ExerciseDetail | null>(null)
+const detailOpen = computed({ get: () => !!detail.value, set: (v) => !v && (detail.value = null) })
+const openDetail = (it: Item) => (detail.value = itemToDetail(it))
+const hasHowTo = (it: Item) => !!it.exercise || !!it.videoUrl
 
 const restClock = computed(() => formatClock(rest.value * 1000))
 </script>
@@ -111,7 +112,12 @@ const restClock = computed(() => formatClock(rest.value * 1000))
             <i class="pi pi-check" />
           </button>
           <div class="grow ex__body">
-            <strong class="ex__name">{{ it.name }}</strong>
+            <div class="ex__head">
+              <button v-if="it.exercise" type="button" class="ex__thumb" :aria-label="`Como fazer ${it.name}`" @click="openDetail(it)">
+                <ExerciseMedia :images="it.exercise.images" :video="it.videoUrl || it.exercise.videoUrl" :group="it.exercise.muscleGroup" :alt="it.name" size="sm" />
+              </button>
+              <strong class="ex__name">{{ it.name }}</strong>
+            </div>
             <div class="ex__meta">
               <span v-if="it.sets || it.reps" class="ex__sets">{{ it.sets ?? '' }}<template v-if="it.sets && it.reps">×</template>{{ it.reps ?? '' }}</span>
               <span v-if="it.load">carga <b>{{ it.load }}</b></span>
@@ -135,14 +141,16 @@ const restClock = computed(() => formatClock(rest.value * 1000))
             </div>
           </div>
           <Button
-            v-if="it.videoUrl"
-            icon="pi pi-play-circle"
-            text
-            rounded
+            v-if="hasHowTo(it)"
+            :icon="it.videoUrl || it.exercise?.videoUrl || it.exercise?.externalId ? 'pi pi-play-circle' : 'pi pi-info-circle'"
+            :label="it.videoUrl || it.exercise?.videoUrl || it.exercise?.externalId ? 'Vídeo' : 'Dica'"
+            size="small"
             severity="secondary"
+            outlined
+            rounded
             :aria-label="`Ver como fazer ${it.name}`"
             class="ex__demo"
-            @click="openDemo(it)"
+            @click="openDetail(it)"
           />
         </li>
       </ol>
@@ -153,7 +161,7 @@ const restClock = computed(() => formatClock(rest.value * 1000))
       </div>
     </template>
 
-    <TrainingExerciseDemo v-model:visible="demoOpen" :url="demo?.videoUrl" :title="demo?.name" :notes="demo?.notes" />
+    <ExerciseDetailDialog v-model:visible="detailOpen" :exercise="detail" />
   </div>
 </template>
 
@@ -169,15 +177,15 @@ const restClock = computed(() => formatClock(rest.value * 1000))
 }
 .app-dark .bar { background: #202020; border: 1px solid #2e2e2e; }
 .bar__clock { display: flex; flex-direction: column; }
-.bar__label { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cl-volt); }
+.bar__label { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cl-hi); }
 .bar--paused .bar__label { color: #ffb020; }
 .bar__time { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; line-height: 0.95; font-variant-numeric: tabular-nums; }
 .bar--paused .bar__time { opacity: 0.6; }
 .bar__progress { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.bar__count { font-size: 0.8rem; color: #a8a7a4; text-align: right; }
+.bar__count { font-size: 0.8rem; color: #a6a6a6; text-align: right; }
 .bar__count b { font-family: var(--font-display); font-size: 1.1rem; color: var(--cl-bone); }
 .bar__track { height: 6px; border-radius: 999px; background: #3a3a3a; overflow: hidden; }
-.bar__track span { display: block; height: 100%; background: var(--cl-volt); border-radius: inherit; transition: width 0.4s var(--ease-out); }
+.bar__track span { display: block; height: 100%; background: var(--cl-hi); border-radius: inherit; transition: width 0.4s var(--ease-out); }
 .bar__btn { flex-shrink: 0; }
 
 .rest {
@@ -197,15 +205,19 @@ const restClock = computed(() => formatClock(rest.value * 1000))
   width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
   border: 2px solid var(--app-border); background: transparent; color: transparent; transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.ex__check:hover:not(:disabled) { border-color: var(--app-muted); }
-.ex__check[aria-checked='true'] { background: var(--cl-volt); border-color: var(--cl-volt); color: var(--cl-volt-ink); }
+@media (hover: hover) { .ex__check:hover:not(:disabled) { border-color: var(--app-muted); } }
+.ex__check:active:not(:disabled), .serie:active:not(:disabled) { transform: scale(0.9); }
+.ex__check[aria-checked='true'] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); animation: cl-pop 0.4s var(--ease-spring); }
 .ex__check:disabled { cursor: not-allowed; opacity: 0.6; }
 .ex__check .pi { font-size: 0.85rem; font-weight: 800; }
 .ex__name { font-weight: 800; }
+.ex__head { display: flex; align-items: center; gap: 10px; }
+.ex__thumb { flex-shrink: 0; width: 72px; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 10px; }
+.ex--done .ex__thumb { filter: grayscale(1); }
 .ex__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; margin-top: 3px; font-size: 0.82rem; color: var(--app-muted); }
 .ex__meta b { color: var(--app-text); }
 .ex__meta .pi { font-size: 0.7rem; }
-.ex__sets { padding: 1px 8px; border-radius: 6px; background: var(--cl-ink); color: var(--cl-volt); font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; }
+.ex__sets { padding: 1px 8px; border-radius: 6px; background: var(--cl-ink); color: var(--cl-hi); font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; }
 .app-dark .ex__sets { background: #2a2a2a; }
 .ex__series { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
 .serie {
@@ -214,8 +226,8 @@ const restClock = computed(() => formatClock(rest.value * 1000))
   font-family: var(--font-display); font-size: 1rem; font-weight: 800; transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .serie--next { border-color: var(--app-text); color: var(--app-text); }
-.serie--on { background: var(--cl-ink); border-color: var(--cl-ink); color: var(--cl-volt); }
-.app-dark .serie--on { background: var(--cl-volt); border-color: var(--cl-volt); color: var(--cl-volt-ink); }
+.serie--on { background: var(--cl-ink); border-color: var(--cl-ink); color: var(--cl-hi); }
+.app-dark .serie--on { background: var(--cl-hi); border-color: var(--cl-hi); color: var(--cl-hi-ink); }
 .serie:disabled { cursor: not-allowed; opacity: 0.6; }
 .ex__hint { margin-left: 4px; }
 .ex__demo { flex-shrink: 0; margin-top: -4px; }

@@ -38,9 +38,9 @@ const starting = computed(() => startingMonthlyPrice(props.plan.prices))
 <style scoped>
 .plan {
   --plan-bg: var(--app-surface, #fff);
-  --plan-text: var(--app-text, #18181b);
-  --plan-muted: var(--app-muted, #71717a);
-  --plan-border: var(--app-border, #e4e4e7);
+  --plan-text: var(--app-text, #1a1a1a);
+  --plan-muted: var(--app-muted, #737373);
+  --plan-border: var(--app-border, #e5e5e5);
   position: relative; display: flex; flex-direction: column; gap: 12px; height: 100%;
   padding: 28px 24px 24px; border-radius: var(--radius-lg);
   background: var(--plan-bg); color: var(--plan-text); border: 1px solid var(--plan-border);
@@ -48,7 +48,7 @@ const starting = computed(() => startingMonthlyPrice(props.plan.prices))
 }
 .plan:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08); }
 .plan--highlight { border-color: var(--p-primary-color); box-shadow: 0 10px 36px rgba(0, 0, 0, 0.08); }
-.plan--dark.plan--highlight { --plan-bg: var(--brand-ink); --plan-text: #fafafa; --plan-muted: #a1a1aa; --plan-border: #27272a; }
+.plan--dark.plan--highlight { --plan-bg: var(--brand-ink); --plan-text: #fafafa; --plan-muted: #a6a6a6; --plan-border: #2a2a2a; }
 .plan__ribbon {
   position: absolute; top: -12px; left: 24px; display: inline-flex; align-items: center; gap: 6px;
   padding: 5px 12px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
@@ -71,6 +71,6 @@ const starting = computed(() => startingMonthlyPrice(props.plan.prices))
 .plan__features .pi { color: var(--brand-wine); font-size: 0.8rem; margin-top: 5px; }
 .plan--dark.plan--highlight .plan__features .pi { color: var(--brand-blush); }
 .plan__trial { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; padding: 8px 10px; border-radius: 10px; background: var(--brand-wine-soft); color: var(--brand-wine); }
-.plan--dark.plan--highlight .plan__trial { background: rgba(241, 157, 172, 0.14); color: var(--brand-blush); }
+.plan--dark.plan--highlight .plan__trial { background: rgba(255, 255, 255, 0.1); color: var(--brand-blush); }
 .plan__action { margin-top: 4px; }
 </style>

@@ -12,7 +12,7 @@ const { data: plans, ctaFor } = await usePublicPlans()
       </header>
       <div class="plans__grid">
         <BillingPlanCard v-for="(p, i) in plans" :key="p.id" :plan="p" dark :data-reveal="i">
-          <NuxtLink :to="ctaFor(p.id)" class="lp-btn" :class="p.highlight ? 'lp-btn--volt' : 'lp-btn--ink'">
+          <NuxtLink :to="ctaFor(p.id)" class="lp-btn" :class="p.highlight ? 'lp-btn--light' : 'lp-btn--ink'">
             {{ p.trialDays ? 'Experimentar grátis' : 'Quero esse' }} <i class="pi pi-arrow-right" />
           </NuxtLink>
         </BillingPlanCard>
@@ -32,15 +32,16 @@ const { data: plans, ctaFor } = await usePublicPlans()
   --plan-bg: var(--paper); --plan-text: var(--ink); --plan-muted: var(--graphite); --plan-border: var(--line);
   border-radius: 26px; padding: 30px 26px 26px; font-family: var(--f-body);
 }
-.plans :deep(.plan.plan--dark.plan--highlight) { --plan-bg: var(--ink); --plan-text: var(--bone); --plan-muted: #a8a7a4; --plan-border: var(--ink-line); border-color: var(--ink); }
-.plans :deep(.plan .plan__ribbon) { background: var(--volt); color: var(--volt-ink); font-family: var(--f-display); font-size: 0.85rem; letter-spacing: 0.08em; }
+.plans :deep(.plan.plan--dark.plan--highlight) { --plan-bg: var(--ink); --plan-text: var(--bone); --plan-muted: #a6a6a6; --plan-border: var(--ink-line); border-color: var(--ink); }
+.plans :deep(.plan .plan__ribbon) { background: #fff; color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink), 0 8px 18px -10px rgba(0, 0, 0, 0.5); font-family: var(--f-display); font-size: 0.85rem; letter-spacing: 0.08em; }
 .plans :deep(.plan .plan__modality) { font-family: var(--f-display); font-size: 0.9rem; }
 .plans :deep(.plan .plan__name) { font-family: var(--f-display); font-size: 2.2rem; font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: 0; }
 .plans :deep(.plan .plan__price strong) { font-family: var(--f-display); font-size: 3.2rem; letter-spacing: 0; line-height: 1; }
 .plans :deep(.plan .plan__features .pi) { color: var(--ink); }
-.plans :deep(.plan.plan--dark.plan--highlight .plan__features .pi) { color: var(--volt); }
+.plans :deep(.plan.plan--dark.plan--highlight .plan__features .pi) { color: var(--hi); }
 .plans :deep(.plan .plan__trial) { background: var(--bone-2); color: var(--ink); }
-.plans :deep(.plan.plan--dark.plan--highlight .plan__trial) { background: var(--ink-2); color: var(--volt); }
-.plans :deep(.plan .plan__save) { color: var(--ink); background: var(--volt); padding: 1px 6px; border-radius: 4px; font-weight: 800; }
+.plans :deep(.plan.plan--dark.plan--highlight .plan__trial) { background: var(--ink-2); color: var(--hi); }
+.plans :deep(.plan .plan__save) { color: #fff; background: var(--ink); padding: 1px 6px; border-radius: 4px; font-weight: 800; }
+.plans :deep(.plan.plan--dark.plan--highlight .plan__save) { color: var(--ink); background: #fff; }
 .plans :deep(.plan .plan__action .lp-btn) { width: 100%; }
 </style>

@@ -1,4 +1,26 @@
+import type { TrainingGoal, TrainingLevel } from '#shared/utils/constants'
+
 /** Regras de atribuição de treino/planilha a alunos. Puro. */
+
+export interface TrainingProfile {
+  level?: TrainingLevel | null
+  goal?: TrainingGoal | null
+}
+
+/**
+ * Quanto a ficha combina com o perfil do aluno: 2 = nível e objetivo,
+ * 1 = um dos dois (ou ficha genérica), 0 = sem perfil para comparar, -1 = conflita.
+ */
+export function profileMatch(w: TrainingProfile, aluno: TrainingProfile | undefined) {
+  if (!aluno?.level && !aluno?.goal) return 0
+  let score = 0
+  for (const k of ['level', 'goal'] as const) {
+    if (!aluno[k] || !w[k]) continue
+    if (w[k] !== aluno[k]) return -1
+    score++
+  }
+  return Math.max(score, 1)
+}
 
 export type AssignKind = 'workout' | 'run'
 
@@ -14,6 +36,8 @@ export interface AssignForm {
 }
 
 export interface AssignPreset {
+  /** perfil do aluno (quando atribuindo a um aluno): ordena as fichas compatíveis primeiro */
+  profile?: TrainingProfile
   alunoIds?: number[]
   workoutId?: number
   runPlanId?: number

@@ -43,8 +43,9 @@ function toggle(i: number) {
 .faq__icon { position: relative; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: var(--bone-2); transition: background 0.3s, transform 0.4s var(--ease-out); }
 .faq__icon::before, .faq__icon::after { content: ''; position: absolute; left: 11px; right: 11px; top: 17px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform 0.4s var(--ease-out); }
 .faq__icon::after { transform: rotate(90deg); }
-.faq__list button:hover .faq__icon { background: var(--line); }
-.open .faq__icon { background: var(--volt); transform: rotate(180deg); }
+@media (hover: hover) { .faq__list button:hover .faq__icon { background: var(--line); } }
+.open .faq__icon { background: var(--ink); transform: rotate(180deg); }
+.open .faq__icon::before, .open .faq__icon::after { background: #fff; }
 .open .faq__icon::after { transform: rotate(0deg); }
 .faq__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s var(--ease-out); }
 .faq__a > div { overflow: hidden; }

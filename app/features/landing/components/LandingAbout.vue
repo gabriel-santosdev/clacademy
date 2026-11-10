@@ -48,15 +48,15 @@ defineProps<{ instagram: string }>()
 .about__stamp { position: absolute; top: 18px; right: 18px; font-size: 64px; color: var(--bone); filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4)); }
 .about__photo figcaption {
   position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px;
-  background: var(--volt); color: var(--volt-ink); font-size: 0.82rem; font-weight: 800;
+  background: var(--hi); color: var(--hi-ink); font-size: 0.82rem; font-weight: 800;
 }
 .about__facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 32px; border-top: 1px solid var(--ink-line); }
 .about__facts li { padding: 18px 0 0; }
 .about__facts li + li { padding-left: 18px; border-left: 1px solid var(--ink-line); }
-.about__facts strong { display: block; font-family: var(--f-display); font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; line-height: 0.9; color: var(--volt); }
-.about__facts span { display: block; margin-top: 4px; font-size: 0.85rem; font-weight: 600; color: #a8a7a4; }
+.about__facts strong { display: block; font-family: var(--f-display); font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; line-height: 0.9; color: var(--hi); }
+.about__facts span { display: block; margin-top: 4px; font-size: 0.85rem; font-weight: 600; color: #a6a6a6; }
 .about__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; margin-top: 32px; }
-.about__founder { font-size: 0.85rem; color: #8f8e8b; }
+.about__founder { font-size: 0.85rem; color: #8e8e8e; }
 @media (max-width: 900px) {
   .about__inner { grid-template-columns: 1fr; }
   .about__photo { max-width: 460px; aspect-ratio: 4 / 4.4; }

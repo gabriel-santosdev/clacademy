@@ -43,7 +43,7 @@ const seen = useInView(root, { once: true, threshold: 0.3 })
   border: 3px solid var(--line); transition: border-color 0.4s, background 0.4s; transition-delay: inherit;
 }
 .how__dot b { font-family: var(--f-display); font-size: 1.6rem; font-weight: 800; }
-.how.go .how__dot { border-color: var(--ink); background: var(--ink); color: var(--volt); }
+.how.go .how__dot { border-color: var(--ink); background: var(--ink); color: var(--hi); }
 .how__steps h3 { font-family: var(--f-display); font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; }
 .how__steps p { margin-top: 10px; max-width: 300px; color: var(--graphite); line-height: 1.6; }
 
@@ -53,7 +53,7 @@ const seen = useInView(root, { once: true, threshold: 0.3 })
   font-family: var(--f-display); font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
   background: repeating-conic-gradient(var(--ink) 0 25%, var(--bone) 0 50%) 0 0 / 14px 14px; color: transparent; position: relative;
 }
-.how__finish span::after { content: 'Chegada'; position: absolute; inset: 8px; display: grid; place-items: center; border-radius: 6px; background: var(--volt); color: var(--volt-ink); font-size: 1rem; }
+.how__finish span::after { content: 'Chegada'; position: absolute; inset: 8px; display: grid; place-items: center; border-radius: 6px; background: var(--hi); color: var(--hi-ink); font-size: 1rem; }
 
 @media (max-width: 860px) {
   .how__steps { grid-template-columns: 1fr; gap: 34px; padding-left: 0; }

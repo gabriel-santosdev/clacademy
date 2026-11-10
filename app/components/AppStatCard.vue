@@ -30,7 +30,7 @@ defineProps<{ label: string; value: string | number; hint?: string; icon?: strin
 
 .stat--ink { background: var(--cl-ink); border-color: var(--cl-ink); color: var(--cl-bone); }
 .app-dark .stat--ink { background: #202020; border-color: #2e2e2e; }
-.stat--ink .stat__label, .stat--ink .stat__hint { color: #a8a7a4; }
-.stat--ink .stat__value { color: var(--cl-volt); }
-.stat--ink .stat__icon { background: rgba(255, 255, 255, 0.08); color: var(--cl-volt); }
+.stat--ink .stat__label, .stat--ink .stat__hint { color: #a6a6a6; }
+.stat--ink .stat__value { color: var(--cl-hi); }
+.stat--ink .stat__icon { background: rgba(255, 255, 255, 0.08); color: var(--cl-hi); }
 </style>

@@ -11,4 +11,6 @@ export const adminApi = {
     }),
   updateUser: (id: number, body: UserPatch) => $fetch(`/api/admin/users/${id}`, { method: 'PATCH', body }),
   saveSettings: (body: SettingsForm) => $fetch('/api/admin/settings', { method: 'PUT', body }),
+  enableStravaAutoSync: () => $fetch('/api/admin/strava/webhook', { method: 'POST' }),
+  disableStravaAutoSync: () => $fetch('/api/admin/strava/webhook', { method: 'DELETE' }),
 }

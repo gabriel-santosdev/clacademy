@@ -1,19 +1,20 @@
 /* ═══════════════════════════════════════════════════════
    Landing CL Academy: tokens, tipografia e utilitários (prefixo lp-)
-   Base: osso #EEEDEB + grafite #5E5E5E. Destaque esportivo: volt.
+   Monocromático: cinza claro, branco e grafite. O destaque é o contraste:
+   branco sobre o grafite (--hi), grafite sobre o claro (--ink).
    ═══════════════════════════════════════════════════════ */
 
 .landing {
-  --bone: #eeedeb;
-  --bone-2: #e4e2de;
-  --paper: #f7f6f4;
-  --line: #d7d4cf;
-  --graphite: #5e5e5e;
-  --ink: #1f1f1f;
-  --ink-2: #2a2a2a;
-  --ink-line: #3a3a3a;
-  --volt: #d4f53c;
-  --volt-ink: #1f1f1f;
+  --bone: #f0f0f0;
+  --bone-2: #e6e6e6;
+  --paper: #ffffff;
+  --line: #dadada;
+  --graphite: #5f5f5f;
+  --ink: #1a1a1a;
+  --ink-2: #262626;
+  --ink-line: #383838;
+  --hi: #ffffff;
+  --hi-ink: #1a1a1a;
   --heat: #ff5a1f;
   --text: var(--ink);
   --muted: var(--graphite);
@@ -27,19 +28,24 @@
   background: var(--bone);
   color: var(--text);
   overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Tema "Copa Brasil" (admin): o destaque vira amarelo canarinho */
-:root[data-theme='brasil'] .landing { --volt: #ffdf00; --heat: #009c3b; }
+/* Tema "Copa Brasil" (admin): o destaque sobre o grafite vira amarelo canarinho */
+:root[data-theme='brasil'] .landing { --hi: #ffdf00; --heat: #009c3b; }
 
-.landing ::selection { background: var(--volt); color: var(--volt-ink); }
+.landing ::selection { background: var(--ink); color: #fff; }
+.landing .lp-dark ::selection { background: #fff; color: var(--ink); }
 
 /* ── layout ─────────────────────────────────────────── */
 .lp-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 @media (max-width: 480px) { .lp-container { padding: 0 16px; } }
 
-.lp-section { padding: clamp(80px, 11vw, 140px) 0; position: relative; }
+.lp-section { padding: clamp(72px, 11vw, 140px) 0; position: relative; }
 .lp-dark { background: var(--ink); color: var(--bone); }
+
+/* âncoras do menu param abaixo da navbar fixa */
+.landing [id] { scroll-margin-top: 72px; }
 
 /* ── tipografia ─────────────────────────────────────── */
 .lp-eyebrow {
@@ -47,59 +53,68 @@
   font-family: var(--f-display); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--graphite);
 }
-.lp-eyebrow b { display: inline-grid; place-items: center; min-width: 30px; height: 22px; padding: 0 6px; border-radius: 4px; background: var(--ink); color: var(--volt); font-weight: 800; letter-spacing: 0.04em; }
-.lp-dark .lp-eyebrow { color: #a8a7a4; }
-.lp-dark .lp-eyebrow b { background: var(--volt); color: var(--volt-ink); }
+.lp-eyebrow b { display: inline-grid; place-items: center; min-width: 30px; height: 22px; padding: 0 6px; border-radius: 4px; background: var(--ink); color: var(--hi); font-weight: 800; letter-spacing: 0.04em; }
+.lp-dark .lp-eyebrow { color: #a6a6a6; }
+.lp-dark .lp-eyebrow b { background: var(--hi); color: var(--hi-ink); }
 
 .lp-h2 {
   font-family: var(--f-display); font-weight: 800; text-transform: uppercase;
-  font-size: clamp(2.6rem, 7vw, 5rem); line-height: 0.92; letter-spacing: -0.01em; color: var(--ink);
+  font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.92; letter-spacing: -0.01em; color: var(--ink);
   text-wrap: balance;
 }
 .lp-dark .lp-h2 { color: var(--bone); }
 .lp-h2 em { font-style: italic; color: var(--graphite); }
-.lp-dark .lp-h2 em { color: var(--volt); }
+.lp-dark .lp-h2 em { color: #8e8e8e; }
 
 .lp-lead { margin-top: 20px; max-width: 560px; font-size: clamp(1rem, 1.6vw, 1.125rem); line-height: 1.65; color: var(--graphite); text-wrap: pretty; }
-.lp-dark .lp-lead { color: #b9b8b5; }
+.lp-dark .lp-lead { color: #b8b8b8; }
 
-/* marca-texto volt, desenhado ao entrar na tela */
+/* marca-texto, desenhado ao entrar na tela: faixa branca sobre o cinza claro */
 .lp-mark { position: relative; z-index: 0; white-space: nowrap; }
 .lp-mark::after {
   content: ''; position: absolute; z-index: -1; left: -0.08em; right: -0.08em; bottom: 0.06em; height: 0.42em;
-  background: var(--volt); transform: skewX(-12deg) scaleX(var(--mark, 1)); transform-origin: left;
+  background: #fff; box-shadow: 0 0.04em 0 var(--line);
+  transform: skewX(-12deg) scaleX(var(--mark, 1)); transform-origin: left;
   transition: transform 0.9s var(--ease-out) 0.35s;
 }
+.lp-dark .lp-mark::after { background: rgba(255, 255, 255, 0.16); box-shadow: none; }
 
 /* ── botões ─────────────────────────────────────────── */
 .lp-btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1.5px solid transparent;
   font-family: var(--f-body); font-size: 0.98rem; font-weight: 700; letter-spacing: -0.005em; white-space: nowrap;
-  cursor: pointer; overflow: hidden; isolation: isolate;
+  cursor: pointer; overflow: hidden; isolation: isolate; touch-action: manipulation; user-select: none; -webkit-user-select: none;
   transition: transform 0.25s var(--ease-out), background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
   -webkit-tap-highlight-color: transparent;
 }
 .lp-btn .pi { font-size: 0.9em; transition: transform 0.3s var(--ease-out); }
-.lp-btn:hover .pi-arrow-right, .lp-btn:hover .pi-arrow-up-right { transform: translateX(3px); }
-.lp-btn:active { transform: scale(0.97); }
+/* toque: afunda rápido e volta com mola */
+.lp-btn:active { transform: scale(0.96); transition-duration: 0.08s; }
 
-.lp-btn--volt { background: var(--volt); color: var(--volt-ink); box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--volt) 80%, transparent); }
-.lp-btn--volt:hover { box-shadow: 0 14px 34px -10px color-mix(in srgb, var(--volt) 90%, transparent); }
-.lp-btn--ink { background: var(--ink); color: var(--bone); }
-.lp-btn--ink:hover { background: #000; }
-.lp-btn--ghost { border-color: color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink); background: transparent; }
-.lp-btn--ghost:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
-.lp-btn--ghost-light { border-color: rgba(238, 237, 235, 0.3); color: var(--bone); background: transparent; }
-.lp-btn--ghost-light:hover { border-color: var(--bone); background: rgba(238, 237, 235, 0.06); }
+/* primário no fundo escuro: branco */
+.lp-btn--light { background: #fff; color: var(--ink); box-shadow: 0 10px 30px -14px rgba(255, 255, 255, 0.45); }
+.lp-btn--ink { background: var(--ink); color: #fff; box-shadow: 0 10px 26px -14px rgba(0, 0, 0, 0.55); }
+.lp-btn--ghost { border-color: color-mix(in srgb, var(--ink) 22%, transparent); color: var(--ink); background: transparent; }
+.lp-btn--ghost-light { border-color: rgba(255, 255, 255, 0.28); color: var(--bone); background: transparent; }
 .lp-btn--sm { min-height: 42px; padding: 0 18px; font-size: 0.9rem; }
 
-/* brilho que atravessa o botão volt */
-.lp-btn--volt::after {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
-  transform: translateX(-120%); animation: lp-shine 4.5s var(--ease-out) infinite 2s;
+@media (hover: hover) {
+  .lp-btn:hover .pi-arrow-right, .lp-btn:hover .pi-arrow-up-right { transform: translateX(3px); }
+  .lp-btn--light:hover { box-shadow: 0 14px 34px -12px rgba(255, 255, 255, 0.55); }
+  .lp-btn--ink:hover { background: #000; }
+  .lp-btn--ghost:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
+  .lp-btn--ghost-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.06); }
 }
+
+/* brilho que atravessa os botões principais */
+.lp-btn--light::after, .lp-btn--ink::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, var(--shine, rgba(255, 255, 255, 0.16)) 50%, transparent 70%);
+  transform: translateX(-120%); animation: lp-shine 5s var(--ease-out) infinite 2s;
+}
+.lp-btn--light::after { --shine: rgba(0, 0, 0, 0.08); }
+.lp-btn--sm::after { display: none; }
 @keyframes lp-shine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 
 /* ── chips ──────────────────────────────────────────── */
@@ -115,6 +130,12 @@
 .reveal--right { transform: translateX(36px); }
 .reveal--scale { transform: scale(0.94); }
 .reveal.is-visible { opacity: 1; transform: none; }
+/* no celular, deslocamentos laterais menores (não "vazam" da tela) e entrada mais curta */
+@media (max-width: 640px) {
+  .reveal { transform: translateY(20px); transition-duration: 0.6s; }
+  .reveal--left { transform: translateX(-16px); }
+  .reveal--right { transform: translateX(16px); }
+}
 
 @keyframes lp-rise { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }
 @keyframes lp-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -123,6 +144,6 @@
 @keyframes lp-blink { 50% { opacity: 0.25; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .lp-btn--volt::after { animation: none; }
+  .lp-btn--light::after, .lp-btn--ink::after { animation: none; }
   .lp-mark::after { transition: none; }
 }

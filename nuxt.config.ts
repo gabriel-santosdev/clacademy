@@ -90,6 +90,12 @@ export default defineNuxtConfig({
       from: 'CL Academy <nao-responda@clacademy.com.br>', // NUXT_EMAIL_FROM (domínio verificado no Resend)
       replyTo: '', // NUXT_EMAIL_REPLY_TO — para onde vão as respostas dos alunos
     },
+    supabase: {
+      serviceKey: '', // NUXT_SUPABASE_SERVICE_KEY — chave secreta (sb_secret_…): gera links de envio de vídeo
+    },
+    musclewiki: {
+      apiKey: '', // NUXT_MUSCLEWIKI_API_KEY — vídeos licenciados de execução (api.musclewiki.com)
+    },
     vapidPrivateKey: '', // NUXT_VAPID_PRIVATE_KEY
     vapidSubject: 'mailto:contato@clacademy.com.br', // NUXT_VAPID_SUBJECT
     strava: {
@@ -100,6 +106,8 @@ export default defineNuxtConfig({
       siteUrl: 'https://clacademy.com.br', // NUXT_PUBLIC_SITE_URL
       vapidPublicKey: '', // NUXT_PUBLIC_VAPID_PUBLIC_KEY
       whatsapp: '', // NUXT_PUBLIC_WHATSAPP (ex: 5511999999999)
+      supabaseUrl: '', // NUXT_PUBLIC_SUPABASE_URL — ex.: https://xxxx.supabase.co (Storage dos vídeos)
+      supabaseKey: '', // NUXT_PUBLIC_SUPABASE_KEY — chave publicável (sb_publishable_…)
     },
   },
 
@@ -116,7 +124,7 @@ export default defineNuxtConfig({
         },
         { name: 'author', content: 'CL Academy' },
         { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#EEEDEB' },
+        { name: 'theme-color', content: '#f0f0f0' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
@@ -182,8 +190,8 @@ export default defineNuxtConfig({
       display: 'standalone',
       display_override: ['standalone', 'minimal-ui'],
       orientation: 'portrait',
-      background_color: '#EEEDEB',
-      theme_color: '#EEEDEB',
+      background_color: '#f0f0f0',
+      theme_color: '#f0f0f0',
       categories: ['health', 'fitness', 'sports', 'lifestyle'],
       shortcuts: [
         { name: 'Treino de hoje', short_name: 'Hoje', url: '/app/aluno', icons: [{ src: '/pwa-192.png', sizes: '192x192' }] },

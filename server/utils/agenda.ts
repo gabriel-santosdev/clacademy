@@ -13,16 +13,16 @@ function daysBetween(fromIso: string, toIso: string) {
   return Math.floor((Date.parse(`${toIso}T12:00:00Z`) - Date.parse(`${fromIso}T12:00:00Z`)) / 864e5)
 }
 
-/** Atribuições ativas do aluno com treinos/planilhas completos e a semana corrente de cada planilha. */
-export async function getAlunoAssignments(alunoId: number) {
+/** Atribuições ativas do aluno com treinos/planilhas completos e a semana corrente de cada planilha (em `at`, padrão: agora). */
+export async function getAlunoAssignments(alunoId: number, at = new Date()) {
   const db = await useDb()
-  const { iso } = todaySP()
+  const { iso } = todaySP(at)
   const list = await db.query.assignments.findMany({
     where: (a) => and(eq(a.alunoId, alunoId), eq(a.active, true)),
     orderBy: (a) => [asc(a.id)],
     with: {
       professor: { columns: { id: true, name: true } },
-      workout: { with: { items: { orderBy: (i) => [asc(i.position)] } } },
+      workout: { with: { items: { orderBy: (i) => [asc(i.position)], with: { exercise: true } } } },
       runPlan: { with: { sessions: { orderBy: (s) => [asc(s.week), asc(s.weekday)] } } },
     },
   })
@@ -35,10 +35,10 @@ export async function getAlunoAssignments(alunoId: number) {
     })
 }
 
-/** O que o aluno tem para hoje. */
-export async function getTodayAgenda(alunoId: number) {
-  const { weekday } = todaySP()
-  const assignments = await getAlunoAssignments(alunoId)
+/** O que o aluno tem para hoje (ou para o dia de `at`, usado no check-out automático do relógio). */
+export async function getTodayAgenda(alunoId: number, at = new Date()) {
+  const { weekday } = todaySP(at)
+  const assignments = await getAlunoAssignments(alunoId, at)
   const workouts = assignments
     .filter((a) => a.started && a.workout && (!a.weekdays.length || a.weekdays.includes(weekday)))
     .map((a) => ({ assignmentId: a.id, workout: a.workout! }))

@@ -27,7 +27,7 @@ const eventos = services.find((s) => s.key === 'eventos')!
             <h3>{{ personal.title }}</h3>
             <p>{{ personal.text }}</p>
             <div class="card__tags"><span v-for="t in personal.tags" :key="t">{{ t }}</span></div>
-            <a href="#planos" class="lp-btn lp-btn--volt card__cta">Quero personal <i class="pi pi-arrow-right" /></a>
+            <a href="#planos" class="lp-btn lp-btn--light card__cta">Quero personal <i class="pi pi-arrow-right" /></a>
           </div>
         </article>
 
@@ -42,7 +42,7 @@ const eventos = services.find((s) => s.key === 'eventos')!
             <h3>{{ corrida.title }}</h3>
             <p>{{ corrida.text }}</p>
             <div class="card__tags"><span v-for="t in corrida.tags" :key="t">{{ t }}</span></div>
-            <a href="#planos" class="lp-btn lp-btn--volt card__cta">Quero correr <i class="pi pi-arrow-right" /></a>
+            <a href="#planos" class="lp-btn lp-btn--light card__cta">Quero correr <i class="pi pi-arrow-right" /></a>
           </div>
         </article>
       </div>
@@ -74,18 +74,18 @@ const eventos = services.find((s) => s.key === 'eventos')!
 .card img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(1) contrast(1.05); transition: filter 0.8s var(--ease-out), transform 1.2s var(--ease-out); }
 .card:hover img { filter: grayscale(0); transform: scale(1.04); }
 .card__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(31, 31, 31, 0) 30%, rgba(31, 31, 31, 0.95) 88%); }
-.card__num { position: absolute; top: 22px; left: 26px; font-family: var(--f-display); font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--volt); }
+.card__num { position: absolute; top: 22px; left: 26px; font-family: var(--f-display); font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--hi); }
 .card__body { padding: 30px; }
-.card__kicker { display: inline-block; padding: 4px 10px; border-radius: 6px; background: var(--volt); color: var(--volt-ink); font-family: var(--f-display); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.card__kicker { display: inline-block; padding: 4px 10px; border-radius: 6px; background: var(--hi); color: var(--hi-ink); font-family: var(--f-display); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .card h3 { margin-top: 14px; font-family: var(--f-display); font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 800; text-transform: uppercase; line-height: 0.9; }
-.card p { margin-top: 12px; max-width: 440px; font-size: 1rem; line-height: 1.6; color: #d6d5d2; }
+.card p { margin-top: 12px; max-width: 440px; font-size: 1rem; line-height: 1.6; color: #d6d6d6; }
 .card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
 .card__tags span { font-size: 0.75rem; font-weight: 700; padding: 6px 11px; border-radius: 999px; background: rgba(238, 237, 235, 0.12); border: 1px solid rgba(238, 237, 235, 0.16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .card__cta { margin-top: 24px; }
 
 .card__lanes { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
 .card__lanes path { fill: none; stroke: var(--ink-line); stroke-width: 2; }
-.card__lanes path:nth-child(3) { stroke: var(--volt); stroke-dasharray: 8 10; animation: lane 3s linear infinite; }
+.card__lanes path:nth-child(3) { stroke: var(--hi); stroke-dasharray: 8 10; animation: lane 3s linear infinite; }
 @keyframes lane { to { stroke-dashoffset: -36; } }
 .card__km { position: absolute; top: 60px; right: 28px; text-align: right; font-family: var(--f-display); font-weight: 800; font-style: italic; font-size: clamp(4rem, 8vw, 6.4rem); line-height: 0.85; color: var(--graphite); }
 .card__km b { color: var(--bone); }

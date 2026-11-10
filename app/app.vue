@@ -10,7 +10,7 @@ useHead({
 
 <template>
   <NuxtPwaManifest />
-  <NuxtLoadingIndicator color="var(--cl-volt)" :height="3" />
+  <NuxtLoadingIndicator color="var(--accent)" :height="2" />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

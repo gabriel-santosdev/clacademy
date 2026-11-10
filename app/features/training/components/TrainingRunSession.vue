@@ -35,11 +35,11 @@ defineProps<{
 .run { display: flex; gap: 12px; align-items: flex-start; }
 .run__icon {
   width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0;
-  background: var(--cl-ink); color: var(--cl-volt);
+  background: var(--cl-ink); color: var(--cl-hi);
 }
 .app-dark .run__icon { background: #2a2a2a; }
 .run__type { font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; text-transform: uppercase; line-height: 1; }
 .run__chip { padding: 3px 9px; border-radius: 999px; border: 1px solid var(--app-border); font-size: 0.75rem; font-weight: 800; font-variant-numeric: tabular-nums; }
-.run__chip--pace { background: var(--cl-volt); border-color: var(--cl-volt); color: var(--cl-volt-ink); }
+.run__chip--pace { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .run__desc { margin-top: 6px; }
 </style>

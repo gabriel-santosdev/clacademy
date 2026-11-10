@@ -68,3 +68,54 @@
 .rise-1 { animation-delay: 60ms; }
 .rise-2 { animation-delay: 120ms; }
 .rise-3 { animation-delay: 180ms; }
+
+/* micro-animação de confirmação (check, badge, selo) */
+@keyframes cl-pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* ═══════════════════════════════════════════════════════
+   Mobile: toque, teclado e folhas inferiores
+   ═══════════════════════════════════════════════════════ */
+
+/* botões afundam ao toque, como em app nativo */
+.p-button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.p-button:not(:disabled):active { transform: scale(0.97); }
+.p-button { transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.12s var(--ease-out); }
+
+/* iOS dá zoom em campos com fonte < 16px: em telas de toque, campos ficam em 16px */
+@media (pointer: coarse) {
+  input:not([type='checkbox'], [type='radio'], [type='range']),
+  select,
+  textarea,
+  .p-inputtext,
+  .p-autocomplete-input { font-size: 16px !important; }
+}
+
+@media (max-width: 640px) {
+  /* dialogs viram folha inferior: mais fácil de alcançar com o polegar */
+  .p-dialog-mask { align-items: flex-end !important; justify-content: stretch !important; }
+  :root .p-dialog-mask .p-dialog.p-component {
+    width: 100% !important; max-width: 100% !important; margin: 0 !important; max-height: 92dvh;
+    border-radius: 26px 26px 0 0; border-bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .p-dialog .p-dialog-header { padding-top: 22px; position: relative; }
+  /* alça visual da folha */
+  .p-dialog .p-dialog-header::before {
+    content: ''; position: absolute; top: 8px; left: 50%; width: 38px; height: 4px; margin-left: -19px;
+    border-radius: 4px; background: var(--app-border);
+  }
+  .p-dialog .p-dialog-footer { flex-wrap: wrap-reverse; gap: 8px; }
+  .p-dialog .p-dialog-footer .p-button { flex: 1 1 auto; }
+  .p-dialog-enter-active { transition: transform 0.42s var(--ease-out), opacity 0.2s !important; }
+  .p-dialog-leave-active { transition: transform 0.28s cubic-bezier(0.4, 0, 1, 1), opacity 0.28s !important; }
+  .p-dialog-enter-from, .p-dialog-leave-to { opacity: 1 !important; transform: translateY(100%) !important; }
+
+  /* toasts ocupam a largura, abaixo do notch */
+  .p-toast.p-toast-top-center {
+    width: calc(100vw - 24px) !important; top: calc(env(safe-area-inset-top) + 10px) !important;
+  }
+  .p-toast .p-toast-message { border-radius: 18px; box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.45); }
+
+  /* tabelas largas rolam dentro do próprio card */
+  .app-shell .p-datatable-table-container { -webkit-overflow-scrolling: touch; }
+}

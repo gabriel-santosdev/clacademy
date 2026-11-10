@@ -21,8 +21,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <div class="mbar" :class="{ show }" :aria-hidden="!show">
-    <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--volt mbar__main" :tabindex="show ? 0 : -1">Abrir meu treino <i class="pi pi-arrow-right" /></NuxtLink>
-    <NuxtLink v-else to="/cadastro" class="lp-btn lp-btn--volt mbar__main" :tabindex="show ? 0 : -1">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
+    <NuxtLink v-if="loggedIn" :to="homePath" class="lp-btn lp-btn--light mbar__main" :tabindex="show ? 0 : -1">Abrir meu treino <i class="pi pi-arrow-right" /></NuxtLink>
+    <NuxtLink v-else to="/cadastro" class="lp-btn lp-btn--light mbar__main" :tabindex="show ? 0 : -1">Criar minha conta <i class="pi pi-arrow-right" /></NuxtLink>
     <button v-if="!installed" type="button" class="mbar__icon" aria-label="Instalar o app" :tabindex="show ? 0 : -1" @click="install">
       <i class="pi pi-download" />
     </button>

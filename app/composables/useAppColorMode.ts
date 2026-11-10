@@ -10,7 +10,7 @@ export function useAppColorMode() {
     mode.value = m
     if (!import.meta.client) return
     document.documentElement.classList.toggle(DARK_CLASS, m === 'dark')
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', m === 'dark' ? '#141414' : '#EEEDEB')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', m === 'dark' ? '#111111' : '#f0f0f0')
     try {
       localStorage.setItem(KEY, m)
     } catch {}

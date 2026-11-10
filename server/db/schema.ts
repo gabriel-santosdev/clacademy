@@ -12,6 +12,7 @@ import {
   index,
 } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
+import { EQUIPMENTS, MUSCLE_GROUPS, TRAINING_GOALS, TRAINING_LEVELS } from '../../shared/utils/constants'
 
 const id = () => serial('id').primaryKey()
 const createdAt = () => timestamp('created_at', { withTimezone: true }).notNull().defaultNow()
@@ -35,6 +36,9 @@ export const users = pgTable('users', {
   active: boolean('active').notNull().default(true),
   /** professor responsável pelo aluno */
   coachId: integer('coach_id'),
+  /** perfil de treino (alunos): usado para sugerir fichas compatíveis */
+  trainingLevel: text('training_level', { enum: TRAINING_LEVELS }),
+  trainingGoal: text('training_goal', { enum: TRAINING_GOALS }),
   /** null = cadastro ainda não confirmado pelo link enviado por e-mail */
   emailVerifiedAt: timestamp('email_verified_at', { withTimezone: true }),
   createdAt: createdAt(),
@@ -155,10 +159,44 @@ export const workouts = pgTable('workouts', {
   description: text('description'),
   /** ex: "A", "B", "Superiores" */
   tag: text('tag'),
+  /** perfil a que a ficha se destina (modelo por nível/objetivo) */
+  level: text('level', { enum: TRAINING_LEVELS }),
+  goal: text('goal', { enum: TRAINING_GOALS }),
   createdBy: integer('created_by').references(() => users.id, { onDelete: 'set null' }),
   createdAt: createdAt(),
   updatedAt: updatedAt(),
 })
+
+/** Banco de exercícios (catálogo da CL Academy + criados pela equipe). */
+export const exercises = pgTable(
+  'exercises',
+  {
+    id: id(),
+    slug: text('slug').notNull().unique(),
+    name: text('name').notNull(),
+    muscleGroup: text('muscle_group', { enum: MUSCLE_GROUPS }).notNull(),
+    equipment: text('equipment', { enum: EQUIPMENTS }).notNull().default('outros'),
+    level: text('level', { enum: TRAINING_LEVELS }).notNull().default('iniciante'),
+    /** dica de execução */
+    instructions: text('instructions'),
+    /** fotos do movimento (início e fim); alternadas viram animação */
+    images: jsonb('images').$type<string[]>().notNull().default([]),
+    videoUrl: text('video_url'),
+    /** vídeos licenciados de um provedor externo (hoje: MuscleWiki) */
+    externalSource: text('external_source', { enum: ['musclewiki'] }),
+    externalId: integer('external_id'),
+    /** metadados dos vídeos (ângulo, gênero, URL de stream); renovados a cada 25 dias */
+    externalMedia: jsonb('external_media').$type<{ url: string; angle: string; gender: string }[]>(),
+    externalSyncedAt: timestamp('external_synced_at', { withTimezone: true }),
+    /** 'catalogo' = veio com o app · 'equipe' = criado pela CL Academy */
+    source: text('source', { enum: ['catalogo', 'equipe'] }).notNull().default('equipe'),
+    active: boolean('active').notNull().default(true),
+    createdBy: integer('created_by').references(() => users.id, { onDelete: 'set null' }),
+    createdAt: createdAt(),
+    updatedAt: updatedAt(),
+  },
+  (t) => [index('exercises_group_idx').on(t.muscleGroup)],
+)
 
 export const workoutItems = pgTable('workout_items', {
   id: id(),
@@ -166,6 +204,8 @@ export const workoutItems = pgTable('workout_items', {
     .notNull()
     .references(() => workouts.id, { onDelete: 'cascade' }),
   position: integer('position').notNull().default(0),
+  /** exercício do banco (o nome fica copiado aqui, para a ficha não mudar se o exercício for editado) */
+  exerciseId: integer('exercise_id').references(() => exercises.id, { onDelete: 'set null' }),
   name: text('name').notNull(),
   sets: integer('sets'),
   reps: text('reps'), // "10-12", "30s"
@@ -254,6 +294,12 @@ export const activityLogs = pgTable(
     feedbackBy: integer('feedback_by').references(() => users.id, { onDelete: 'set null' }),
     source: text('source').notNull().default('manual'), // manual | strava
     externalId: text('external_id'),
+    /** aparelho que gravou (ex.: "Garmin Forerunner 265", "Apple Watch Series 9"), vindo do Strava */
+    device: text('device'),
+    /** frequência cardíaca média (bpm) */
+    avgHr: integer('avg_hr'),
+    /** ganho de elevação (m) */
+    elevationM: integer('elevation_m'),
     createdAt: createdAt(),
   },
   (t) => [
@@ -278,6 +324,8 @@ export const stravaConnections = pgTable('strava_connections', {
     .primaryKey()
     .references(() => users.id, { onDelete: 'cascade' }),
   athleteId: text('athlete_id').notNull(),
+  athleteName: text('athlete_name'),
+  connectedAt: timestamp('connected_at', { withTimezone: true }).defaultNow(),
   accessToken: text('access_token').notNull(),
   refreshToken: text('refresh_token').notNull(),
   expiresAt: integer('expires_at').notNull(),
@@ -323,6 +371,7 @@ export const paymentsRelations = relations(payments, ({ one }) => ({
 export const workoutsRelations = relations(workouts, ({ many }) => ({ items: many(workoutItems) }))
 export const workoutItemsRelations = relations(workoutItems, ({ one }) => ({
   workout: one(workouts, { fields: [workoutItems.workoutId], references: [workouts.id] }),
+  exercise: one(exercises, { fields: [workoutItems.exerciseId], references: [exercises.id] }),
 }))
 export const runPlansRelations = relations(runPlans, ({ many }) => ({ sessions: many(runSessions) }))
 export const runSessionsRelations = relations(runSessions, ({ one }) => ({

@@ -88,43 +88,44 @@ onBeforeUnmount(() => clearTimeout(timer))
 <style scoped>
 .today { display: flex; flex-direction: column; gap: 0.9em; padding-top: 0.6em; }
 .today__top { display: flex; justify-content: space-between; align-items: center; }
-.today__date { font-size: 0.85em; font-weight: 700; color: #8a8884; text-transform: uppercase; letter-spacing: 0.08em; }
+.today__date { font-size: 0.85em; font-weight: 700; color: #8a8a8a; text-transform: uppercase; letter-spacing: 0.08em; }
 .today__title { font-family: var(--f-display); font-size: 2.6em; font-weight: 800; line-height: 0.9; text-transform: uppercase; margin-top: 0.15em; }
 .today__sub { font-size: 0.95em; color: #5e5e5e; font-weight: 600; }
 .ring { width: 4.6em; height: 4.6em; transform: rotate(-90deg); }
 .ring circle { fill: none; stroke-width: 3.6; }
-.ring__bg { stroke: #e2e0dc; }
+.ring__bg { stroke: #e2e2e2; }
 .ring__fg { stroke: #1f1f1f; stroke-linecap: round; transition: stroke-dasharray 0.6s var(--ease-out); }
 .ring text { transform: rotate(90deg); transform-origin: 18px 18px; font-family: var(--f-display); font-size: 9px; font-weight: 800; fill: #1f1f1f; }
 
 .ex { display: flex; flex-direction: column; gap: 0.5em; }
 .ex button {
   width: 100%; display: flex; align-items: center; gap: 0.75em; padding: 0.75em 0.8em; border-radius: 1.1em;
-  background: #fff; border: 1px solid #e6e4e0; text-align: left; font-size: 1em; color: inherit;
+  background: #fff; border: 1px solid #e6e6e6; text-align: left; font-size: 1em; color: inherit;
   transition: background 0.3s, border-color 0.3s, transform 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
 .ex button:active { transform: scale(0.98); }
 .ex__check {
   width: 1.9em; height: 1.9em; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
-  border: 0.14em solid #cfccc7; transition: background 0.3s, border-color 0.3s;
+  border: 0.14em solid #cfcfcf; transition: background 0.3s, border-color 0.3s;
 }
 .ex__check .pi { font-size: 0.8em; color: #1f1f1f; transform: scale(0); transition: transform 0.35s var(--ease-spring); }
 .ex__name { flex: 1; min-width: 0; font-weight: 700; font-size: 1.05em; line-height: 1.2; transition: color 0.3s; }
-.ex__name small { display: block; font-size: 0.82em; font-weight: 600; color: #8a8884; margin-top: 0.15em; }
-.ex__video { font-size: 0.75em; width: 2.2em; height: 2.2em; border-radius: 50%; display: grid; place-items: center; background: #f1f0ed; color: #5e5e5e; }
-.ex button.on { background: #fbfbf9; }
-.ex button.on .ex__check { background: var(--volt); border-color: var(--volt); }
+.ex__name small { display: block; font-size: 0.82em; font-weight: 600; color: #8a8a8a; margin-top: 0.15em; }
+.ex__video { font-size: 0.75em; width: 2.2em; height: 2.2em; border-radius: 50%; display: grid; place-items: center; background: #f0f0f0; color: #5e5e5e; }
+.ex button.on { background: #fafafa; }
+.ex button.on .ex__check { background: #1a1a1a; border-color: #1a1a1a; }
+.ex button.on .ex__check .pi { color: #fff; }
 .ex button.on .ex__check .pi { transform: scale(1); }
-.ex button.on .ex__name { color: #8a8884; }
+.ex button.on .ex__name { color: #8a8a8a; }
 
-.today__coach { display: flex; gap: 0.6em; align-items: flex-start; padding: 0.7em 0.8em; border-radius: 1.1em; background: #1f1f1f; color: #eeedeb; }
+.today__coach { display: flex; gap: 0.6em; align-items: flex-start; padding: 0.7em 0.8em; border-radius: 1.1em; background: #1f1f1f; color: #f0f0f0; }
 .today__coach p { font-size: 0.92em; line-height: 1.35; }
-.today__avatar { width: 2.2em; height: 2.2em; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: var(--volt); color: #1f1f1f; font-family: var(--f-display); font-weight: 800; font-size: 0.85em; }
+.today__avatar { width: 2.2em; height: 2.2em; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: var(--hi); color: #1f1f1f; font-family: var(--f-display); font-weight: 800; font-size: 0.85em; }
 
 .today__done {
   position: absolute; left: 1em; right: 1em; bottom: 0.8em; display: flex; align-items: center; gap: 0.5em;
-  padding: 0.85em 1em; border-radius: 1.1em; background: var(--volt); color: #1f1f1f; font-weight: 800; font-size: 0.95em;
+  padding: 0.85em 1em; border-radius: 1.1em; background: #1a1a1a; color: #fff; font-weight: 800; font-size: 0.95em;
   box-shadow: 0 1em 2em -0.8em rgba(0, 0, 0, 0.35);
 }
 .done-enter-active { animation: lp-pop 0.5s var(--ease-out); }

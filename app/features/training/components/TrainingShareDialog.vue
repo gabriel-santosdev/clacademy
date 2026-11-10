@@ -17,7 +17,7 @@ const copyable = ref(false)
 onMounted(() => (copyable.value = canCopyImage()))
 
 function accentColor() {
-  return getComputedStyle(document.documentElement).getPropertyValue('--cl-volt').trim() || '#d4f53c'
+  return getComputedStyle(document.documentElement).getPropertyValue('--cl-hi').trim() || '#d4f53c'
 }
 
 let renderId = 0

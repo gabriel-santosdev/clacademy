@@ -38,7 +38,7 @@ const label = computed(() => {
 .page-header__back .pi { font-size: 0.72rem; }
 .page-header__row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
 .page-header__eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.page-header__eyebrow span { width: 10px; height: 10px; border-radius: 3px; background: var(--cl-volt); box-shadow: 0 0 0 2px var(--app-text); }
+.page-header__eyebrow span { width: 10px; height: 10px; border-radius: 3px; background: var(--app-bg); box-shadow: 0 0 0 2px var(--app-text); }
 .page-header__sub { margin-top: 8px; font-size: 0.98rem; max-width: 620px; }
 .page-header__actions { display: flex; gap: 8px; flex-wrap: wrap; }
 </style>

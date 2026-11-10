@@ -2,7 +2,7 @@
 definePageMeta({ layout: 'app' })
 useHead({ title: 'Perfil · CL Academy' })
 
-const { data: profile, refresh, form, save } = await useProfile('aluno')
+const { data: profile, form, save } = await useProfile('aluno')
 </script>
 
 <template>
@@ -38,13 +38,26 @@ const { data: profile, refresh, form, save } = await useProfile('aluno')
 
     <AccountDeviceCard />
 
-    <AccountStravaCard
-      v-if="profile.stravaAvailable"
-      :connected="profile.strava.connected"
-      :last-sync-at="profile.strava.lastSyncAt"
-      :on-change="refresh"
-    />
+    <NuxtLink to="/app/aluno/perfil/integracoes" class="link-card">
+      <span class="link-card__icon"><i class="pi pi-link" /></span>
+      <span class="grow">
+        <strong>Relógio e apps</strong>
+        <span class="small muted">Apple Watch, Garmin, Coros e outros, via Strava</span>
+      </span>
+      <i class="pi pi-chevron-right muted" />
+    </NuxtLink>
 
     <AccountPasswordCard />
   </div>
 </template>
+
+<style scoped>
+.link-card {
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: var(--radius-lg);
+  background: var(--app-surface); border: 1px solid var(--app-border); transition: transform 0.15s var(--ease-out), border-color 0.2s;
+}
+.link-card strong { display: block; font-weight: 800; }
+.link-card:active { transform: scale(0.98); }
+@media (hover: hover) { .link-card:hover { border-color: var(--app-muted); } }
+.link-card__icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); }
+</style>

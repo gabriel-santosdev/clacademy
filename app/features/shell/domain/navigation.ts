@@ -47,6 +47,7 @@ const COACH: NavItem[] = [
   { to: '/app/professor/alunos', label: 'Alunos', icon: 'pi-users' },
   { to: '/app/professor/treinos', label: 'Treinos', icon: 'pi-bolt' },
   { to: '/app/professor/corridas', label: 'Corridas', icon: 'pi-map' },
+  { to: '/app/professor/exercicios', label: 'Exercícios', icon: 'pi-images' },
   { to: '/app/professor/avisos', label: 'Avisos', icon: 'pi-megaphone' },
 ]
 
@@ -69,9 +70,21 @@ export function navFor(role: Role | undefined): { sections: NavSection[]; primar
     }
   }
   if (role === 'professor') return { sections: [{ items: COACH }], primary: COACH.slice(0, 4) }
-  return { sections: [{ items: ALUNO }], primary: ALUNO }
+  return {
+    sections: [{ items: ALUNO }, { title: 'Conectar', items: [{ to: '/app/aluno/perfil/integracoes', label: 'Relógio e apps', icon: 'pi-link' }] }],
+    primary: ALUNO,
+  }
 }
 
 export function isNavActive(item: NavItem, path: string) {
   return item.exact ? path === item.to : path.startsWith(item.to)
+}
+
+/** Entre várias seções, só o item mais específico que casa com o caminho fica ativo. */
+export function activeNavTarget(sections: NavSection[], path: string) {
+  let best: string | null = null
+  for (const item of sections.flatMap((s) => s.items)) {
+    if (isNavActive(item, path) && item.to.length > (best?.length ?? -1)) best = item.to
+  }
+  return best
 }

@@ -34,10 +34,10 @@ interface Palette {
 
 function palette(style: StoryStyle, accent: string): Palette {
   if (style === 'light') {
-    return { bg: '#eeedeb', fg: '#1f1f1f', muted: '#5e5e5e', line: '#d7d4cf', accent, accentInk: '#1f1f1f' }
+    return { bg: '#f0f0f0', fg: '#1f1f1f', muted: '#5e5e5e', line: '#d9d9d9', accent, accentInk: '#1f1f1f' }
   }
   if (style === 'dark') {
-    return { bg: '#1f1f1f', fg: '#eeedeb', muted: '#a8a7a4', line: '#3a3a3a', accent, accentInk: '#1f1f1f' }
+    return { bg: '#1f1f1f', fg: '#f0f0f0', muted: '#a6a6a6', line: '#3a3a3a', accent, accentInk: '#1f1f1f' }
   }
   // foto e figurinha: texto claro por cima de imagem
   return { bg: 'transparent', fg: '#ffffff', muted: 'rgba(255,255,255,0.78)', line: 'rgba(255,255,255,0.35)', accent, accentInk: '#1f1f1f' }

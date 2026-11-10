@@ -10,7 +10,7 @@ Plataforma da CL Academy: site institucional, app (PWA) de treinos e assessoria 
 |---|---|---|
 | `/` | público | Landing (SSR) + vitrine de planos publicados |
 | `/login`, `/cadastro` | público | Acesso e cadastro de alunos |
-| `/app/aluno` | aluno | Treino do dia, treinos/planilhas, histórico, plano e pagamentos, perfil (push, Strava) |
+| `/app/aluno` | aluno | Treino do dia, treinos/planilhas, histórico, plano e pagamentos, perfil (push), relógio e apps (Strava) |
 | `/app/professor` | professor, admin | Feed de atividades + feedback, alunos, fichas de treino, planilhas de corrida, avisos |
 | `/app/admin` | admin | Dashboard (MRR, receita), planos e preços, financeiro, usuários, configurações |
 
@@ -62,10 +62,26 @@ Para recomeçar do zero, apague a pasta `.data/`.
 - Enviados: confirmação de cadastro (o aluno só entra após clicar no link), redefinição de senha, nova mensalidade (modo manual), pagamento confirmado e mensalidade em atraso.
 - Contas criadas pelo admin já nascem confirmadas.
 
+## Banco de exercícios e vídeos
+
+- Catálogo inicial com 116 exercícios em português (`server/db/exercise-catalog.ts`), criado no banco automaticamente; a equipe edita/cria em **Treinamento → Exercícios**.
+- Fichas usam exercícios do banco (miniatura + "Como fazer"), têm **nível** e **objetivo**; o aluno tem um **perfil de treino** e, ao atribuir, as fichas compatíveis aparecem primeiro.
+- Mídia, por prioridade: vídeo próprio da CL Academy (`.mp4` em loop ou YouTube/Instagram) → vídeo licenciado do MuscleWiki → imagens → capa da marca.
+- **Vídeo próprio (recomendado):** em Exercícios → editar, "Escolher vídeo" ou "Gravar agora". O navegador recorta (até 10 s), reduz para 720p sem som e gera a capa; o arquivo vai direto ao Supabase Storage (bucket público `exercise-media`, criado automaticamente) por link assinado. Requer `NUXT_PUBLIC_SUPABASE_URL`, `NUXT_PUBLIC_SUPABASE_KEY` (publicável) e `NUXT_SUPABASE_SERVICE_KEY` (secreta, só no servidor).
+- **MuscleWiki** (`NUXT_MUSCLEWIKI_API_KEY`, plano TESTING+): vídeos reais de academia, frente/lado, feminino/masculino. Em Exercícios, o admin clica em "Vincular vídeos automaticamente"; ajustes finos em Editar → "Vídeo licenciado".
+  - A chave nunca vai ao navegador: o servidor gera um token de 15 min. Vídeos não são baixados/guardados (só metadados, renovados a cada 25 dias), como exigem os termos.
+  - Cada reprodução conta 1 chamada na cota; nas listas o vídeo não toca sozinho por isso.
+  - **Obrigatório pelos termos:** os Termos de Uso ou a Política de Privacidade do app devem conter a frase "Exercise data and videos provided by MuscleWiki.com", e a marca nos vídeos não pode ser removida.
+
 ## Integrações opcionais
 
 - **Push:** `npx web-push generate-vapid-keys` → `NUXT_PUBLIC_VAPID_PUBLIC_KEY` / `NUXT_VAPID_PRIVATE_KEY`. No iPhone, push só funciona com o app instalado na tela inicial.
-- **Strava:** crie um app em strava.com/settings/api (callback domain = seu domínio) → `NUXT_STRAVA_CLIENT_ID` / `NUXT_STRAVA_CLIENT_SECRET`.
+- **Strava (relógios):** crie um app em strava.com/settings/api (callback domain = seu domínio) → `NUXT_STRAVA_CLIENT_ID` / `NUXT_STRAVA_CLIENT_SECRET`.
+  Depois do deploy, em Admin → Configurações, clique em **Ativar sincronização**: o Strava passa a avisar o app
+  (`/api/strava/webhook`) a cada atividade. O Strava é o hub dos relógios (Apple Watch, Garmin, COROS, Polar, Suunto,
+  Galaxy Watch, Amazfit, Wahoo); a Apple não expõe o Apple Watch para sites, e as APIs diretas das marcas exigem
+  aprovação como parceiro. Corridas sempre entram; musculação/funcional só quando há treino do professor no dia.
+  Cada atividade faz **check-out automático** da sessão planejada do dia e avisa aluno e professor por push.
 
 ## Estrutura
 
@@ -93,7 +109,7 @@ shared/utils/    constantes e formatadores usados no app e no server
 ```
 
 Features: `auth`, `billing` (planos, assinatura, financeiro), `training` (treinos, planilhas, registros, atribuições),
-`coaching` (painel do professor, feedback, avisos), `account` (perfil, senha, notificações, Strava), `admin`
+`coaching` (painel do professor, feedback, avisos), `account` (perfil, senha, notificações), `integrations` (Strava e relógios, check-out automático), `admin`
 (usuários, configurações), `pwa` (instalação e push), `shell` (navegação por papel), `landing` (site).
 
 Tudo em `domain/`, `api/` e `composables/` é auto-importado (ver `nuxt.config.ts`). Composables que fazem query

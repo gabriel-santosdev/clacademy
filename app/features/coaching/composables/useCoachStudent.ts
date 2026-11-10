@@ -17,6 +17,10 @@ export function useCoachStudent(id: number) {
     await coachingApi.setCoach(id, coachId)
     await query.refresh()
   }, 'Professor responsável atualizado')
+  const setProfile = useAction(async (body: Parameters<typeof coachingApi.setProfile>[1]) => {
+    await coachingApi.setProfile(id, body)
+    await query.refresh()
+  }, 'Perfil de treino atualizado')
   const takeOver = () => setCoach(user.value!.id)
   const release = () => setCoach(null)
 
@@ -36,5 +40,5 @@ export function useCoachStudent(id: number) {
     })
   }
 
-  return withAsync(query, { stats, whatsapp, isMine, coach, feedback, setCoach, takeOver, release, askEndAssignment })
+  return withAsync(query, { stats, whatsapp, isMine, coach, feedback, setCoach, setProfile, takeOver, release, askEndAssignment })
 }
