@@ -16,7 +16,13 @@ export default defineEventHandler(async (event) => {
   const db = await useDb()
 
   const exists = await db.query.users.findFirst({ where: (u) => eq(u.email, data.email) })
-  if (exists) throw createError({ statusCode: 409, message: 'E-mail já cadastrado' })
+  if (exists && !exists.emailVerifiedAt && exists.active) {
+    // cadastro anterior não confirmado: reenvia o link (sem trocar a senha, para ninguém
+    // sequestrar a conta de outra pessoa cadastrando o e-mail dela primeiro)
+    if (!(await sentRecently(exists.id, 'verify_email'))) await sendVerificationEmail(exists, data.planId)
+    return { ok: true, email: exists.email }
+  }
+  if (exists) throw createError({ statusCode: 409, message: 'E-mail já cadastrado. Use "Esqueci minha senha" se não lembrar a senha.' })
 
   const [user] = await db
     .insert(tables.users)
