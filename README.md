@@ -52,7 +52,7 @@ Para recomeçar do zero, apague a pasta `.data/`.
 ## Deploy (Vercel + Supabase)
 
 1. No Supabase, botão **Connect**: use o **Transaction pooler** (porta 6543) em `NUXT_DATABASE_URL` e o **Session pooler** (porta 5432) em `NUXT_DATABASE_MIGRATION_URL`.
-2. Configure as variáveis do `.env.example` no projeto da Vercel (ambiente Production). No mínimo: as duas URLs do banco, `NUXT_SESSION_PASSWORD`, `NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD`, `NUXT_PUBLIC_SITE_URL`.
+2. Configure as variáveis do `.env.example` no projeto da Vercel (ambiente Production). No mínimo: as duas URLs do banco, `NUXT_APP_SECRET`, `NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD`, `NUXT_PUBLIC_SITE_URL`.
 3. O build (`vercel-build`) aplica as migrations e o primeiro acesso cria o admin.
 4. Todas as tabelas têm RLS ligado (migration `0002`): a Data API do Supabase não enxerga nada; o app acessa como dono das tabelas. Em tabelas novas, inclua `ENABLE ROW LEVEL SECURITY` na migration.
 
